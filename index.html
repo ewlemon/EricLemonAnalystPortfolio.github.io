@@ -16,6 +16,172 @@
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
 		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
 
+		  <!-- Google Font -->
+			<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+
+			<!-- Global Typography Styles -->
+			<style>
+			/* Base body */
+			body {
+				font-family: 'Roboto', Arial, Helvetica, sans-serif;
+				font-size: 16px;
+				line-height: 1.6;
+				color: #ffffff;
+				margin: 0;
+				padding: 0;
+				background-color: #ffffff;
+			}
+
+			/* Headings */
+			h1 {
+				font-weight: 700;
+				font-size: 2.5rem;
+				margin: 2rem 0 1rem 0;
+				color: #000;
+			}
+			h2 {
+				font-weight: 700;
+				font-size: 2rem;
+				margin: 1.8rem 0 1rem 0;
+				color: #000;
+			}
+			h3 {
+				font-weight: 700;
+				font-size: 1.6rem;
+				margin: 1.5rem 0 0.8rem 0;
+				color: #000;
+			}
+			h4, h5, h6 {
+				font-weight: 500;
+				font-size: 1.2rem;
+				margin: 1.2rem 0 0.5rem 0;
+				color: #000;
+			}
+
+			/* Paragraphs */
+			p {
+				font-weight: 400;
+				font-size: 1rem;
+				margin-bottom: 1rem;
+				color: #000;
+			}
+
+			/* Lists */
+			ul, ol {
+				padding-left: 1.5rem;
+				margin-bottom: 1rem;
+			}
+			li {
+				margin-bottom: 0.5rem;
+				color: #000;
+			}
+
+			/* Links */
+			a {
+				font-family: 'Roboto', Arial, Helvetica, sans-serif;
+				font-weight: 500;
+				color: #0073e6;
+				text-decoration: none;
+				transition: color 0.3s;
+			}
+			a:hover {
+				color: #005bb5;
+			}
+
+			/* Buttons */
+			button, .btn, a.button {
+				font-family: 'Roboto', Arial, Helvetica, sans-serif;
+				font-weight: 500;
+				cursor: pointer;
+				background-color: #0073e6;
+				color: #ffffff;
+				border: none;
+				border-radius: 5px;
+				padding: 0.7rem 1.5rem;
+				transition: background-color 0.3s;
+			}
+			button:hover, .btn:hover, a.button:hover {
+				background-color: #005bb5;
+			}
+
+			/* Project summaries / reflections */
+			.project-summary, .project-reflection {
+				font-size: 0.95rem;
+				line-height: 1.5;
+				color: #000;
+				margin-top: 0.8rem;
+				margin-bottom: 1.5rem;
+			}
+
+			/* Carousel / card titles */
+			.project-card h3 {
+				font-weight: 600;
+				font-size: 1.1rem;
+				margin-bottom: 0.5rem;
+				color: #000;
+			}
+
+			/* Carousel / card text */
+			.project-card p {
+				font-size: 0.95rem;
+				line-height: 1.4;
+				color: #000;
+			}
+
+			.icons .icon {
+				background-color: #000; /* normal color */
+				color: #fff;
+				width: 60px;  /* set width */
+				height: 60px; /* set height, same as width */
+				border-radius: 50%; /* makes it a perfect circle */
+				display: inline-flex; /* center the icon horizontally & vertically */
+				align-items: center;
+				justify-content: center;
+				text-decoration: none;
+				transition: background-color 0.3s, transform 0.2s;
+				font-size: 1.5rem; /* size of the Font Awesome icon */
+}
+
+			.icons .icon:hover {
+			background-color: #000; /* hover color */
+			transform: translateY(-2px); /* optional lift */
+}
+
+			/* Parallax Section */
+			.parallax-section {
+			background-image: url('images/Background.jpg'); /* use your banner image */
+			background-attachment: fixed;
+			background-position: center;
+			background-repeat: no-repeat;
+			background-size: cover;
+			height: 400px; /* adjust as needed */
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			position: relative;
+			text-align: center;
+			color: #fff;
+			}
+
+			.parallax-section::before {
+			content: "";
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+			background-color: rgba(0,0,0,0.4); /* optional overlay for readability */
+			z-index: 0;
+			}
+
+			.parallax-section .overlay-content {
+			position: relative;
+			z-index: 1;
+			max-width: 800px;
+			padding: 1rem;
+			}
+			</style>
+
 		<style>
 			#header {
 			background-image: url('images/Background.jpg'); /* path to your image */
@@ -44,22 +210,41 @@
 					<!-- Inner -->
 						<div class="inner">
 							<header>
-								<h1><a href="index.html" id="logo">Data Analyst Portfolio</a></h1>
+								<h1><a href="index.html" id="logo">Turning complex data into clear insights</a></h1>
 								<hr />
-								<p>By Eric Lemon</p>
+								<p style="color:#fff">Helping organizations make smarter, data-driven decisions.</p>
 							</header>
 							<footer>	
 						</div>
 
 			<!-- Banner -->
-				<section id="banner" style="color:#000;">
-					<header>
-						<h2><strong>Welcome!</strong></h2>
-							<p>I am a graduate student in Business Analytics at Northern Kentucky University.</p>
- 							<p>I specialize in SQL, Python, Excel, and visualization tools like Tableau.</p>	
-					</header>
+				<section id="banner" style="color:#000; padding:4rem 1rem; text-align:center;">
+
+				<!-- Welcome Heading -->
+				<h2><strong>Welcome!</strong></h2>
+
+				<!-- Container for Image + Text -->
+				<div style="display:flex; flex-wrap:wrap; align-items:flex-start; justify-content:center; gap:2rem; margin-top:2rem;">
+
+					<!-- Headshot + Button -->
+					<div style="display:flex; flex-direction:column; align-items:center;">
+					<img src="images/headshot.jpg" alt="Eric Lemon" style="width:150px; height:150px; border-radius:50%; object-fit:cover; box-shadow:0 4px 8px rgba(0,0,0,0.1); margin-bottom:1rem;">
+					</div>
+
+					<!-- Intro Text -->
+					<div style="max-width:600px; text-align:center;">
+					<p>My name is Eric Lemon and I am a Business Analytics graduate student focused on data storytelling, dashboard design, and uncovering actionable insights.</p>
+					<p>I enjoy working with messy datasets, building automated Python workflows, and creating Tableau dashboards that answer real business questions.</p>
+					</div>
+
+				</div>
 				</section>
 
+
+
+
+			<!-- Border -->			
+			<hr style="border: 0; border-top: 3px solid #2b262c; margin:0rem 0;">
 			
 			<!-- Carousel -->
 			<section class="carousel">
@@ -71,7 +256,7 @@
 					<div class="project-card fade-in tableau-card">
 					<i class="fa-solid fa-chart-line" style="font-size:64px; margin-bottom:1em;"></i>
 					<h3>Covid-19 Tableau Dashboard</h3>
-					<p style="color: #000;">Interactive Tableau dashboard visualizing key COVID-19 trends through April 2021.</p>
+					<p style="color: #000;">Interactive Tableau dashboard analyzing national COVID-19 trends through April 2021, including cases, mortality, and regional comparisons.</p>
 					</div>
 				</a>
 				</article>
@@ -81,7 +266,7 @@
 					<div class="project-card fade-in tableau-card">
 					<i class="fa-solid fa-chart-line" style="font-size:64px; margin-bottom:1em;"></i>
 					<h3>HR Tableau Dashboard</h3>
-					<p style="color: #000;">Human resources analytics dashboard using a synthetic dataset.</p>
+					<p style="color: #000;">Human resources dashboard built from a synthetic dataset to explore workforce trends, retention risks, and role distribution.</p>
 					</div>
 				</a>
 				</article>
@@ -91,7 +276,7 @@
 					<div class="project-card fade-in tableau-card">
 					<i class="fa-solid fa-chart-line" style="font-size:64px; margin-bottom:1em;"></i>
 					<h3>AirHelp Score Tableau Dashboard</h3>
-					<p style="color: #000;">AirHelp score dashboard with rankings for international airports.</p>
+					<p style="color: #000;">Tableau dashboard evaluating global airport performance using AirHelp scores and ranking metrics.</p>
 					</div>
 				</a>
 				</article>
@@ -102,7 +287,7 @@
 					<div class="project-card fade-in sql-card">
 					<i class="fa-solid fa-database" style="font-size:64px; margin-bottom:1em;"></i>
 					<h3>Crime Data SQL Project</h3>
-					<p style="color: #000;">Cleaning and Exploratory SQL project using crime data from LAPD.</p>
+					<p style="color: #000;">SQL-based data cleaning and exploratory analysis of LAPD crime data, focusing on trends, frequency, and incident categorization.</p>
 					</div>
 				</a>
 				</article>
@@ -112,7 +297,7 @@
 					<div class="project-card fade-in sql-card">
 					<i class="fa-solid fa-database" style="font-size:64px; margin-bottom:1em;"></i>
 					<h3>Chronic Diseases SQL Project</h3>
-					<p style="color: #000;">SQL project focused on cleaning chronic disease data across the United States.</p>
+					<p style="color: #000;">SQL project that cleans, standardizes, and analyzes U.S. chronic disease indicators to support public-health insights.</p>
 					</div>
 				</a>
 				</article>
@@ -122,7 +307,7 @@
 					<div class="project-card fade-in sql-card">
 					<i class="fa-solid fa-database" style="font-size:64px; margin-bottom:1em;"></i>
 					<h3>Northwind SQL Project</h3>
-					<p style="color: #000;">SQL project that analyzes business data, creating tables for Tableau visualization.</p>
+					<p style="color: #000;">End-to-end SQL workflow creating cleaned, structured tables used to power an interactive Tableau business performance dashboard.</p>
 					</div>
 				</a>
 				</article>
@@ -133,7 +318,7 @@
 					<div class="project-card fade-in python-card">
 					<i class="fa-brands fa-python" style="font-size:64px; margin-bottom:1em;"></i>
 					<h3>Python Exploratory Analysis</h3>
-					<p style="color: #000;">Organization and visualization focused Python project using Python libraries and world population data.</p>
+					<p style="color: #000;">Python project using Pandas, NumPy, and visualization libraries to organize, clean, and analyze global population trends.</p>
 					</div>
 				</a>
 				</article>
@@ -143,7 +328,7 @@
 					<div class="project-card fade-in python-card">
 					<i class="fa-brands fa-python" style="font-size:64px; margin-bottom:1em;"></i>
 					<h3>Python Library Exploration</h3>
-					<p style="color: #000;">Project that explores Python libraries such as Pandas, Numpy, Seaborn, MatPlotLib through Jupyter Notebooks.</p>
+					<p style="color: #000;">Exploratory Jupyter Notebook project demonstrating data manipulation and visualization using Pandas, NumPy, Matplotlib, and Seaborn.</p>
 					</div>
 				</a>
 				</article>
@@ -154,7 +339,7 @@
 					<div class="project-card fade-in r-card">
 					<i class="fa-brands fa-r-project" style="font-size:64px; margin-bottom:1em;"></i>
 					<h3>Crime Data R Project</h3>
-					<p style="color: #000;">Uses R and R Markdown to create visualizations from cleaned crime data.</p>
+					<p style="color: #000;">R and R Markdown project cleaning crime datasets and generating clear, publication-style visualizations and summaries.</p>
 					</div>
 				</a>
 				</article>
@@ -165,7 +350,7 @@
 					<div class="project-card fade-in excel-card">
 					<i class="fa-solid fa-file-excel" style="font-size:64px; margin-bottom:1em;"></i>
 					<h3>Excel Sales Dashboard</h3>
-					<p style="color: #000;">A simple Excel dashboard for sales data from a bicycle store.</p>
+					<p style="color: #000;">Interactive Excel dashboard summarizing sales performance for a bicycle retailer, including revenue trends and product breakdowns.</p>
 					</div>
 				</a>
 				</article>
@@ -187,7 +372,7 @@
 			text-align:center;
 			padding:1.5em;
 			border-radius:12px;
-			min-height:500px;
+			min-height:450px;
 			width:300px;
 			display:flex;
 			flex-direction:column;
@@ -233,9 +418,12 @@
 			faders.forEach(fader => observer.observe(fader));
 			</script>
 
+			<!-- Border -->			
+				<hr style="border: 0; border-top: 3px solid #2b262c; margin: -5.5rem 0;">
 
-
-
+				<section id="tableau-project" style="padding-top:1rem; padding-bottom:5rem;">
+  			<!-- Tableau embed iframe -->
+				</section>
 
 			<!-- Main -->
 				<div class="wrapper style2">
@@ -286,26 +474,45 @@
 							vizElement.parentNode.insertBefore(scriptElement, vizElement);
 							</script>
 						<header>
-							<h2><a href="#">Career Trends Dashboard</a></h2>
+							<h2><a href="https://public.tableau.com/app/profile/eric.lemon/viz/LemonAssignmentFinal/Dashboard">Featured Project: Career Trends Dashboard (Tableau)</a></h2>
 							<p>
-								My most recent Tableau project
+								A multi-panel Tableau dashboard analyzing long-term U.S. employment trends using data from the Bureau of Labor Statistics.
 							</p>
 						</header>
-						<p>
-							This project was completed as the final assignment for my Data Visualization course, using data from the U.S. Bureau of Labor Statistics on occupational projections and characteristics. 
-							The goal was to identify employment trends across industries and occupations, and to present those insights through clear, engaging visuals. 
-							This project highlights my ability to transform large public datasets into meaningful, data-driven stories.
-						</p>
+						<h3 style="color:#000;"><strong>Highlights</strong></h3>
+							<ul style="text-align:center; list-style-position:inside;">
+							<li>Examines occupational projections and employment characteristics across major industries</li>
+							<li>Identifies high-growth sectors, declining fields, and long-term workforce patterns</li>
+							<li>Uses interactive filters for turnover percentage, growth rate, occupation change, average annual wage, and experience and degree obtained</li>
+							<li>Designed as the final project for a Data Visualization course, emphasizing clarity and storytelling</li>
+							<li>Demonstrates ability to clean, structure, and visualize large public datasets</li>
+							</ul>
+
+							<h3 style="color:#000;"><strong>Project Summary</strong></h3>
+							<p>
+							This dashboard explores nationwide employment projections and occupational trends using BLS labor statistics. 
+							The goal was to uncover insights into which fields are expanding or contracting, and to present this information in a way that is accessible to both technical and non-technical audiences. 
+							The interactive design encourages users to explore growth rates, median wages, and workforce distribution across industries.
+							The main intended audience includes career advisors, job seekers, and HR professionals looking to understand labor market dynamics.
+							This project showcases my ability to transform raw workforce data into meaningful, visually compelling stories that support data-driven decision-making.
+							</p>
+
 						<footer>
 					</article>
 
 				</div>
 
+					<!-- Parallax mid-section -->
+						<section class="parallax-section">
+						<div class="overlay-content">
+						</div>
+						</section>
+
 				<!-- Features -->
 					<div class="wrapper style1">
 					<section id="features" class="container special" style="color:#000;">
 						<header>
-						<h2>Graduate Degree Projects</h2>
+						<h2>More Graduate Degree Projects</h2>
 						<p>Projects undertaken as part of the Business Informatics: Business Analytics master's program</p>
 						</header>
 						<div class="row" style="display:flex; flex-wrap:wrap; justify-content:center; gap:1em;">
@@ -317,7 +524,7 @@
 								text-align:center;
 								padding:1.5em;
 								border-radius:12px;
-								min-height:650px;
+								min-height:450px;
 								display:flex;
 								flex-direction:column;
 								justify-content:space-between;
@@ -326,7 +533,7 @@
 								position:relative;
 								transition: transform 0.2s;
 							">
-								<i class="fa-regular fa-file" style="font-size:64px; color:#fff; margin-bottom:1em;"></i>
+								<i class="fa-regular fa-file" style="font-size:64px; color:#fff; margin-bottom:0.3em;"></i>
 								<h3>Coming Soon!</h3>
 								<p style="color:#333; font-size:0.95em; text-align:center;">Project details will be added soon.</p>
 
@@ -359,7 +566,7 @@
 								text-align:center;
 								padding:1.5em;
 								border-radius:12px;
-								min-height:650px;
+								min-height:450px;
 								display:flex;
 								flex-direction:column;
 								justify-content:space-between;
@@ -368,7 +575,7 @@
 								position:relative;
 								transition: transform 0.2s;
 							">
-								<i class="fa-solid fa-file-excel" style="font-size:64px; color:#0f7a43; margin-bottom:1em;"></i>
+								<i class="fa-solid fa-file-excel" style="font-size:64px; color:#0f7a43; margin-bottom:0.3em;"></i>
 								<h3>Decision Analytics Course Excel Problems</h3>
 								<p style="color:#333; font-size:0.95em;">This Excel-based project includes over 25 optimization problems solved using Solver, demonstrating practical linear programming and optimization modeling in business.</p>
 
@@ -401,7 +608,7 @@
 								text-align:center;
 								padding:1.5em;
 								border-radius:12px;
-								min-height:650px;
+								min-height:450px;
 								display:flex;
 								flex-direction:column;
 								justify-content:space-between;
@@ -410,7 +617,7 @@
 								position:relative;
 								transition: transform 0.2s;
 							">
-								<i class="fa-solid fa-file-excel" style="font-size:64px; color:#0f7a43; margin-bottom:1em;"></i>
+								<i class="fa-solid fa-file-excel" style="font-size:64px; color:#0f7a43; margin-bottom:0.3em;"></i>
 								<h3>Business Analytics Course Excel Problems</h3>
 								<p style="color:#333; font-size:0.95em;">This Excel-based project includes notes and optimization problems solved using Solver and regression analysis, demonstrating problem modeling and effective insights communication.</p>
 
@@ -476,11 +683,179 @@
 					}
 					</style>
 
+				<!-- Border -->			
+				<hr style="border: 0; border-top: 3px solid #2b262c; margin:1rem 0;">
 
-			<!-- Footer -->
-				<div id="footer">
-					<div class="container">
-						<div class="row">
+
+				<!-- Tools & Skills Section -->
+				<section id="skills-tools" style="padding: 2rem 1rem; background-color: #ffffff; text-align: center; color: #222;">
+				
+				<h2 style="margin-bottom: 1.5rem; font-size: 1.8rem; font-weight: 700; color: #222;">
+					Tools & Skills
+				</h2>
+
+				<!-- Chips Container -->
+				<div style="
+					display: flex; 
+					flex-wrap: wrap; 
+					justify-content: center; 
+					gap: 0.8rem;
+					max-width: 900px;
+					margin: 0 auto;
+					">
+
+					<!-- Tool Chips -->
+					<div style="
+						display: inline-flex; 
+						align-items: center; 
+						gap: 0.4rem; 
+						padding: 0.5rem 0.9rem; 
+						border: 1px solid #ddd; 
+						border-radius: 30px; 
+						font-size: 0.95rem; 
+						color: #222;
+						background-color: #f7f7f7;
+					">
+					<i class="fas fa-database"></i> SQL
+					</div>
+
+					<div style="
+						display: inline-flex; 
+						align-items: center; 
+						gap: 0.4rem; 
+						padding: 0.5rem 0.9rem; 
+						border: 1px solid #ddd; 
+						border-radius: 30px; 
+						font-size: 0.95rem; 
+						color: #222;
+						background-color: #f7f7f7;
+					">
+					<i class="fab fa-python"></i> Python
+					</div>
+
+					<div style="
+						display: inline-flex;
+						align-items: center; 
+						gap: 0.4rem; 
+						padding: 0.5rem 0.9rem; 
+						border: 1px solid #ddd; 
+						border-radius: 30px; 
+						font-size: 0.95rem; 
+						color: #222;
+						background-color: #f7f7f7;
+					">
+					<i class="fas fa-chart-bar"></i> Tableau
+					</div>
+
+					<div style="
+						display: inline-flex;
+						align-items: center; 
+						gap: 0.4rem; 
+						padding: 0.5rem 0.9rem; 
+						border: 1px solid #ddd; 
+						border-radius: 30px; 
+						font-size: 0.95rem; 
+						color: #222;
+						background-color: #f7f7f7;
+					">
+					<i class="fas fa-file-excel"></i> Excel
+					</div>
+
+					<div style="
+						display: inline-flex; 
+						align-items: center; 
+						gap: 0.4rem; 
+						padding: 0.5rem 0.9rem; 
+						border: 1px solid #ddd; 
+						border-radius: 30px; 
+						font-size: 0.95rem; 
+						color: #222;
+						background-color: #f7f7f7;
+					">
+					<i class="fas fa-code"></i> R
+					</div>
+
+					<!-- Skill Chips -->
+					<div style="
+						display: inline-flex; 
+						align-items: center; 
+						gap: 0.4rem; 
+						padding: 0.5rem 0.9rem; 
+						border: 1px solid #ddd; 
+						border-radius: 30px; 
+						font-size: 0.95rem; 
+						color: #222;
+						background-color: #f7f7f7;
+					">
+					<i class="fas fa-broom"></i> Data Cleaning
+					</div>
+
+					<div style="
+						display: inline-flex;  
+						align-items: center; 
+						gap: 0.4rem; 
+						padding: 0.5rem 0.9rem; 
+						border: 1px solid #ddd; 
+						border-radius: 30px; 
+						font-size: 0.95rem; 
+						color: #222;
+						background-color: #f7f7f7;
+					">
+					<i class="fas fa-filter"></i> Data Wrangling
+					</div>
+
+					<div style="
+						display: inline-flex; 
+						align-items: center; 
+						gap: 0.4rem; 
+						padding: 0.5rem 0.9rem; 
+						border: 1px solid #ddd; 
+						border-radius: 30px; 
+						font-size: 0.95rem; 
+						color: #222;
+						background-color: #f7f7f7;
+					">
+					<i class="fas fa-chart-line"></i> Visualization
+					</div>
+
+					<div style="
+						display: inline-flex; 
+						align-items: center; 
+						gap: 0.4rem; 
+						padding: 0.5rem 0.9rem; 
+						border: 1px solid #ddd; 
+						border-radius: 30px; 
+						font-size: 0.95rem; 
+						color: #222;
+						background-color: #f7f7f7;
+					">
+					<i class="fas fa-square-root-alt"></i> Statistical Analysis
+					</div>
+
+					<div style="
+						display: inline-flex; 
+						align-items: center; 
+						gap: 0.4rem; 
+						padding: 0.5rem 0.9rem; 
+						border: 1px solid #ddd; 
+						border-radius: 30px; 
+						font-size: 0.95rem; 
+						color: #222;
+						background-color: #f7f7f7;
+					">
+					<i class="fas fa-layer-group"></i> Dashboard Design
+					</div>
+
+				</div>
+				</section>
+
+				<!-- Border -->			
+				<hr style="border: 0; border-top: 3px solid #2b262c; margin:1rem 0;">
+
+				<!-- Footer -->
+					<div id="footer">
+						<div class="container">
+							<div class="row">
 
 							
 						<div class="row">
@@ -493,13 +868,19 @@
 												<h3>Want to get in touch? Send a message through LinkedIn or Gmail!</h3>
 											</header>
 
-											<p>I also have other projects in GitHub and Tableau that be accessed by the links below!</p>
+											<p style="color:#fff">Other projects from GitHub and Tableau along with my Resume can be accessed by the links below.</p>
 
-											<ul class="icons">
-												<li><a href="https://public.tableau.com/app/profile/eric.lemon/vizzes" class="icon solid fa-chart-pie" title="Tableau"><span class="label">Tableau</span></a></li>
-												<li><a href="https://github.com/ewlemon" class="icon brands fa-github" title="GitHub"><span class="label">GitHub</span></a></li>
-												<li><a href="https://www.linkedin.com/in/ericlemon/" class="icon brands fa-linkedin" title="LinkedIn"><span class="label">LinkedIn</span></a></li>
-												<li><a href="mailto:ewlemon7@gmail.com" class="icon brands fa-google" title="Gmail"><span class="label">Gmail</span></a></li>
+											<ul class="icons" style="color:#fff">
+												<li><a href="https://public.tableau.com/app/profile/eric.lemon/vizzes" class="icon solid fa-chart-pie" title="Tableau" style="background-color:#000; color:#fff;">
+													<span class="label">Tableau</span></a></li>
+												<li><a href="https://github.com/ewlemon" class="icon brands fa-github" title="GitHub" style="background-color:#000; color:#fff;">
+													<span class="label">GitHub</span></a></li>
+												<li><a href="https://www.linkedin.com/in/ericlemon/" class="icon brands fa-linkedin" title="LinkedIn" style="background-color:#000; color:#fff;">
+													<span class="label">LinkedIn</span></a></li>
+												<li><a href="mailto:ewlemon7@gmail.com" class="icon brands fa-google" title="Gmail" style="background-color:#000; color:#fff;">
+													<span class="label">Gmail</span></a></li>
+												<li><a href="Eric_Lemon_Resume.pdf" class="icon solid fa-file" title="Resume" style="background-color:#000; color:#fff;">
+													<span class="label">Resume</span></a></li>
 											</ul>
 										</div>
 									</section>
@@ -524,15 +905,15 @@
 
 
 
-		<!-- Scripts -->
-			<script src="assets/js/jquery.min.js"></script>
-			<script src="assets/js/jquery.dropotron.min.js"></script>
-			<script src="assets/js/jquery.scrolly.min.js"></script>
-			<script src="assets/js/jquery.scrollex.min.js"></script>
-			<script src="assets/js/browser.min.js"></script>
-			<script src="assets/js/breakpoints.min.js"></script>
-			<script src="assets/js/util.js"></script>
-			<script src="assets/js/main.js"></script>
+				<!-- Scripts -->
+					<script src="assets/js/jquery.min.js"></script>
+					<script src="assets/js/jquery.dropotron.min.js"></script>
+					<script src="assets/js/jquery.scrolly.min.js"></script>
+					<script src="assets/js/jquery.scrollex.min.js"></script>
+					<script src="assets/js/browser.min.js"></script>
+					<script src="assets/js/breakpoints.min.js"></script>
+					<script src="assets/js/util.js"></script>
+					<script src="assets/js/main.js"></script>
 
-	</body>
-</html>
+			</body>
+		</html>
