@@ -1,5 +1,5 @@
 <!DOCTYPE HTML>
-<html>
+<html lang="en">
 	<head>
 		<!-- Google Tag Manager -->
 		<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
@@ -7,7 +7,6 @@
 		j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 		'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
 		})(window,document,'script','dataLayer','GTM-KCMDSTGP');</script>
-		<!-- End Google Tag Manager -->
 
 		<title>Eric Lemon Analyst Portfolio</title>
 		<meta charset="utf-8" />
@@ -15,1036 +14,1154 @@
 		<link rel="stylesheet" href="assets/css/main.css" />
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
 		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+		<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
 
-		  <!-- Google Font -->
-			<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+		<style>
+		/* ═══ CSS Variables: Light Mode ══════════════════════════ */
+		:root {
+			--accent:        #2b6cb0;
+			--accent-hover:  #1a4f8a;
+			--bg-white:      #ffffff;
+			--bg-light:      #f7f8fa;
+			--border:        #e2e8f0;
+			--text-dark:     #1a202c;
+			--text-mid:      #4a5568;
+			--nav-bg:        rgba(255,255,255,0.97);
+			--nav-border:    #e2e8f0;
+			--card-bg:       #ffffff;
+			--chip-bg:       #f7f8fa;
+			--nav-height:    58px;
+			--section-gap:   4rem;
+			--shadow-sm:     0 3px 12px rgba(0,0,0,0.07);
+			--shadow-md:     0 8px 24px rgba(0,0,0,0.11);
+			--shadow-lg:     0 14px 32px rgba(0,0,0,0.16);
+		}
 
-			<!-- Global Typography Styles -->
-			<style>
-			/* Base body */
-			body {
-				font-family: 'Roboto', Arial, Helvetica, sans-serif;
-				font-size: 16px;
-				line-height: 1.6;
-				color: #ffffff;
-				margin: 0;
-				padding: 0;
-				background-color: #ffffff;
-			}
+		/* ═══ CSS Variables: Dark Mode ═══════════════════════════ */
+		body.dark {
+			--accent:        #63b3ed;
+			--accent-hover:  #90cdf4;
+			--bg-white:      #0f1117;
+			--bg-light:      #1a1d27;
+			--border:        #2d3249;
+			--text-dark:     #e8ecf4;
+			--text-mid:      #a0aabf;
+			--nav-bg:        rgba(15,17,23,0.97);
+			--nav-border:    #2d3249;
+			--card-bg:       #1a1d27;
+			--chip-bg:       #1a1d27;
+			--shadow-sm:     0 3px 12px rgba(0,0,0,0.3);
+			--shadow-md:     0 8px 24px rgba(0,0,0,0.4);
+			--shadow-lg:     0 14px 32px rgba(0,0,0,0.5);
+		}
 
-			/* Headings */
-			h1 {
-				font-weight: 700;
-				font-size: 2.5rem;
-				margin: 2rem 0 1rem 0;
-				color: #000;
-			}
-			h2 {
-				font-weight: 700;
-				font-size: 2rem;
-				margin: 1.8rem 0 1rem 0;
-				color: #000;
-			}
-			h3 {
-				font-weight: 700;
-				font-size: 1.6rem;
-				margin: 1.5rem 0 0.8rem 0;
-				color: #000;
-			}
-			h4, h5, h6 {
-				font-weight: 500;
-				font-size: 1.2rem;
-				margin: 1.2rem 0 0.5rem 0;
-				color: #000;
-			}
+		/* ═══ Base ════════════════════════════════════════════════ */
+		*, *::before, *::after { box-sizing: border-box; }
+		body {
+			font-family: 'Roboto', Arial, sans-serif;
+			font-size: 16px;
+			line-height: 1.6;
+			color: var(--text-dark);
+			margin: 0; padding: 0;
+			background: var(--bg-white);
+			transition: background 0.3s, color 0.3s;
+		}
+		h1 { font-weight:700; font-size:2.5rem; margin:2rem 0 1rem; color:#fff; }
+		h2 { font-weight:700; font-size:2rem; margin:1.8rem 0 1rem; color:var(--text-dark); }
+		h3 { font-weight:700; font-size:1.4rem; margin:1.2rem 0 0.6rem; color:var(--text-dark); }
+		p  { font-weight:400; font-size:1rem; margin-bottom:1rem; color:var(--text-dark); }
+		a  { font-weight:500; color:var(--accent); text-decoration:none; transition:color .3s; }
+		a:hover { color:var(--accent-hover); }
 
-			/* Paragraphs */
-			p {
-				font-weight: 400;
-				font-size: 1rem;
-				margin-bottom: 1rem;
-				color: #000;
-			}
+		/* ═══ Sticky Navigation ═══════════════════════════════════ */
+		#site-nav {
+			position: sticky; top: 0; z-index: 1000;
+			background: var(--nav-bg);
+			backdrop-filter: blur(10px);
+			-webkit-backdrop-filter: blur(10px);
+			border-bottom: 1px solid var(--nav-border);
+			height: var(--nav-height);
+			display: flex; align-items: center;
+			justify-content: space-between;
+			padding: 0 1.5rem;
+			box-shadow: 0 1px 10px rgba(0,0,0,0.07);
+			transition: background 0.3s, border-color 0.3s;
+		}
+		.nav-brand {
+			font-weight: 700; font-size: 0.95rem;
+			color: var(--text-dark); white-space: nowrap;
+		}
+		.nav-right { display:flex; align-items:center; gap:0.25rem; }
+		.nav-links {
+			list-style:none; margin:0; padding:0;
+			display:flex; gap:0.15rem; align-items:center;
+		}
+		.nav-links li a {
+			display:block; padding:0.42rem 0.8rem;
+			border-radius:6px; font-size:0.86rem; font-weight:500;
+			color:var(--text-mid);
+			transition: background .2s, color .2s;
+			white-space:nowrap;
+		}
+		.nav-links li a:hover, .nav-links li a.active {
+			background:var(--bg-light); color:var(--accent);
+		}
+		.nav-cta {
+			background: var(--accent) !important;
+			color: #fff !important; border-radius:6px;
+			padding: 0.42rem 1rem !important;
+			margin-left:0.25rem;
+		}
+		.nav-cta:hover { background:var(--accent-hover) !important; color:#fff !important; }
 
-			/* Lists */
-			ul, ol {
-				padding-left: 1.5rem;
-				margin-bottom: 1rem;
-			}
-			li {
-				margin-bottom: 0.5rem;
-				color: #000;
-			}
+		/* Dark mode toggle button */
+		#dark-toggle {
+			background: none; border: 1.5px solid var(--border);
+			border-radius: 50%; width: 34px; height: 34px;
+			cursor: pointer; display: flex; align-items:center; justify-content:center;
+			color: var(--text-mid); font-size: 0.9rem;
+			transition: border-color .2s, background .2s, color .2s, transform .2s;
+			margin-left: 0.5rem; flex-shrink: 0;
+		}
+		#dark-toggle:hover { border-color:var(--accent); color:var(--accent); transform:rotate(20deg); }
 
-			/* Links */
-			a {
-				font-family: 'Roboto', Arial, Helvetica, sans-serif;
-				font-weight: 500;
-				color: #0073e6;
-				text-decoration: none;
-				transition: color 0.3s;
-			}
-			a:hover {
-				color: #005bb5;
-			}
+		/* Mobile hamburger */
+		#nav-toggle {
+			display:none; background:none; border:none; cursor:pointer; padding:0.4rem;
+		}
+		#nav-toggle span {
+			display:block; width:20px; height:2px;
+			background:var(--text-dark); margin:4px 0;
+			transition:transform .3s, opacity .3s;
+		}
 
-			/* Buttons */
-			button, .btn, a.button {
-				font-family: 'Roboto', Arial, Helvetica, sans-serif;
-				font-weight: 500;
-				cursor: pointer;
-				background-color: #0073e6;
-				color: #ffffff;
-				border: none;
-				border-radius: 5px;
-				padding: 0.7rem 1.5rem;
-				transition: background-color 0.3s;
+		/* ═══ Header / Hero ═══════════════════════════════════════ */
+		#header {
+			background-image: url('images/Background.jpg');
+			background-size:cover; background-position:center;
+			background-attachment:fixed;
+			color:#fff; padding:4rem 0;
+		}
+
+		/* ═══ Banner ══════════════════════════════════════════════ */
+		#banner {
+			padding:var(--section-gap) 1.5rem;
+			background:var(--bg-white);
+			text-align:center;
+			transition: background 0.3s;
+		}
+		.banner-inner {
+			display:flex; flex-wrap:wrap;
+			align-items:flex-start; justify-content:center;
+			gap:2rem; margin-top:2rem;
+			max-width:860px; margin-left:auto; margin-right:auto;
+		}
+		.headshot-wrap img {
+			width:140px; height:140px; border-radius:50%;
+			object-fit:cover;
+			box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+			border:3px solid var(--border);
+			transition: border-color 0.3s;
+		}
+		.banner-text { max-width:580px; text-align:left; }
+		.banner-text p { color:var(--text-mid); }
+
+		/* ═══ Divider ═════════════════════════════════════════════ */
+		.section-divider { border:0; border-top:2px solid var(--border); margin:0; transition:border-color 0.3s; }
+
+		/* ═══ Carousel ════════════════════════════════════════════ */
+		.carousel { background:var(--bg-light); padding:2.5rem 0; transition:background 0.3s; }
+		.carousel-header { text-align:center; padding:0 1.5rem 1.5rem; }
+		.carousel-header p { color:var(--text-mid); font-size:0.95rem; }
+		.carousel .reel {
+			display:flex; gap:1.25rem;
+			padding:0.5rem 2rem 1.5rem;
+			overflow-x:auto; scroll-snap-type:x mandatory;
+			-ms-overflow-style:none; scrollbar-width:none;
+		}
+		.carousel .reel::-webkit-scrollbar { display:none; }
+
+		/* ═══ Project Cards ═══════════════════════════════════════ */
+		.project-card {
+			text-align:center; padding:1.5rem 1.25rem 1.25rem;
+			border-radius:14px; min-height:480px; width:280px;
+			display:flex; flex-direction:column;
+			justify-content:flex-start; align-items:center;
+			position:relative; flex-shrink:0; scroll-snap-align:start;
+			transition: transform .25s, box-shadow .25s;
+			box-shadow: var(--shadow-sm);
+		}
+		.project-card:hover { transform:translateY(-6px); box-shadow:var(--shadow-lg); }
+		.project-card p { font-size:0.92rem; flex-grow:1; }
+		.project-card h3 { font-size:1.05rem; margin-bottom:0.4rem; }
+		.tableau-card    { background:#b7c1d1; color:#000; }
+		.sql-card        { background:#8abee6; color:#000; }
+		.python-card     { background:#fcde58; color:#000; }
+		.r-card          { background:#1a65b9; color:#fff; }
+		.databricks-card { background:#ff5f46; color:#fff; }
+
+		/* Dark mode card tinting */
+		body.dark .tableau-card    { background:#5a6a80; color:#f0f4ff; }
+		body.dark .sql-card        { background:#2a6080; color:#e8f4ff; }
+		body.dark .python-card     { background:#7a6a00; color:#fff8d6; }
+		body.dark .r-card          { background:#0c3b80; color:#ddeeff; }
+		body.dark .databricks-card { background:#8c2a18; color:#ffe8e4; }
+
+		/* ═══ Badges ══════════════════════════════════════════════ */
+		.card-badge {
+			display:inline-flex; align-items:center; gap:0.3rem;
+			padding:0.28rem 0.7rem; border-radius:20px;
+			font-size:0.72rem; font-weight:700;
+			letter-spacing:0.06em; text-transform:uppercase;
+			margin-bottom:0.75rem; opacity:0.88;
+		}
+		.tableau-card  .card-badge { background:rgba(0,0,0,0.12); color:#000; }
+		.sql-card      .card-badge { background:rgba(0,0,0,0.12); color:#000; }
+		.python-card   .card-badge { background:rgba(0,0,0,0.12); color:#000; }
+		.r-card        .card-badge { background:rgba(255,255,255,0.2); color:#fff; }
+		.databricks-card .card-badge { background:rgba(255,255,255,0.2); color:#fff; }
+		body.dark .tableau-card  .card-badge { background:rgba(255,255,255,0.15); color:#e8ecf4; }
+		body.dark .sql-card      .card-badge { background:rgba(255,255,255,0.15); color:#e8ecf4; }
+		body.dark .python-card   .card-badge { background:rgba(255,255,255,0.15); color:#fff8d6; }
+
+		/* ═══ Animated Bars ═══════════════════════════════════════ */
+		.bar-chart {
+			display:flex; justify-content:center; align-items:flex-end;
+			gap:6px; height:100px; margin-top:auto; padding-top:1rem;
+		}
+		.bar-chart .bar {
+			width:13px; border-radius:4px;
+			animation:stream 2s ease-in-out infinite alternate; opacity:0.9;
+		}
+		.b1{animation-delay:0s;   --h-min:20px;--h-max:90px;}
+		.b2{animation-delay:.2s;  --h-min:25px;--h-max:100px;}
+		.b3{animation-delay:.4s;  --h-min:18px;--h-max:80px;}
+		.b4{animation-delay:.6s;  --h-min:15px;--h-max:90px;}
+		.b5{animation-delay:.8s;  --h-min:22px;--h-max:75px;}
+		.b6{animation-delay:1s;   --h-min:20px;--h-max:88px;}
+		.b7{animation-delay:1.2s; --h-min:18px;--h-max:82px;}
+		@keyframes stream { 0%{height:var(--h-min)} 100%{height:var(--h-max)} }
+		.tableau-card    .bar { background:linear-gradient(to top,#8494ab,#b7c1d1); }
+		.sql-card        .bar { background:linear-gradient(to top,#4a7fa8,#8abee6); }
+		.python-card     .bar { background:linear-gradient(to top,#d4a800,#fcde58); }
+		.r-card          .bar { background:linear-gradient(to top,#0c3b80,#4a85d4); }
+		.databricks-card .bar { background:linear-gradient(to top,#b83220,#ff7d69); }
+
+		/* ═══ Fade-in ══════════════════════════════════════════════ */
+		.fade-in { opacity:0; transform:translateY(16px); transition:opacity .5s, transform .5s; }
+		.fade-in.visible { opacity:1; transform:translateY(0); }
+
+		/* ═══ Featured Section ════════════════════════════════════ */
+		#featured-section {
+			padding:var(--section-gap) 1.5rem;
+			background:var(--bg-white);
+			transition:background 0.3s;
+		}
+		#featured-section .inner { max-width:1100px; margin:0 auto; }
+
+		/* ═══ Parallax Stats Strip ════════════════════════════════ */
+		.parallax-section {
+			background-image: url('images/Background.jpg');
+			background-attachment:fixed; background-position:center;
+			background-repeat:no-repeat; background-size:cover;
+			padding:4.5rem 1.5rem; position:relative;
+			text-align:center; color:#fff;
+		}
+		.parallax-section::before {
+			content:""; position:absolute; inset:0;
+			background:rgba(0,0,0,0.55); z-index:0;
+		}
+		.parallax-section .overlay-content {
+			position:relative; z-index:1;
+			max-width:900px; margin:0 auto;
+		}
+		.parallax-section .overlay-content blockquote {
+			font-size:1.25rem; font-weight:300; font-style:italic;
+			color:rgba(255,255,255,0.85); margin:0 0 2.5rem;
+			border:none; padding:0; letter-spacing:0.01em;
+		}
+		.stats-row {
+			display:flex; flex-wrap:wrap;
+			justify-content:center; gap:2rem 4rem;
+		}
+		.stat-item { text-align:center; }
+		.stat-number {
+			font-size:3rem; font-weight:700; line-height:1;
+			color:#fff; display:block;
+		}
+		.stat-suffix { font-size:1.8rem; }
+		.stat-label {
+			font-size:0.8rem; letter-spacing:0.12em;
+			text-transform:uppercase; color:rgba(255,255,255,0.65);
+			margin-top:0.5rem; display:block;
+		}
+		.parallax-cta { margin-top:2.75rem; }
+		.parallax-cta a {
+			display:inline-block;
+			padding:0.75rem 2rem;
+			border:2px solid rgba(255,255,255,0.7);
+			border-radius:6px; color:#fff;
+			font-size:0.9rem; font-weight:600;
+			letter-spacing:0.05em;
+			transition:background .25s, border-color .25s;
+		}
+		.parallax-cta a:hover { background:rgba(255,255,255,0.15); border-color:#fff; color:#fff; }
+
+		/* ═══ Grad Projects ═══════════════════════════════════════ */
+		#features-wrapper {
+			padding:var(--section-gap) 1.5rem;
+			background:var(--bg-light);
+			transition:background 0.3s;
+		}
+		#features-wrapper header { text-align:center; margin-bottom:2rem; }
+		#features-wrapper header p { color:var(--text-mid); }
+		.grad-cards-row {
+			display:flex; flex-wrap:wrap;
+			justify-content:center; gap:1.5rem;
+			max-width:1050px; margin:0 auto;
+		}
+		.grad-card {
+			flex:0 1 300px;
+			background:var(--card-bg);
+			border:1px solid var(--border);
+			border-radius:14px; padding:1.75rem 1.5rem 1.5rem;
+			display:flex; flex-direction:column;
+			align-items:center; text-align:center;
+			box-shadow:var(--shadow-sm);
+			transition:transform .25s, box-shadow .25s, background 0.3s, border-color 0.3s;
+			text-decoration:none; color:inherit;
+		}
+		.grad-card:hover { transform:translateY(-5px); box-shadow:var(--shadow-md); color:inherit; }
+		.grad-badge {
+			display:inline-flex; align-items:center; gap:0.3rem;
+			padding:0.28rem 0.75rem; border-radius:20px;
+			font-size:0.72rem; font-weight:700;
+			letter-spacing:0.07em; text-transform:uppercase; margin-bottom:1rem;
+		}
+		.badge-tableau { background:#dbe7ff; color:#2b52a8; }
+		.badge-excel   { background:#dcf0e6; color:#1a6b3c; }
+		body.dark .badge-tableau { background:#1a2a50; color:#90b8ff; }
+		body.dark .badge-excel   { background:#0d2e1a; color:#6dbf8e; }
+		.grad-icon { font-size:2.8rem; margin-bottom:1rem; }
+		.grad-card h3 { font-size:1.05rem; color:var(--text-dark); margin-bottom:0.6rem; }
+		.grad-card p  { font-size:0.9rem; color:var(--text-mid); flex-grow:1; }
+		.svg-line { width:100%; height:44px; margin-top:1rem; }
+		.animate-line { animation:drawLine 2s ease-in-out forwards; }
+		.point { animation:bouncePoint 1.5s ease-in-out infinite alternate; }
+		.point:nth-child(2){animation-delay:.2s}
+		.point:nth-child(3){animation-delay:.4s}
+		.point:nth-child(4){animation-delay:.6s}
+		.point:nth-child(5){animation-delay:.8s}
+		.point:nth-child(6){animation-delay:1s}
+		@keyframes drawLine { from{stroke-dashoffset:150} to{stroke-dashoffset:0} }
+		@keyframes bouncePoint { 50%{transform:translateY(-30%)} }
+
+		/* ═══ Tools & Skills ══════════════════════════════════════ */
+		#skills-tools {
+			padding:var(--section-gap) 1.5rem;
+			background:var(--bg-white);
+			text-align:center;
+			transition:background 0.3s;
+		}
+		.chips-wrap {
+			display:flex; flex-wrap:wrap;
+			justify-content:center; gap:0.7rem;
+			max-width:860px; margin:0 auto;
+		}
+		.chip {
+			display:inline-flex; align-items:center; gap:0.4rem;
+			padding:0.48rem 1rem;
+			border:1.5px solid var(--border);
+			border-radius:30px; font-size:0.9rem;
+			color:var(--text-dark); background:var(--chip-bg);
+			transition:border-color .2s, background .2s, transform .2s, color 0.3s;
+		}
+		.chip:hover { border-color:var(--accent); background:var(--bg-light); transform:translateY(-2px); }
+
+		/* ═══ Footer ══════════════════════════════════════════════ */
+		#footer {
+			background:url('images/Background.jpg') center/cover no-repeat;
+			color:#fff; padding:5rem 1.5rem; position:relative;
+		}
+		#footer::before { content:""; position:absolute; inset:0; background:rgba(0,0,0,0.55); z-index:0; }
+		.footer-inner { position:relative; z-index:1; max-width:680px; margin:0 auto; text-align:center; }
+		#footer h3 { color:#fff; font-size:1.2rem; font-weight:500; margin-bottom:0.75rem; }
+		#footer p  { color:rgba(255,255,255,0.75); font-size:0.95rem; margin-bottom:1.5rem; }
+		.icons { list-style:none; padding:0; margin:0 0 2rem; display:flex; justify-content:center; gap:0.75rem; flex-wrap:wrap; }
+		.icons li a {
+			background:rgba(255,255,255,0.1); color:#fff;
+			width:52px; height:52px; border-radius:50%;
+			display:inline-flex; align-items:center; justify-content:center;
+			font-size:1.25rem;
+			border:1.5px solid rgba(255,255,255,0.25);
+			transition:background .25s, transform .2s;
+		}
+		.icons li a:hover { background:rgba(255,255,255,0.25); transform:translateY(-3px); color:#fff; }
+		.footer-copy { font-size:0.8rem; color:rgba(255,255,255,0.4); margin-top:1.5rem; }
+		.footer-copy a { color:rgba(255,255,255,0.6); }
+
+		/* ═══ Responsive ══════════════════════════════════════════ */
+		@media (max-width:720px) {
+			.nav-links {
+				display:none; flex-direction:column;
+				position:absolute; top:var(--nav-height); left:0; right:0;
+				background:var(--nav-bg); border-bottom:1px solid var(--border);
+				padding:0.5rem 1rem 1rem;
 			}
-			button:hover, .btn:hover, a.button:hover {
-				background-color: #005bb5;
-			}
+			.nav-links.open { display:flex; }
+			#nav-toggle { display:block; }
+			.banner-text { text-align:center; }
+			.stat-number { font-size:2.2rem; }
+		}
 
-			/* Project summaries / reflections */
-			.project-summary, .project-reflection {
-				font-size: 0.95rem;
-				line-height: 1.5;
-				color: #000;
-				margin-top: 0.8rem;
-				margin-bottom: 1.5rem;
-			}
+		
+		/* ═══ Scroll-to-top ═══════════════════════════════════════ */
+		#scroll-top {
+			position:fixed; bottom:1.75rem; right:1.75rem; z-index:500;
+			width:42px; height:42px; border-radius:50%;
+			background:var(--accent); color:#fff;
+			border:none; cursor:pointer;
+			display:flex; align-items:center; justify-content:center;
+			font-size:1rem;
+			box-shadow:0 4px 14px rgba(0,0,0,0.2);
+			opacity:0; pointer-events:none;
+			transition:opacity .3s, transform .3s, background .2s;
+			transform:translateY(10px);
+		}
+		#scroll-top.visible { opacity:1; pointer-events:auto; transform:translateY(0); }
+		#scroll-top:hover { background:var(--accent-hover); transform:translateY(-2px); }
 
-			/* Carousel / card titles */
-			.project-card h3 {
-				font-weight: 600;
-				font-size: 1.1rem;
-				margin-bottom: 0.5rem;
-				color: #000;
-			}
+		/* ═══ Page Load Overlay ═══════════════════════════════════ */
+		#page-loader {
+			position:fixed; inset:0; z-index:9999;
+			background:var(--bg-white);
+			display:flex; align-items:center; justify-content:center;
+			transition:opacity .5s ease, visibility .5s ease;
+		}
+		#page-loader.loaded { opacity:0; visibility:hidden; }
+		.loader-dot {
+			width:10px; height:10px; border-radius:50%;
+			background:var(--accent); margin:0 5px;
+			animation:dotPulse 1.2s ease-in-out infinite;
+		}
+		.loader-dot:nth-child(2){animation-delay:.2s}
+		.loader-dot:nth-child(3){animation-delay:.4s}
+		@keyframes dotPulse {
+			0%,80%,100%{transform:scale(0.6);opacity:0.4}
+			40%{transform:scale(1);opacity:1}
+		}
 
-			/* Carousel / card text */
-			.project-card p {
-				font-size: 0.95rem;
-				line-height: 1.4;
-				color: #000;
-			}
+		/* Hero fade-in on load */
+		#header { opacity:0; transform:translateY(12px); transition:opacity .7s ease .3s, transform .7s ease .3s; }
+		#header.loaded { opacity:1; transform:translateY(0); }
 
-			.icons .icon {
-				background-color: #000; /* normal color */
-				color: #fff;
-				width: 60px;  /* set width */
-				height: 60px; /* set height, same as width */
-				border-radius: 50%; /* makes it a perfect circle */
-				display: inline-flex; /* center the icon horizontally & vertically */
-				align-items: center;
-				justify-content: center;
-				text-decoration: none;
-				transition: background-color 0.3s, transform 0.2s;
-				font-size: 1.5rem; /* size of the Font Awesome icon */
-}
 
-			.icons .icon:hover {
-			background-color: #000; /* hover color */
-			transform: translateY(-2px); /* optional lift */
-}
+		/* ═══ Courses Grid ═══════════════════════════════════════════════ */
+		.courses-grid {
+			display:grid;
+			grid-template-columns:repeat(3,1fr);
+			gap:1.25rem;
+			text-align:left;
+		}
+		@media(max-width:720px) { .courses-grid { grid-template-columns:1fr; } }
+		.course-col {
+			background:var(--card-bg);
+			border:1px solid var(--border);
+			border-radius:14px;
+			overflow:hidden;
+			box-shadow:var(--shadow-sm);
+			transition:background .3s, border-color .3s;
+		}
+		.course-col-header {
+			padding:0.85rem 1.25rem;
+			font-size:0.82rem; font-weight:700;
+			letter-spacing:0.07em; text-transform:uppercase;
+			display:flex; align-items:center; gap:0.5rem;
+		}
+		.completed-header { background:#dcf0e6; color:#1a6b3c; }
+		.current-header   { background:#dbe7ff; color:#2b52a8; }
+		.upcoming-header  { background:#f0f0f0; color:#555; }
+		body.dark .completed-header { background:#0d2e1a; color:#6dbf8e; }
+		body.dark .current-header   { background:#1a2a50; color:#90b8ff; }
+		body.dark .upcoming-header  { background:#23263a; color:#a0aabf; }
+		.course-list {
+			list-style:none; padding:0.75rem 0; margin:0;
+		}
+		.course-item {
+			display:flex; align-items:flex-start; gap:0.6rem;
+			padding:0.6rem 1.25rem;
+			font-size:0.9rem; color:var(--text);
+			border-bottom:1px solid var(--border);
+			transition:background .15s;
+			line-height:1.4;
+		}
+		.course-item:last-child { border-bottom:none; }
+		.course-item:hover { background:var(--bg-light); }
+		.course-icon { flex-shrink:0; margin-top:0.2rem; font-size:0.8rem; }
+		.completed-icon { color:#1a6b3c; }
+		.current-icon   { color:var(--accent); }
+		.upcoming-icon  { color:#aaa; }
+		.current-item   { font-weight:600; color:var(--text); }
+		.upcoming-item  { color:var(--text-mid); }
 
-			/* Parallax Section */
-			.parallax-section {
-			background-image: url('images/Background.jpg'); /* use your banner image */
-			background-attachment: fixed;
-			background-position: center;
-			background-repeat: no-repeat;
-			background-size: cover;
-			height: 400px; /* adjust as needed */
+		
+		/* ═══ Filter Tabs ══════════════════════════════════════════ */
+		.filter-tabs {
+			display: flex;
+			flex-wrap: wrap;
+			justify-content: center;
+			gap: 0.5rem;
+			margin: 0.75rem 0 0.5rem;
+		}
+		.filter-btn {
+			background: none;
+			border: 1.5px solid var(--border);
+			border-radius: 20px;
+			padding: 0.38rem 1rem;
+			font-size: 0.82rem;
+			font-weight: 600;
+			cursor: pointer;
+			color: var(--text-mid);
+			white-space: nowrap;
+			font-family: 'Roboto', sans-serif;
+			transition: background .2s, border-color .2s, color .2s;
+			/* prevent any shrinking or text reflow on toggle */
+			flex-shrink: 0;
+			min-width: 0;
+			box-sizing: border-box;
+		}
+		.filter-btn:hover  { border-color: var(--accent); color: var(--accent); }
+		.filter-btn.active { background: var(--accent); border-color: var(--accent); color: #fff; }
+		.carousel-hint     { color: var(--text-mid); font-size: 0.9rem; margin-top: 0.25rem; }
+
+		/* ═══ Carousel reel items ═══════════════════════════════════ */
+		/* reel-item must be a real flex child — never display:contents */
+		.reel-item {
+			display: flex;
+			flex-shrink: 0;
+			scroll-snap-align: start;
+		}
+		.reel-item > a {
+			display: flex;
+			text-decoration: none;
+		}
+		.reel-item .project-card {
+			scroll-snap-align: none;
+			flex-shrink: 0;
+		}
+		.reel-item.hidden { display: none; }
+
+
+		/* ═══ Carousel sticky arrows ════════════════════════════════ */
+		/* carousel section is the positioning parent */
+		.carousel { position: relative; }
+
+		.reel-arrow {
+			position: absolute;
+			top: 50%;
+			transform: translateY(-50%);
+			z-index: 20;
+			width: 42px;
+			height: 42px;
+			border-radius: 50%;
+			border: none;
+			background: var(--accent);
+			color: #fff;
+			font-size: 0.95rem;
+			cursor: pointer;
 			display: flex;
 			align-items: center;
 			justify-content: center;
-			position: relative;
-			text-align: center;
-			color: #fff;
-			}
-
-			.parallax-section::before {
-			content: "";
-			position: absolute;
-			top: 0;
-			left: 0;
-			width: 100%;
-			height: 100%;
-			background-color: rgba(0,0,0,0.4); /* optional overlay for readability */
-			z-index: 0;
-			}
-
-			.parallax-section .overlay-content {
-			position: relative;
-			z-index: 1;
-			max-width: 800px;
-			padding: 1rem;
-			}
-			</style>
-
-		<style>
-			#header {
-			background-image: url('images/Background.jpg'); /* path to your image */
-			background-size: cover;       /* makes it fill the header */
-			background-position: center;  /* centers the image */
-			background-attachment: fixed; /* optional: parallax effect */
-			color: white;                  /* text color for contrast */
-			padding: 4rem 0;              /* add spacing so text doesn’t overlap edges */
-			border-radius: 0.5rem;        /* optional: slight rounding */
-			}
-			</style>
-
+			box-shadow: 0 3px 12px rgba(0,0,0,0.22);
+			transition: background .2s, opacity .2s;
+			opacity: 0.9;
+			flex-shrink: 0;
+		}
+		.reel-arrow:hover { background: var(--accent-hover); opacity: 1; }
+		.reel-arrow.hidden { opacity: 0; pointer-events: none; }
+		.reel-prev { left: 0.75rem; }
+		.reel-next { right: 0.75rem; }
+		</style>
 	</head>
+
 	<body class="homepage">
 
-		<!-- Google Tag Manager (noscript) -->
-		<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KCMDSTGP"
-		height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-		<!-- End Google Tag Manager (noscript) -->
+	<!-- Page Loader -->
+	<div id="page-loader">
+		<div class="loader-dot"></div>
+		<div class="loader-dot"></div>
+		<div class="loader-dot"></div>
+	</div>
 
-		<div id="page-wrapper">
+	<!-- Scroll-to-top button -->
+	<button id="scroll-top" aria-label="Scroll to top"><i class="fa-solid fa-arrow-up"></i></button>
 
-			<!-- Header -->
-				<div id="header">
+	<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KCMDSTGP" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
-					<!-- Inner -->
-						<div class="inner">
-							<header>
-								<h1><a href="index.html" id="logo">Making sense of the numbers that matter</a></h1>
-								<hr />
-								<p style="color:#fff">Empowering smarter decisions through thoughtful analysis</p>
-							</header>
-							<footer>	
-						</div>
+	<div id="page-wrapper">
 
-			<!-- Banner -->
-				<section id="banner" style="color:#000; padding:4rem 1rem; text-align:center;">
+	<!-- ═══════════ STICKY NAVIGATION ═══════════════════════════ -->
+	<nav id="site-nav">
+		<span class="nav-brand">Eric Lemon &mdash; Analyst Portfolio</span>
+		<div class="nav-right">
+			<ul class="nav-links">
+				<li><a href="#banner">About</a></li>
+				<li><a href="#skills-tools">Skills</a></li>
+				<li><a href="#projects-section">Projects</a></li>
+				<li><a href="#featured-section">Featured</a></li>
+				<li><a href="#grad-section">Grad Work</a></li>
+				<li><a href="#courses">Courses</a></li>
+				<li><a href="#footer" class="nav-cta">Contact</a></li>
+			</ul>
+			<button id="dark-toggle" aria-label="Toggle dark mode" title="Toggle dark mode">
+				<i class="fa-solid fa-moon" id="dark-icon"></i>
+			</button>
+			<button id="nav-toggle" aria-label="Toggle navigation">
+				<span></span><span></span><span></span>
+			</button>
+		</div>
+	</nav>
 
-				<!-- Welcome Heading -->
-				<h2><strong>Welcome!</strong></h2>
-
-				<!-- Container for Image + Text -->
-				<div style="display:flex; flex-wrap:wrap; align-items:flex-start; justify-content:center; gap:2rem; margin-top:2rem;">
-
-					<!-- Headshot + Button -->
-					<div style="display:flex; flex-direction:column; align-items:center;">
-					<img src="images/headshot.jpg" alt="Eric Lemon" style="width:150px; height:150px; border-radius:50%; object-fit:cover; box-shadow:0 4px 8px rgba(0,0,0,0.1); margin-bottom:1rem;">
-					</div>
-
-					<!-- Intro Text -->
-					<div style="max-width:600px; text-align:center;">
-					<p>My name is Eric Lemon and I am a Business Analytics graduate student focused on data storytelling, dashboard design, and uncovering actionable insights.</p>
-					<p>I enjoy cleaning and organizing messy datasets, developing projects powered by Python’s core data stack for data analysis, and creating Tableau dashboards that answer real business questions.</p>
-					</div>
-
-				</div>
-				</section>
+	<!-- ═══════════ HEADER / HERO ════════════════════════════════ -->
+	<div id="header">
+		<div class="inner">
+			<header>
+				<h1><a href="index.html" id="logo">Making sense of the numbers that matter</a></h1>
+				<hr />
+				<p style="color:#fff">Empowering smarter decisions through thoughtful analysis</p>
+			</header>
+		</div>
+	</div>
 
 
-
-
-			<!-- Border -->			
-			<hr style="border: 0; border-top: 3px solid #2b262c; margin:0rem 0;">
-			
-			<!-- Carousel with Gradient Streaming Bars + Glow (All Projects) -->
-			<section class="carousel">
-			<div class="reel" style="display:flex; gap:1em; padding:1em; overflow-x:auto; scroll-snap-type:x mandatory;">
-
-				<!-- Tableau: Project 1 -->
-				<article class="project-1" style="scroll-snap-align:start;">
-				<a href="https://public.tableau.com/app/profile/eric.lemon/viz/Project9_17550177343090/Dashboard" style="text-decoration:none;">
-					<div class="project-card fade-in tableau-card">
-
-						<i class="fa-solid fa-chart-line" style="font-size:64px; margin-bottom:1em;"></i>
-						<h3>Covid-19 Tableau Dashboard</h3>
-						<p>Interactive Tableau dashboard analyzing national COVID-19 trends through April 2021, including cases, mortality, and regional comparisons.</p>
-
-						<div class="bar-chart">
-							<div class="bar b1"></div>
-							<div class="bar b2"></div>
-							<div class="bar b3"></div>
-							<div class="bar b4"></div>
-							<div class="bar b5"></div>
-							<div class="bar b6"></div>
-							<div class="bar b7"></div>
-						</div>
-
-					</div>
-				</a>
-				</article>
-
-				<!-- Tableau: Project 2 -->
-				<article class="project-2" style="scroll-snap-align:start;">
-				<a href="https://public.tableau.com/app/profile/eric.lemon/viz/Project8_17527841417050/HRSummary">
-					<div class="project-card fade-in tableau-card">
-
-						<i class="fa-solid fa-chart-line" style="font-size:64px; margin-bottom:1em;"></i>
-						<h3>HR Tableau Dashboard</h3>
-						<p>Human resources dashboard built from a synthetic dataset to explore workforce trends, retention risks, and role distribution.</p>
-
-						<div class="bar-chart">
-							<div class="bar b1"></div>
-							<div class="bar b2"></div>
-							<div class="bar b3"></div>
-							<div class="bar b4"></div>
-							<div class="bar b5"></div>
-							<div class="bar b6"></div>
-							<div class="bar b7"></div>
-						</div>
-
-					</div>
-				</a>
-				</article>
-
-				<!-- Tableau: Project 3 -->
-				<article class="project-3" style="scroll-snap-align:start;">
-				<a href="https://public.tableau.com/app/profile/eric.lemon/viz/Project7_17515896957860/Dashboard1">
-					<div class="project-card fade-in tableau-card">
-
-						<i class="fa-solid fa-chart-line" style="font-size:64px; margin-bottom:1em;"></i>
-						<h3>AirHelp Score Tableau Dashboard</h3>
-						<p>Tableau dashboard evaluating global airport performance using AirHelp scores and ranking metrics.</p>
-
-						<div class="bar-chart">
-							<div class="bar b1"></div>
-							<div class="bar b2"></div>
-							<div class="bar b3"></div>
-							<div class="bar b4"></div>
-							<div class="bar b5"></div>
-							<div class="bar b6"></div>
-							<div class="bar b7"></div>
-						</div>
-
-					</div>
-				</a>
-				</article>
-
-				<!-- SQL: Project 4 -->
-				<article class="project-4" style="scroll-snap-align:start;">
-				<a href="https://github.com/ewlemon/SQL-Project-5/blob/main/SQLProject5.sql">
-					<div class="project-card fade-in sql-card">
-
-						<i class="fa-solid fa-database" style="font-size:64px; margin-bottom:1em;"></i>
-						<h3>Crime Data SQL Project</h3>
-						<p>SQL-based data cleaning and exploratory analysis of LAPD crime data, focusing on trends, frequency, and incident categorization.</p>
-
-						<div class="bar-chart">
-							<div class="bar b1"></div>
-							<div class="bar b2"></div>
-							<div class="bar b3"></div>
-							<div class="bar b4"></div>
-							<div class="bar b5"></div>
-							<div class="bar b6"></div>
-							<div class="bar b7"></div>
-						</div>
-
-					</div>
-				</a>
-				</article>
-
-				<!-- SQL: Project 5 -->
-				<article class="project-5" style="scroll-snap-align:start;">
-				<a href="https://github.com/ewlemon/SQL-Project-4/blob/main/SQLProject4.sql">
-					<div class="project-card fade-in sql-card">
-
-						<i class="fa-solid fa-database" style="font-size:64px; margin-bottom:1em;"></i>
-						<h3>Chronic Diseases SQL Project</h3>
-						<p>SQL project that cleans, standardizes, and analyzes U.S. chronic disease indicators to support public-health insights.</p>
-
-						<div class="bar-chart">
-							<div class="bar b1"></div>
-							<div class="bar b2"></div>
-							<div class="bar b3"></div>
-							<div class="bar b4"></div>
-							<div class="bar b5"></div>
-							<div class="bar b6"></div>
-							<div class="bar b7"></div>
-						</div>
-
-					</div>
-				</a>
-				</article>
-
-				<!-- SQL: Project 6 -->
-				<article class="project-6" style="scroll-snap-align:start;">
-				<a href="https://github.com/ewlemon/SQL-Project-3/blob/main/Project%206%20Data.sqbpro">
-					<div class="project-card fade-in sql-card">
-
-						<i class="fa-solid fa-database" style="font-size:64px; margin-bottom:1em;"></i>
-						<h3>Northwind SQL Project</h3>
-						<p>End-to-end SQL workflow creating cleaned, structured tables used to power an interactive Tableau business performance dashboard.</p>
-
-						<div class="bar-chart">
-							<div class="bar b1"></div>
-							<div class="bar b2"></div>
-							<div class="bar b3"></div>
-							<div class="bar b4"></div>
-							<div class="bar b5"></div>
-							<div class="bar b6"></div>
-							<div class="bar b7"></div>
-						</div>
-
-					</div>
-				</a>
-				</article>
-
-				<!-- Python: Project 7 -->
-				<article class="project-7" style="scroll-snap-align:start;">
-				<a href="https://github.com/ewlemon/Python-Pandas/blob/main/PandasExploratoryAnalysis1.ipynb">
-					<div class="project-card fade-in python-card">
-
-						<i class="fa-brands fa-python" style="font-size:64px; margin-bottom:1em;"></i>
-						<h3>Python Exploratory Analysis</h3>
-						<p>Python project using Pandas, NumPy, and visualization libraries to organize, clean, and analyze global population trends.</p>
-
-						<div class="bar-chart">
-							<div class="bar b1"></div>
-							<div class="bar b2"></div>
-							<div class="bar b3"></div>
-							<div class="bar b4"></div>
-							<div class="bar b5"></div>
-							<div class="bar b6"></div>
-							<div class="bar b7"></div>
-						</div>
-
-					</div>
-				</a>
-				</article>
-
-				<!-- Python: Project 8 -->
-				<article class="project-8" style="scroll-snap-align:start;">
-				<a href="https://github.com/ewlemon/Python-Files/blob/main/Basics9(MatPlotLib).ipynb">
-					<div class="project-card fade-in python-card">
-
-						<i class="fa-brands fa-python" style="font-size:64px; margin-bottom:1em;"></i>
-						<h3>Python Library Exploration</h3>
-						<p>Exploratory Jupyter Notebook demonstrating data manipulation and visualization using Pandas, NumPy, Matplotlib, and Seaborn.</p>
-
-						<div class="bar-chart">
-							<div class="bar b1"></div>
-							<div class="bar b2"></div>
-							<div class="bar b3"></div>
-							<div class="bar b4"></div>
-							<div class="bar b5"></div>
-							<div class="bar b6"></div>
-							<div class="bar b7"></div>
-						</div>
-
-					</div>
-				</a>
-				</article>
-
-				<!-- R Project -->
-				<article class="project-9" style="scroll-snap-align:start;">
-				<a href="https://github.com/ewlemon/R-Project-1/blob/main/Crime_Data.R">
-					<div class="project-card fade-in r-card">
-
-						<i class="fa-brands fa-r-project" style="font-size:64px; margin-bottom:1em;"></i>
-						<h3>Crime Data R Project</h3>
-						<p>R and R Markdown project cleaning crime datasets and generating clear, publication-style visualizations and summaries.</p>
-
-						<div class="bar-chart">
-							<div class="bar b1"></div>
-							<div class="bar b2"></div>
-							<div class="bar b3"></div>
-							<div class="bar b4"></div>
-							<div class="bar b5"></div>
-							<div class="bar b6"></div>
-							<div class="bar b7"></div>
-						</div>
-
-					</div>
-				</a>
-				</article>
-
-				<!-- DataBricks Project -->
-				<article class="project-10" style="scroll-snap-align:start;">
-				<a href="https://dbc-775b9b39-494b.cloud.databricks.com/dashboardsv3/01f0d06b765a15b2bb4cf0e9fe562483/published?o=1864074656503127">
-					<div class="project-card fade-in databricks-card">
-
-						<i class="fa-solid fa-database" style="font-size:64px; margin-bottom:1em;"></i>
-						<h3>Databricks Emissions Dashboard</h3>
-						<p>Interactive Databricks dashboard analyzing U.S. CO2 Emissions from 2023</p>
-
-						<div class="bar-chart">
-							<div class="bar b1"></div>
-							<div class="bar b2"></div>
-							<div class="bar b3"></div>
-							<div class="bar b4"></div>
-							<div class="bar b5"></div>
-							<div class="bar b6"></div>
-							<div class="bar b7"></div>
-						</div>
-
-					</div>
-				</a>
-				</article>
-
+	<!-- ═══════════ BANNER / ABOUT ═══════════════════════════════ -->
+	<section id="banner" style="background:var(--bg-white);">
+		<h2><strong>Welcome!</strong></h2>
+		<div class="banner-inner">
+			<div class="headshot-wrap">
+				<img src="images/headshot.jpg" alt="Eric Lemon">
 			</div>
-			</section>
-
-			<style>
-			/* Hide scrollbar */
-			.carousel .reel::-webkit-scrollbar { display:none; }
-			.carousel .reel { -ms-overflow-style:none; scrollbar-width:none; }
-
-			/* Fade-in animation */
-			.fade-in { opacity:0; transform:translateY(20px); transition: opacity 0.6s, transform 0.6s; }
-			.fade-in.visible { opacity:1; transform:translateY(0); }
-
-			/* Card style */
-			.project-card {
-				text-align:center;
-				padding:1.5em;
-				border-radius:12px;
-				min-height:480px;
-				width:300px;
-				display:flex;
-				flex-direction:column;
-				justify-content:flex-start;
-				align-items:center;
-				position:relative;
-				transition: transform 0.3s, box-shadow 0.3s;
-				box-shadow:0 8px 16px rgba(0,0,0,0.15);
-			}
-			.project-card p { font-size:0.95em; flex-grow:1; }
-
-			/* Hover effect */
-			.project-card:hover {
-				transform:translateY(-5px);
-				box-shadow:0 12px 24px rgba(0,0,0,0.4), 0 0 20px currentColor;
-			}
-
-			/* Colors by tool */
-			.tableau-card  { background:#b7c1d1; color:#000; }
-			.sql-card      { background:#8abee6; color:#000; }
-			.python-card   { background:#fcde58; color:#000; }
-			.r-card        { background:#1a65b9; color:#fff; }
-			.excel-card    { background:#0f7a43; color:#fff; }
-			.databricks-card {background: #ff5f46; color: #fff;}
-
-			/* Gradient Animated Vertical Bars + Glow */
-			.bar-chart {
-				display: flex;
-				justify-content: center;
-				align-items: flex-end;
-				gap: 6px;
-				height: 120px; /* taller bars */
-				margin-top: 1.5em;
-			}
-
-			.bar-chart .bar {
-				width: 14px;
-				border-radius: 4px;
-				animation: stream 2s ease-in-out infinite alternate;
-				opacity: 0.95;
-				box-shadow: 0 0 10px rgba(255,255,255,0.35);
-			}
-
-			/* Different animation delays for streaming effect */
-			.bar-chart .b1 { animation-delay:0s; --h-min:20px; --h-max:100px; }
-			.bar-chart .b2 { animation-delay:.2s; --h-min:25px; --h-max:110px; }
-			.bar-chart .b3 { animation-delay:.4s; --h-min:30px; --h-max:90px; }
-			.bar-chart .b4 { animation-delay:.6s; --h-min:15px; --h-max:95px; }
-			.bar-chart .b5 { animation-delay:.8s; --h-min:20px; --h-max:85px; }
-			.bar-chart .b6 { animation-delay:1s; --h-min:25px; --h-max:100px; }
-			.bar-chart .b7 { animation-delay:1.2s; --h-min:18px; --h-max:90px; }
-
-			@keyframes stream {
-				0%   { height: var(--h-min); }
-				50%  { height: calc(var(--h-max)); }
-				100% { height: var(--h-min); }
-			}
-
-			/* Gradient colors for each tool */
-			.tableau-card .bar { background: linear-gradient(to top, #a5b2c5, #b7c1d1); }
-			.sql-card .bar     { background: linear-gradient(to top, #5d91b8, #8abee6); }
-			.python-card .bar  { background: linear-gradient(to top, #c7aa2c, #fcde58); }
-			.r-card .bar       { background: linear-gradient(to top, #094488, #1a65b9); }
-			.excel-card .bar   { background: linear-gradient(to top, #045e2f, #0f7a43); }
-			.databricks-card .bar { background: linear-gradient(to top, #a72b18, #ff5f46);}
-
-			</style>
-
-			<script>
-			const faders = document.querySelectorAll('.fade-in');
-			const observer = new IntersectionObserver((entries, obs) => {
-				entries.forEach(entry => {
-					if(entry.isIntersecting){
-						entry.target.classList.add('visible');
-						obs.unobserve(entry.target);
-					}
-				});
-			}, {threshold:0.2});
-			faders.forEach(fader => observer.observe(fader));
-			</script>
-
-			<!-- Border -->			
-				<hr style="border: 0; border-top: 3px solid #2b262c; margin: -5.5rem 0;">
-
-				<section id="tableau-project" style="padding-top:1rem; padding-bottom:5rem;">
-  			<!-- Tableau embed iframe -->
-				</section>
-
-			<!-- Main -->
-				<div class="wrapper style2">
-
-					<article id="main" class="container special" style="color:#000;">
-						<div class="tableauPlaceholder" id="viz1763665183133" style="position: relative;">
-							<noscript>
-								<a href="#">
-								<img alt="Dashboard"
-									src="https://github.com/ewlemon/Stock-Project"
-									style="border: none;" />
-								</a>
-							</noscript>
-
-							<iframe src="https://prezi.com/p/embed/PR9nilFAxgJ8tyPwI5dP/" id="iframe_container" frameborder="0" webkitallowfullscreen="" mozallowfullscreen="" allowfullscreen="" allow="autoplay; fullscreen" height="800" width="1200"></iframe>
-						
-							<header>
-							<h2><a href="https://github.com/ewlemon/Stock-Project">Featured Project: Exploring Long-Term Trends and Volatility in Major U.S. Stock Market Indexes</a></h2>
-							<p>
-								A data-driven analysis of long-term market behavior, index performance patterns, and volatility shifts (supported by Python, Excel, and Prezi).
-							</p>
-						</header>
-						<h3 style="color:#000;"><strong>Highlights</strong></h3>
-							<ul style="margin: 0 auto; text-align:left; width: fit-content;">
-								<li>Historical Trend Modeling: Linear, Ridge, Lasso, and Polynomial regression applied to multiple U.S. indexes, with Degree-3 polynomial models capturing long-run nonlinear growth most effectively.</li>
-								<li>Correlation Patterns: Heatmap analysis revealing strong relationships across large-cap indexes and more distinct behavior among small-cap components.</li>
-								<li>Volatility Insights: Rolling volatility comparisons across major market events such as the Dot-com bubble, 2008 crisis, and COVID crash, showing the Nasdaq-100 consistently leading in volatility.</li>
-								<li>Automated Data Pipeline: A GitHub Actions workflow updates the Excel dataset daily, ensuring the analysis remains fresh throughout the year.</li>
-							</ul>
-
-							<h3 style="color:#000;"><strong>Project Summary</strong></h3>
-							<p>
-							This project investigates long-term trends across five major U.S. stock market indexes using a blend of Python, Excel, and automated data engineering workflows. 
-							The analysis covers historical performance, regression modeling, cross-index correlations, and volatility behavior during major economic shocks. 
-							Visualizations include heatmaps, historical curves, and model trendlines which highlight how different segments of the market move together or diverge over time. 
-							Finally, the project is supported by a continuously updating dataset, enabling ongoing insights and future modeling enhancements (data can be viewed on GitHub through the link on the title).
-							</p>
-
-						<footer>
-					</article>
-
-				</div>
-
-					<!-- Parallax mid-section -->
-						<section class="parallax-section">
-						<div class="overlay-content">
-						</div>
-						</section>
-
-				<!-- Features -->
-					<div class="wrapper style1">
-					<section id="features" class="container special" style="color:#000;">
-						<header>
-						<h2>Graduate Degree Projects</h2>
-						<p>Projects undertaken as part of the Business Informatics: Business Analytics master's program</p>
-						</header>
-						<div class="row" style="display:flex; flex-wrap:wrap; justify-content:center; gap:1em;">
-
-						<!-- Project 1 -->
-						<article class="col-4 col-12-mobile special" style="flex:0 1 300px;">
-							<a href="https://public.tableau.com/app/profile/eric.lemon/viz/LemonAssignmentFinal/Dashboard" style="text-decoration:none; color:inherit;">
-							<div class="project-card" style="
-								text-align:center;
-								padding:1.5em;
-								border-radius:12px;
-								min-height:450px;
-								display:flex;
-								flex-direction:column;
-								justify-content:space-between;
-								background: linear-gradient(145deg, #dbe7ff, #b7c1d1);
-								box-shadow: 0 8px 16px rgba(0,0,0,0.15);
-								position:relative;
-								transition: transform 0.2s;
-							">
-								<i class="fa-solid fa-chart-line" style="font-size:64px; color:#000000; margin-bottom:0.3em;"></i>
-								<h3>Career Trends Tableau Dashboard</h3>
-								<p style="color:#333; font-size:0.95em; text-align:center;">
-									An interactive Tableau dashboard highlighting long-term career, salary, and job-market trends through engaging visual analytics.</p>
-
-								<div class="line-graph" style="width:100%; height:50px; margin-bottom:0.5em;">
-									<svg viewBox="0 0 100 30" style="width:100%; height:100%;">
-										<path d="M0,20 L20,14 L40,17 L60,10 L80,15 L100,8"
-											stroke="#4a90e2"
-											stroke-width="2"
-											fill="none"
-											stroke-linecap="round"
-											stroke-dasharray="150"
-											stroke-dashoffset="150"
-											class="animate-line"></path>
-
-										<circle cx="0" cy="22" r="2" fill="#4a90e2" class="point"></circle>
-										<circle cx="20" cy="16" r="2" fill="#4a90e2" class="point"></circle>
-										<circle cx="40" cy="19" r="2" fill="#4a90e2" class="point"></circle>
-										<circle cx="60" cy="12" r="2" fill="#4a90e2" class="point"></circle>
-										<circle cx="80" cy="17" r="2" fill="#4a90e2" class="point"></circle>
-										<circle cx="100" cy="10" r="2" fill="#4a90e2" class="point"></circle>
-									</svg>
-								</div>
-							</div>
-							</a>
-						</article>
-
-
-						<!-- Project 2 -->
-						<article class="col-4 col-12-mobile special" style="flex:0 1 300px;">
-							<a href="https://github.com/ewlemon/Excel-Project-2/blob/main/DecisionAnalysisProblems.xlsx" target="_blank" style="text-decoration:none; color:inherit;">
-							<div class="project-card" style="
-								text-align:center;
-								padding:1.5em;
-								border-radius:12px;
-								min-height:450px;
-								display:flex;
-								flex-direction:column;
-								justify-content:space-between;
-								background: linear-gradient(145deg, #dff6e0, #c7ebcc);
-								box-shadow: 0 8px 16px rgba(0,0,0,0.15);
-								position:relative;
-								transition: transform 0.2s;
-							">
-								<i class="fa-solid fa-file-excel" style="font-size:64px; color:#0f7a43; margin-bottom:0.3em;"></i>
-								<h3>Decision Analytics Course Excel Problems</h3>
-								<p style="color:#333; font-size:0.95em;">This Excel-based project includes over 25 optimization problems solved using Solver, demonstrating practical linear programming and optimization modeling in business.</p>
-
-								<div class="line-graph" style="width:100%; height:50px; margin-bottom:0.5em;">
-								<svg viewBox="0 0 100 30" style="width:100%; height:100%;">
-									<path d="M0,22 L20,18 L40,20 L60,14 L80,19 L100,12"
-										stroke="#2a9d8f"
-										stroke-width="2"
-										fill="none"
-										stroke-linecap="round"
-										stroke-dasharray="150"
-										stroke-dashoffset="150"
-										class="animate-line"></path>
-									<circle cx="0" cy="22" r="2" fill="#2a9d8f" class="point"></circle>
-									<circle cx="20" cy="18" r="2" fill="#2a9d8f" class="point"></circle>
-									<circle cx="40" cy="20" r="2" fill="#2a9d8f" class="point"></circle>
-									<circle cx="60" cy="14" r="2" fill="#2a9d8f" class="point"></circle>
-									<circle cx="80" cy="19" r="2" fill="#2a9d8f" class="point"></circle>
-									<circle cx="100" cy="12" r="2" fill="#2a9d8f" class="point"></circle>
-								</svg>
-								</div>
-							</div>
-							</a>
-						</article>
-
-						<!-- Project 3 -->
-						<article class="col-4 col-12-mobile special" style="flex:0 1 300px;">
-							<a href="https://github.com/ewlemon/Excel-Project-3/blob/main/BusinessAnalysisProblems.xlsx" target="_blank" style="text-decoration:none; color:inherit;">
-							<div class="project-card" style="
-								text-align:center;
-								padding:1.5em;
-								border-radius:12px;
-								min-height:450px;
-								display:flex;
-								flex-direction:column;
-								justify-content:space-between;
-								background: linear-gradient(145deg, #dff6e0, #c7ebcc);
-								box-shadow: 0 8px 16px rgba(0,0,0,0.15);
-								position:relative;
-								transition: transform 0.2s;
-							">
-								<i class="fa-solid fa-file-excel" style="font-size:64px; color:#0f7a43; margin-bottom:0.3em;"></i>
-								<h3>Business Analytics Course Excel Problems</h3>
-								<p style="color:#333; font-size:0.95em;">This Excel-based project includes notes and optimization problems solved using Solver and regression analysis, demonstrating problem modeling and effective insights communication.</p>
-
-								<div class="line-graph" style="width:100%; height:50px; margin-bottom:0.5em;">
-								<svg viewBox="0 0 100 30" style="width:100%; height:100%;">
-									<path d="M0,25 L20,20 L40,23 L60,17 L80,22 L100,15"
-										stroke="#2a9d8f"
-										stroke-width="2"
-										fill="none"
-										stroke-linecap="round"
-										stroke-dasharray="150"
-										stroke-dashoffset="150"
-										class="animate-line"></path>
-									<circle cx="0" cy="22" r="2" fill="#2a9d8f" class="point"></circle>
-									<circle cx="20" cy="18" r="2" fill="#2a9d8f" class="point"></circle>
-									<circle cx="40" cy="20" r="2" fill="#2a9d8f" class="point"></circle>
-									<circle cx="60" cy="14" r="2" fill="#2a9d8f" class="point"></circle>
-									<circle cx="80" cy="19" r="2" fill="#2a9d8f" class="point"></circle>
-									<circle cx="100" cy="12" r="2" fill="#2a9d8f" class="point"></circle>
-								</svg>
-								</div>
-							</div>
-							</a>
-						</article>
-
-						</div>
-					</section>
-					</div>
-
-					<style>
-					/* Animate the line being drawn */
-					.animate-line {
-						animation: drawLine 2s ease-in-out forwards;
-					}
-
-					/* Animate points bouncing */
-					.point {
-						animation: bouncePoint 1.5s ease-in-out infinite alternate;
-					}
-
-					.point:nth-child(2) { animation-delay: 0.2s; }
-					.point:nth-child(3) { animation-delay: 0.4s; }
-					.point:nth-child(4) { animation-delay: 0.6s; }
-					.point:nth-child(5) { animation-delay: 0.8s; }
-					.point:nth-child(6) { animation-delay: 1s; }
-
-					@keyframes drawLine {
-						from { stroke-dashoffset: 150; }
-						to { stroke-dashoffset: 0; }
-					}
-
-					@keyframes bouncePoint {
-						0% { transform: translateY(0%); }
-						50% { transform: translateY(-30%); }
-						100% { transform: translateY(0%); }
-					}
-
-					/* Optional hover effect for interactivity */
-					.project-card:hover {
-						transform: translateY(-5px);
-						box-shadow: 0 12px 24px rgba(0,0,0,0.2);
-						cursor: pointer;
-					}
-					</style>
-
-				<!-- Border -->			
-				<hr style="border: 0; border-top: 3px solid #2b262c; margin:1rem 0;">
-
-
-				<!-- Tools & Skills Section -->
-				<section id="skills-tools" style="padding: 2rem 1rem; background-color: #ffffff; text-align: center; color: #222;">
-				
-				<h2 style="margin-bottom: 1.5rem; font-size: 1.8rem; font-weight: 700; color: #222;">
-					Tools & Skills
-				</h2>
-
-				<!-- Chips Container -->
-				<div style="
-					display: flex; 
-					flex-wrap: wrap; 
-					justify-content: center; 
-					gap: 0.8rem;
-					max-width: 900px;
-					margin: 0 auto;
-					">
-
-					<!-- Tool Chips -->
-					<div style="
-						display: inline-flex; 
-						align-items: center; 
-						gap: 0.4rem; 
-						padding: 0.5rem 0.9rem; 
-						border: 1px solid #ddd; 
-						border-radius: 30px; 
-						font-size: 0.95rem; 
-						color: #222;
-						background-color: #f7f7f7;
-					">
-					<i class="fas fa-database"></i> SQL
-					</div>
-
-					<div style="
-						display: inline-flex; 
-						align-items: center; 
-						gap: 0.4rem; 
-						padding: 0.5rem 0.9rem; 
-						border: 1px solid #ddd; 
-						border-radius: 30px; 
-						font-size: 0.95rem; 
-						color: #222;
-						background-color: #f7f7f7;
-					">
-					<i class="fab fa-python"></i> Python
-					</div>
-
-					<div style="
-						display: inline-flex;
-						align-items: center; 
-						gap: 0.4rem; 
-						padding: 0.5rem 0.9rem; 
-						border: 1px solid #ddd; 
-						border-radius: 30px; 
-						font-size: 0.95rem; 
-						color: #222;
-						background-color: #f7f7f7;
-					">
-					<i class="fas fa-chart-bar"></i> Tableau
-					</div>
-
-					<div style="
-						display: inline-flex;
-						align-items: center; 
-						gap: 0.4rem; 
-						padding: 0.5rem 0.9rem; 
-						border: 1px solid #ddd; 
-						border-radius: 30px; 
-						font-size: 0.95rem; 
-						color: #222;
-						background-color: #f7f7f7;
-					">
-					<i class="fas fa-file-excel"></i> Excel
-					</div>
-
-					<div style="
-						display: inline-flex; 
-						align-items: center; 
-						gap: 0.4rem; 
-						padding: 0.5rem 0.9rem; 
-						border: 1px solid #ddd; 
-						border-radius: 30px; 
-						font-size: 0.95rem; 
-						color: #222;
-						background-color: #f7f7f7;
-					">
-					<i class="fas fa-code"></i> R
-					</div>
-
-					<!-- Skill Chips -->
-					<div style="
-						display: inline-flex; 
-						align-items: center; 
-						gap: 0.4rem; 
-						padding: 0.5rem 0.9rem; 
-						border: 1px solid #ddd; 
-						border-radius: 30px; 
-						font-size: 0.95rem; 
-						color: #222;
-						background-color: #f7f7f7;
-					">
-					<i class="fas fa-broom"></i> Data Cleaning
-					</div>
-
-					<div style="
-						display: inline-flex;  
-						align-items: center; 
-						gap: 0.4rem; 
-						padding: 0.5rem 0.9rem; 
-						border: 1px solid #ddd; 
-						border-radius: 30px; 
-						font-size: 0.95rem; 
-						color: #222;
-						background-color: #f7f7f7;
-					">
-					<i class="fas fa-filter"></i> Data Wrangling
-					</div>
-
-					<div style="
-						display: inline-flex; 
-						align-items: center; 
-						gap: 0.4rem; 
-						padding: 0.5rem 0.9rem; 
-						border: 1px solid #ddd; 
-						border-radius: 30px; 
-						font-size: 0.95rem; 
-						color: #222;
-						background-color: #f7f7f7;
-					">
-					<i class="fas fa-chart-line"></i> Visualization
-					</div>
-
-					<div style="
-						display: inline-flex; 
-						align-items: center; 
-						gap: 0.4rem; 
-						padding: 0.5rem 0.9rem; 
-						border: 1px solid #ddd; 
-						border-radius: 30px; 
-						font-size: 0.95rem; 
-						color: #222;
-						background-color: #f7f7f7;
-					">
-					<i class="fas fa-square-root-alt"></i> Statistical Analysis
-					</div>
-
-					<div style="
-						display: inline-flex; 
-						align-items: center; 
-						gap: 0.4rem; 
-						padding: 0.5rem 0.9rem; 
-						border: 1px solid #ddd; 
-						border-radius: 30px; 
-						font-size: 0.95rem; 
-						color: #222;
-						background-color: #f7f7f7;
-					">
-					<i class="fas fa-layer-group"></i> Dashboard Design
-					</div>
-
-				</div>
-				</section>
-
-				<!-- Border -->			
-				<hr style="border: 0; border-top: 3px solid #2b262c; margin:1rem 0;">
-
-				<!-- Footer -->
-					<div id="footer"style="background: url('images/Background.jpg') center center / cover no-repeat; color: #fff; padding: 6em 0;">
-						<div class="container">
-							<div class="row">
-
-							
-						<div class="row">
-							<div class="col-12">
-
-								<!-- Contact -->
-									<section class="contact">
-										<div class="container">
-											<header>
-												<h3>Want to get in touch? Send a message through LinkedIn or Gmail!</h3>
-											</header>
-
-											<p style="color:#fff">Other projects from GitHub and Tableau along with my Resume can be accessed by the links below.</p>
-
-											<ul class="icons" style="color:#fff">
-												<li><a href="https://public.tableau.com/app/profile/eric.lemon/vizzes" class="icon solid fa-chart-pie" title="Tableau" style="background-color:#000; color:#fff;">
-													<span class="label">Tableau</span></a></li>
-												<li><a href="https://github.com/ewlemon" class="icon brands fa-github" title="GitHub" style="background-color:#000; color:#fff;">
-													<span class="label">GitHub</span></a></li>
-												<li><a href="https://www.linkedin.com/in/ericlemon/" class="icon brands fa-linkedin" title="LinkedIn" style="background-color:#000; color:#fff;">
-													<span class="label">LinkedIn</span></a></li>
-												<li><a href="mailto:ewlemon7@gmail.com" class="icon brands fa-google" title="Gmail" style="background-color:#000; color:#fff;">
-													<span class="label">Gmail</span></a></li>
-												<li><a href="assets/EricLemonResume.pdf" class="icon solid fa-file" title="Resume" style="background-color:#000; color:#fff;">
-													<span class="label">Resume</span></a></li>
-											</ul>
-										</div>
-									</section>
+			<div class="banner-text">
+				<p>My name is <strong>Eric Lemon</strong> and I am a Business Analytics graduate student focused on data storytelling, dashboard design, and uncovering actionable insights.</p>
+				<p>I enjoy cleaning and organizing messy datasets, developing projects powered by Python's core data stack, and creating Tableau dashboards that answer real business questions.</p>
+			</div>
+		</div>
+	</section>
 
 
 
-								<!-- Copyright -->
-									<div class="copyright">
-										<ul class="menu">
-											<li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
-										</ul>
-									</div>
+	<!-- ═══════════ TOOLS & SKILLS ═══════════════════════════════ -->
+	<section id="skills-tools" style="background:var(--bg-light);">
+		<h2>Tools &amp; Skills</h2>
+		<div class="chips-wrap">
+			<div class="chip"><i class="fas fa-database"></i> SQL</div>
+			<div class="chip"><i class="fab fa-python"></i> Python</div>
+			<div class="chip"><i class="fas fa-chart-bar"></i> Tableau</div>
+			<div class="chip"><i class="fas fa-file-excel"></i> Excel</div>
+			<div class="chip"><i class="fas fa-code"></i> R</div>
+			<div class="chip"><i class="fas fa-broom"></i> Data Cleaning</div>
+			<div class="chip"><i class="fas fa-filter"></i> Data Wrangling</div>
+			<div class="chip"><i class="fas fa-chart-line"></i> Visualization</div>
+			<div class="chip"><i class="fas fa-square-root-alt"></i> Statistical Analysis</div>
+			<div class="chip"><i class="fas fa-layer-group"></i> Dashboard Design</div>
+		</div>
+	</section>
 
-							</div>
 
-						</div>
-					</div>
-				</div>
+	<!-- ═══════════ PROJECT CAROUSEL ═════════════════════════════ -->
+	<section class="carousel" id="projects-section" style="background:var(--bg-white); overflow:visible; position:relative;">
+		<div class="carousel-header">
+			<h2>Individual Projects</h2>
+			<div class="filter-tabs">
+				<button class="filter-btn active" data-filter="all">All</button>
+				<button class="filter-btn" data-filter="tableau"><i class="fa-solid fa-chart-line"></i> Tableau</button>
+				<button class="filter-btn" data-filter="sql"><i class="fa-solid fa-database"></i> SQL</button>
+				<button class="filter-btn" data-filter="python"><i class="fa-brands fa-python"></i> Python</button>
+				<button class="filter-btn" data-filter="r"><i class="fa-brands fa-r-project"></i> R</button>
+				<button class="filter-btn" data-filter="databricks"><i class="fa-solid fa-database"></i> Databricks</button>
+			</div>
+		<button class="reel-arrow reel-prev" aria-label="Scroll left"><i class="fa-solid fa-chevron-left"></i></button>
+		<button class="reel-arrow reel-next" aria-label="Scroll right"><i class="fa-solid fa-chevron-right"></i></button>
+		<div class="reel" id="project-reel" style="display:flex !important; overflow-x:auto; overflow-y:visible; flex-wrap:nowrap; white-space:normal; gap:1.25rem; align-items:stretch; padding:0.5rem 2rem 1.5rem; scrollbar-width:none; -ms-overflow-style:none; scroll-snap-type:x mandatory;">
+
+			<!-- Tableau 1 -->
+			<div class="reel-item" data-tool="tableau"><a href="https://public.tableau.com/app/profile/eric.lemon/viz/Project9_17550177343090/Dashboard" style="text-decoration:none;">
+			<div class="project-card fade-in tableau-card">
+				<span class="card-badge"><i class="fa-solid fa-chart-line"></i> Tableau</span>
+				<i class="fa-solid fa-chart-line" style="font-size:56px;margin-bottom:.75rem;"></i>
+				<h3>Covid-19 Tableau Dashboard</h3>
+				<p>Interactive Tableau dashboard analyzing national COVID-19 trends through April 2021, including cases, mortality, and regional comparisons.</p>
+				<div class="bar-chart"><div class="bar b1"></div><div class="bar b2"></div><div class="bar b3"></div><div class="bar b4"></div><div class="bar b5"></div><div class="bar b6"></div><div class="bar b7"></div></div>
+			</div>
+			</a>
+			</div>
+
+			<!-- Tableau 2 -->
+			<div class="reel-item" data-tool="tableau"><a href="https://public.tableau.com/app/profile/eric.lemon/viz/Project8_17527841417050/HRSummary" style="text-decoration:none;">
+			<div class="project-card fade-in tableau-card">
+				<span class="card-badge"><i class="fa-solid fa-chart-line"></i> Tableau</span>
+				<i class="fa-solid fa-chart-line" style="font-size:56px;margin-bottom:.75rem;"></i>
+				<h3>HR Tableau Dashboard</h3>
+				<p>Human resources dashboard built from a synthetic dataset to explore workforce trends, retention risks, and role distribution.</p>
+				<div class="bar-chart"><div class="bar b1"></div><div class="bar b2"></div><div class="bar b3"></div><div class="bar b4"></div><div class="bar b5"></div><div class="bar b6"></div><div class="bar b7"></div></div>
+			</div>
+			</a>
+			</div>
+
+			<!-- Tableau 3 -->
+			<div class="reel-item" data-tool="tableau"><a href="https://public.tableau.com/app/profile/eric.lemon/viz/Project7_17515896957860/Dashboard1" style="text-decoration:none;">
+			<div class="project-card fade-in tableau-card">
+				<span class="card-badge"><i class="fa-solid fa-chart-line"></i> Tableau</span>
+				<i class="fa-solid fa-chart-line" style="font-size:56px;margin-bottom:.75rem;"></i>
+				<h3>AirHelp Score Dashboard</h3>
+				<p>Tableau dashboard evaluating global airport performance using AirHelp scores and ranking metrics.</p>
+				<div class="bar-chart"><div class="bar b1"></div><div class="bar b2"></div><div class="bar b3"></div><div class="bar b4"></div><div class="bar b5"></div><div class="bar b6"></div><div class="bar b7"></div></div>
+			</div>
+			</a>
+			</div>
+
+			<!-- SQL 1 -->
+			<div class="reel-item" data-tool="sql"><a href="https://github.com/ewlemon/SQL-Project-5/blob/main/SQLProject5.sql" style="text-decoration:none;">
+			<div class="project-card fade-in sql-card">
+				<span class="card-badge"><i class="fa-solid fa-database"></i> SQL</span>
+				<i class="fa-solid fa-database" style="font-size:56px;margin-bottom:.75rem;"></i>
+				<h3>Crime Data SQL Project</h3>
+				<p>SQL-based data cleaning and exploratory analysis of LAPD crime data, focusing on trends, frequency, and incident categorization.</p>
+				<div class="bar-chart"><div class="bar b1"></div><div class="bar b2"></div><div class="bar b3"></div><div class="bar b4"></div><div class="bar b5"></div><div class="bar b6"></div><div class="bar b7"></div></div>
+			</div>
+			</a>
+			</div>
+
+			<!-- SQL 2 -->
+			<div class="reel-item" data-tool="sql"><a href="https://github.com/ewlemon/SQL-Project-4/blob/main/SQLProject4.sql" style="text-decoration:none;">
+			<div class="project-card fade-in sql-card">
+				<span class="card-badge"><i class="fa-solid fa-database"></i> SQL</span>
+				<i class="fa-solid fa-database" style="font-size:56px;margin-bottom:.75rem;"></i>
+				<h3>Chronic Diseases SQL Project</h3>
+				<p>SQL project that cleans, standardizes, and analyzes U.S. chronic disease indicators to support public-health insights.</p>
+				<div class="bar-chart"><div class="bar b1"></div><div class="bar b2"></div><div class="bar b3"></div><div class="bar b4"></div><div class="bar b5"></div><div class="bar b6"></div><div class="bar b7"></div></div>
+			</div>
+			</a>
+			</div>
+
+			<!-- SQL 3 -->
+			<div class="reel-item" data-tool="sql"><a href="https://github.com/ewlemon/SQL-Project-3/blob/main/Project%206%20Data.sqbpro" style="text-decoration:none;">
+			<div class="project-card fade-in sql-card">
+				<span class="card-badge"><i class="fa-solid fa-database"></i> SQL</span>
+				<i class="fa-solid fa-database" style="font-size:56px;margin-bottom:.75rem;"></i>
+				<h3>Northwind SQL Project</h3>
+				<p>End-to-end SQL workflow creating cleaned, structured tables used to power an interactive Tableau business performance dashboard.</p>
+				<div class="bar-chart"><div class="bar b1"></div><div class="bar b2"></div><div class="bar b3"></div><div class="bar b4"></div><div class="bar b5"></div><div class="bar b6"></div><div class="bar b7"></div></div>
+			</div>
+			</a>
+			</div>
+
+			<!-- Python 1 -->
+			<div class="reel-item" data-tool="python"><a href="https://github.com/ewlemon/Python-Pandas/blob/main/PandasExploratoryAnalysis1.ipynb" style="text-decoration:none;">
+			<div class="project-card fade-in python-card">
+				<span class="card-badge"><i class="fa-brands fa-python"></i> Python</span>
+				<i class="fa-brands fa-python" style="font-size:56px;margin-bottom:.75rem;"></i>
+				<h3>Python Exploratory Analysis</h3>
+				<p>Python project using Pandas, NumPy, and visualization libraries to organize, clean, and analyze global population trends.</p>
+				<div class="bar-chart"><div class="bar b1"></div><div class="bar b2"></div><div class="bar b3"></div><div class="bar b4"></div><div class="bar b5"></div><div class="bar b6"></div><div class="bar b7"></div></div>
+			</div>
+			</a>
+			</div>
+
+			<!-- Python 2 -->
+			<div class="reel-item" data-tool="python"><a href="https://github.com/ewlemon/Python-Files/blob/main/Basics9(MatPlotLib).ipynb" style="text-decoration:none;">
+			<div class="project-card fade-in python-card">
+				<span class="card-badge"><i class="fa-brands fa-python"></i> Python</span>
+				<i class="fa-brands fa-python" style="font-size:56px;margin-bottom:.75rem;"></i>
+				<h3>Python Library Exploration</h3>
+				<p>Exploratory Jupyter Notebook demonstrating data manipulation and visualization using Pandas, NumPy, Matplotlib, and Seaborn.</p>
+				<div class="bar-chart"><div class="bar b1"></div><div class="bar b2"></div><div class="bar b3"></div><div class="bar b4"></div><div class="bar b5"></div><div class="bar b6"></div><div class="bar b7"></div></div>
+			</div>
+			</a>
+			</div>
+
+			<!-- R -->
+			<div class="reel-item" data-tool="r"><a href="https://github.com/ewlemon/R-Project-1/blob/main/Crime_Data.R" style="text-decoration:none;">
+			<div class="project-card fade-in r-card">
+				<span class="card-badge"><i class="fa-brands fa-r-project"></i> R</span>
+				<i class="fa-brands fa-r-project" style="font-size:56px;margin-bottom:.75rem;"></i>
+				<h3>Crime Data R Project</h3>
+				<p>R and R Markdown project cleaning crime datasets and generating clear, publication-style visualizations and summaries.</p>
+				<div class="bar-chart"><div class="bar b1"></div><div class="bar b2"></div><div class="bar b3"></div><div class="bar b4"></div><div class="bar b5"></div><div class="bar b6"></div><div class="bar b7"></div></div>
+			</div>
+			</a>
+			</div>
+
+			<!-- Databricks -->
+			<div class="reel-item" data-tool="databricks"><a href="https://dbc-775b9b39-494b.cloud.databricks.com/dashboardsv3/01f0d06b765a15b2bb4cf0e9fe562483/published?o=1864074656503127" style="text-decoration:none;">
+			<div class="project-card fade-in databricks-card">
+				<span class="card-badge"><i class="fa-solid fa-database"></i> Databricks</span>
+				<i class="fa-solid fa-database" style="font-size:56px;margin-bottom:.75rem;"></i>
+				<h3>Databricks Emissions Dashboard</h3>
+				<p>Interactive Databricks dashboard analyzing U.S. CO&#8322; Emissions from 2023.</p>
+				<div class="bar-chart"><div class="bar b1"></div><div class="bar b2"></div><div class="bar b3"></div><div class="bar b4"></div><div class="bar b5"></div><div class="bar b6"></div><div class="bar b7"></div></div>
+			</div>
+			</a>
 
 		</div>
+	</section>
 
-		</section>
+	<!-- ═══════════ FEATURED PROJECT ═════════════════════════════ -->
+	<div id="featured-section" style="background:var(--bg-light);">
+		<div class="inner">
+
+			<!-- Section label -->
+			<div style="text-align:center; margin-bottom:1.5rem;">
+				<span style="display:inline-flex;align-items:center;gap:0.4rem;font-size:0.75rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--accent);">
+					<i class="fa-solid fa-star"></i> Featured Project
+				</span>
+				<h2 style="margin:0.4rem 0 0.5rem;">U.S. Stock Market Index Analysis</h2>
+				<p style="color:var(--text-mid); max-width:640px; margin:0 auto 0.5rem; text-align:center;">
+					Long-term trend modeling, correlation analysis, and rolling volatility across five major indexes — with a daily-updating automated data pipeline.
+				</p>
+				<!-- Tool tags -->
+				<div style="display:flex;flex-wrap:wrap;justify-content:center;gap:0.5rem;margin-top:0.75rem;">
+					<span style="background:var(--bg-light);border:1.5px solid var(--border);border-radius:20px;padding:0.25rem 0.75rem;font-size:0.78rem;font-weight:600;color:var(--text-mid);"><i class="fab fa-python"></i> Python</span>
+					<span style="background:var(--bg-light);border:1.5px solid var(--border);border-radius:20px;padding:0.25rem 0.75rem;font-size:0.78rem;font-weight:600;color:var(--text-mid);"><i class="fa-solid fa-file-excel"></i> Excel</span>
+					<span style="background:var(--bg-light);border:1.5px solid var(--border);border-radius:20px;padding:0.25rem 0.75rem;font-size:0.78rem;font-weight:600;color:var(--text-mid);"><i class="fab fa-github"></i> GitHub Actions</span>
+					<span style="background:var(--bg-light);border:1.5px solid var(--border);border-radius:20px;padding:0.25rem 0.75rem;font-size:0.78rem;font-weight:600;color:var(--text-mid);">Regression Modeling</span>
+				</div>
+			</div>
+
+			<!-- Prezi embed -->
+			<iframe src="https://prezi.com/p/embed/PR9nilFAxgJ8tyPwI5dP/"
+				frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen
+				allow="autoplay; fullscreen" height="560" width="100%"
+				style="border-radius:10px; box-shadow:var(--shadow-md); display:block;"></iframe>
+
+			<!-- Highlight cards -->
+			<div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:1rem;margin-top:2rem;">
+				<div style="background:var(--bg-light);border:1px solid var(--border);border-radius:12px;padding:1.25rem;transition:background .3s,border-color .3s;">
+					<div style="font-size:1.5rem;margin-bottom:0.5rem;">📈</div>
+					<h3 style="font-size:0.95rem;margin:0 0 0.35rem;">Trend Modeling</h3>
+					<p style="font-size:0.87rem;color:var(--text-mid);margin:0;">Degree-3 polynomial regression best captured long-run nonlinear growth across all five indexes.</p>
+				</div>
+				<div style="background:var(--bg-light);border:1px solid var(--border);border-radius:12px;padding:1.25rem;transition:background .3s,border-color .3s;">
+					<div style="font-size:1.5rem;margin-bottom:0.5rem;">🔗</div>
+					<h3 style="font-size:0.95rem;margin:0 0 0.35rem;">Correlation Patterns</h3>
+					<p style="font-size:0.87rem;color:var(--text-mid);margin:0;">Large-cap indexes move together strongly; the Russell 2000 behaves more independently during stress.</p>
+				</div>
+				<div style="background:var(--bg-light);border:1px solid var(--border);border-radius:12px;padding:1.25rem;transition:background .3s,border-color .3s;">
+					<div style="font-size:1.5rem;margin-bottom:0.5rem;">⚡</div>
+					<h3 style="font-size:0.95rem;margin:0 0 0.35rem;">Volatility Insights</h3>
+					<p style="font-size:0.87rem;color:var(--text-mid);margin:0;">The Nasdaq-100 consistently led volatility spikes during the Dot-com bubble, 2008, and COVID crash.</p>
+				</div>
+				<div style="background:var(--bg-light);border:1px solid var(--border);border-radius:12px;padding:1.25rem;transition:background .3s,border-color .3s;">
+					<div style="font-size:1.5rem;margin-bottom:0.5rem;">🤖</div>
+					<h3 style="font-size:0.95rem;margin:0 0 0.35rem;">Automated Pipeline</h3>
+					<p style="font-size:0.87rem;color:var(--text-mid);margin:0;">GitHub Actions refreshes the Excel dataset daily, keeping the analysis current year-round.</p>
+				</div>
+			</div>
+
+			<!-- GitHub link -->
+			<p style="margin-top:1.75rem; text-align:center;">
+				<a href="https://github.com/ewlemon/Stock-Project" target="_blank"
+					style="display:inline-flex;align-items:center;gap:0.5rem;padding:0.65rem 1.5rem;background:var(--accent);color:#fff;border-radius:7px;font-weight:600;font-size:0.95rem;transition:background .2s;">
+					<i class="fab fa-github"></i> View on GitHub
+				</a>
+			</p>
+
+		</div>
+	</div>
+
+
+	<!-- ═══════════ GRADUATE PROJECTS ════════════════════════════ -->
+	<div id="grad-section">
+	<section id="features-wrapper" style="background:var(--bg-white);">
+		<header>
+			<h2>Graduate Degree Projects</h2>
+			<p style="text-align:center;">Projects undertaken as part of the Business Informatics: Business Analytics master's program</p>
+		</header>
+		<div class="grad-cards-row">
+
+			<a href="https://public.tableau.com/app/profile/eric.lemon/viz/LemonAssignmentFinal/Dashboard" class="grad-card">
+				<span class="grad-badge badge-tableau"><i class="fa-solid fa-chart-line"></i> Tableau</span>
+				<div class="grad-icon" style="color:var(--accent);"><i class="fa-solid fa-chart-line"></i></div>
+				<h3>Career Trends Tableau Dashboard</h3>
+				<p>An interactive Tableau dashboard highlighting long-term career, salary, and job-market trends through engaging visual analytics.</p>
+				<svg class="svg-line" viewBox="0 0 100 30">
+					<path d="M0,20 L20,14 L40,17 L60,10 L80,15 L100,8" stroke="#4a90e2" stroke-width="2" fill="none" stroke-linecap="round" stroke-dasharray="150" stroke-dashoffset="150" class="animate-line"></path>
+					<circle cx="0" cy="20" r="2" fill="#4a90e2" class="point"></circle>
+					<circle cx="20" cy="14" r="2" fill="#4a90e2" class="point"></circle>
+					<circle cx="40" cy="17" r="2" fill="#4a90e2" class="point"></circle>
+					<circle cx="60" cy="10" r="2" fill="#4a90e2" class="point"></circle>
+					<circle cx="80" cy="15" r="2" fill="#4a90e2" class="point"></circle>
+					<circle cx="100" cy="8"  r="2" fill="#4a90e2" class="point"></circle>
+				</svg>
+			</a>
+
+			<a href="https://github.com/ewlemon/Excel-Project-2/blob/main/DecisionAnalysisProblems.xlsx" target="_blank" class="grad-card">
+				<span class="grad-badge badge-excel"><i class="fa-solid fa-file-excel"></i> Excel</span>
+				<div class="grad-icon" style="color:#1a6b3c;"><i class="fa-solid fa-file-excel"></i></div>
+				<h3>Decision Analytics Excel Problems</h3>
+				<p>Over 25 optimization problems solved using Solver, demonstrating practical linear programming and optimization modeling in business.</p>
+				<svg class="svg-line" viewBox="0 0 100 30">
+					<path d="M0,22 L20,18 L40,20 L60,14 L80,19 L100,12" stroke="#2a9d8f" stroke-width="2" fill="none" stroke-linecap="round" stroke-dasharray="150" stroke-dashoffset="150" class="animate-line"></path>
+					<circle cx="0" cy="22" r="2" fill="#2a9d8f" class="point"></circle>
+					<circle cx="20" cy="18" r="2" fill="#2a9d8f" class="point"></circle>
+					<circle cx="40" cy="20" r="2" fill="#2a9d8f" class="point"></circle>
+					<circle cx="60" cy="14" r="2" fill="#2a9d8f" class="point"></circle>
+					<circle cx="80" cy="19" r="2" fill="#2a9d8f" class="point"></circle>
+					<circle cx="100" cy="12" r="2" fill="#2a9d8f" class="point"></circle>
+				</svg>
+			</a>
+
+			<a href="https://github.com/ewlemon/Excel-Project-3/blob/main/BusinessAnalysisProblems.xlsx" target="_blank" class="grad-card">
+				<span class="grad-badge badge-excel"><i class="fa-solid fa-file-excel"></i> Excel</span>
+				<div class="grad-icon" style="color:#1a6b3c;"><i class="fa-solid fa-file-excel"></i></div>
+				<h3>Business Analytics Excel Problems</h3>
+				<p>Notes and optimization problems solved using Solver and regression analysis, demonstrating effective problem modeling and insights communication.</p>
+				<svg class="svg-line" viewBox="0 0 100 30">
+					<path d="M0,25 L20,20 L40,23 L60,17 L80,22 L100,15" stroke="#2a9d8f" stroke-width="2" fill="none" stroke-linecap="round" stroke-dasharray="150" stroke-dashoffset="150" class="animate-line"></path>
+					<circle cx="0" cy="25" r="2" fill="#2a9d8f" class="point"></circle>
+					<circle cx="20" cy="20" r="2" fill="#2a9d8f" class="point"></circle>
+					<circle cx="40" cy="23" r="2" fill="#2a9d8f" class="point"></circle>
+					<circle cx="60" cy="17" r="2" fill="#2a9d8f" class="point"></circle>
+					<circle cx="80" cy="22" r="2" fill="#2a9d8f" class="point"></circle>
+					<circle cx="100" cy="15" r="2" fill="#2a9d8f" class="point"></circle>
+				</svg>
+			</a>
+
+		</div>
+	</section>
+	</div>
 
 
 
+	<!-- ═══════════ COURSES ═════════════════════════════════════ -->
+	<section id="courses" style="padding:var(--section-gap) 1.5rem; background:var(--bg-light); text-align:center; transition:background .3s;">
+		<div style="max-width:1000px; margin:0 auto;">
+			<span style="display:inline-flex;align-items:center;gap:0.4rem;font-size:0.75rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--accent);margin-bottom:0.4rem;">
+				<i class="fa-solid fa-graduation-cap"></i> M.S. Business Analytics
+			</span>
+			<h2 style="margin:0.4rem 0 0.5rem;">Graduate Coursework</h2>
+			<p style="text-align:center;color:var(--text-mid);margin-bottom:2.5rem;">Business Informatics: Business Analytics program at Northern Kentucky University</p>
 
-				<!-- Scripts -->
-					<script src="assets/js/jquery.min.js"></script>
-					<script src="assets/js/jquery.dropotron.min.js"></script>
-					<script src="assets/js/jquery.scrolly.min.js"></script>
-					<script src="assets/js/jquery.scrollex.min.js"></script>
-					<script src="assets/js/browser.min.js"></script>
-					<script src="assets/js/breakpoints.min.js"></script>
-					<script src="assets/js/util.js"></script>
-					<script src="assets/js/main.js"></script>
+			<div class="courses-grid">
 
-			</body>
-		</html>
+				<!-- Completed -->
+				<div class="course-col">
+					<div class="course-col-header completed-header">
+						<i class="fa-solid fa-circle-check"></i> Completed
+					</div>
+					<ul class="course-list">
+						<li class="course-item"><i class="fa-solid fa-check course-icon completed-icon"></i>Technical Foundations / Health Informatics</li>
+						<li class="course-item"><i class="fa-solid fa-check course-icon completed-icon"></i>Information Tech Project Management</li>
+						<li class="course-item"><i class="fa-solid fa-check course-icon completed-icon"></i>Information Systems In Organizations</li>
+						<li class="course-item"><i class="fa-solid fa-check course-icon completed-icon"></i>Decision Analysis</li>
+						<li class="course-item"><i class="fa-solid fa-check course-icon completed-icon"></i>Data Visualization and Analytics</li>
+						<li class="course-item"><i class="fa-solid fa-check course-icon completed-icon"></i>Business Analytics</li>
+						<li class="course-item"><i class="fa-solid fa-check course-icon completed-icon"></i>Database Management Systems</li>
+					</ul>
+				</div>
+
+				<!-- Current -->
+				<div class="course-col">
+					<div class="course-col-header current-header">
+						<i class="fa-solid fa-circle-half-stroke"></i> In Progress
+					</div>
+					<ul class="course-list">
+						<li class="course-item current-item"><i class="fa-solid fa-circle-dot course-icon current-icon"></i>Information Security &amp; Governance</li>
+					</ul>
+				</div>
+
+				<!-- Upcoming -->
+				<div class="course-col">
+					<div class="course-col-header upcoming-header">
+						<i class="fa-solid fa-circle-arrow-right"></i> Upcoming
+					</div>
+					<ul class="course-list">
+						<li class="course-item upcoming-item"><i class="fa-regular fa-circle course-icon upcoming-icon"></i>Corporate Information System Management</li>
+						<li class="course-item upcoming-item"><i class="fa-regular fa-circle course-icon upcoming-icon"></i>Business Intelligence Development</li>
+						<li class="course-item upcoming-item"><i class="fa-regular fa-circle course-icon upcoming-icon"></i>Systems Analysis And Design</li>
+					</ul>
+				</div>
+
+			</div>
+		</div>
+	</section>
+
+
+
+	<!-- ═══════════ PARALLAX + FOOTER (combined) ════════════════ -->
+	<div id="footer" class="parallax-section" style="padding:0;">
+
+		<!-- Stats strip -->
+		<div id="stats-section" class="overlay-content" style="padding:4.5rem 1.5rem 3rem;">
+			<blockquote>"Turning data into decisions, one analysis at a time."</blockquote>
+			<div class="stats-row">
+				<div class="stat-item">
+					<span class="stat-number" data-target="10" data-suffix="+">0</span>
+					<span class="stat-label">Projects Completed</span>
+				</div>
+				<div class="stat-item">
+					<span class="stat-number" data-target="5" data-suffix="">0</span>
+					<span class="stat-label">Tools &amp; Languages</span>
+				</div>
+				<div class="stat-item">
+					<span class="stat-number" data-target="" data-static="M.S.">M.S.</span>
+					<span class="stat-label">Business Analytics</span>
+				</div>
+				<div class="stat-item">
+					<span class="stat-number" data-target="3" data-suffix="">0</span>
+					<span class="stat-label">Dashboard Platforms</span>
+				</div>
+			</div>
+		</div>
+
+		<!-- Dividing rule inside the image block -->
+		<div style="position:relative;z-index:1;display:flex;justify-content:center;padding:0.25rem 0;">
+			<div style="width:80px;height:1px;background:rgba(255,255,255,0.35);"></div>
+		</div>
+
+		<!-- Contact + links -->
+		<div class="footer-inner" style="padding:2.5rem 1.5rem 4rem;">
+			<h3>Want to get in touch?</h3>
+			<p style="text-align:center;">Reach out via LinkedIn or Gmail, or explore more work through the links below.</p>
+			<ul class="icons">
+				<li><a href="https://public.tableau.com/app/profile/eric.lemon/vizzes" title="Tableau"><i class="fa-solid fa-chart-pie"></i></a></li>
+				<li><a href="https://github.com/ewlemon" title="GitHub"><i class="fab fa-github"></i></a></li>
+				<li><a href="https://www.linkedin.com/in/ericlemon/" title="LinkedIn"><i class="fab fa-linkedin"></i></a></li>
+				<li><a href="mailto:ewlemon7@gmail.com" title="Gmail"><i class="fab fa-google"></i></a></li>
+			</ul>
+			<div class="parallax-cta" style="margin-top:0;margin-bottom:1.5rem;">
+				<a href="assets/EricLemonResume.pdf">View My Resume &rarr;</a>
+			</div>
+			<div class="footer-copy">Design: <a href="http://html5up.net">HTML5 UP</a></div>
+		</div>
+
+	</div>
+
+	</div><!-- end #page-wrapper -->
+
+	<!-- Scripts -->
+	<script src="assets/js/jquery.min.js"></script>
+	<script src="assets/js/jquery.scrolly.min.js"></script>
+	<script src="assets/js/jquery.scrollex.min.js"></script>
+	<script src="assets/js/browser.min.js"></script>
+	<script src="assets/js/breakpoints.min.js"></script>
+	<script src="assets/js/util.js"></script>
+	<script src="assets/js/main.js"></script>
+
+	<script>
+	// ── Dark Mode ──────────────────────────────────────────────
+	const body      = document.body;
+	const toggle    = document.getElementById('dark-toggle');
+	const icon      = document.getElementById('dark-icon');
+
+	function applyTheme(dark) {
+		body.classList.toggle('dark', dark);
+		icon.className = dark ? 'fa-solid fa-sun' : 'fa-solid fa-moon';
+		localStorage.setItem('theme', dark ? 'dark' : 'light');
+	}
+	// Load saved preference
+	applyTheme(localStorage.getItem('theme') === 'dark');
+	toggle.addEventListener('click', () => applyTheme(!body.classList.contains('dark')));
+
+	// ── Fade-in on Scroll ──────────────────────────────────────
+	const faders = document.querySelectorAll('.fade-in');
+	const fadeObs = new IntersectionObserver((entries, obs) => {
+		entries.forEach(e => {
+			if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); }
+		});
+	}, { threshold: 0.15 });
+	faders.forEach(f => fadeObs.observe(f));
+
+	// ── Count-Up Animation ─────────────────────────────────────
+	function countUp(el, target, suffix, duration) {
+		let start = 0;
+		const step = target / (duration / 16);
+		const timer = setInterval(() => {
+			start += step;
+			if (start >= target) { start = target; clearInterval(timer); }
+			el.textContent = Math.floor(start) + suffix;
+		}, 16);
+	}
+
+	const statsObs = new IntersectionObserver((entries, obs) => {
+		entries.forEach(e => {
+			if (e.isIntersecting) {
+				document.querySelectorAll('.stat-number[data-target]').forEach(el => {
+					const target = el.dataset.target;
+					const suffix = el.dataset.suffix || '';
+					if (!target) return; // static text (M.S.)
+					countUp(el, parseInt(target), suffix, 1200);
+				});
+				obs.unobserve(e.target);
+			}
+		});
+	}, { threshold: 0.4 });
+	const statsSection = document.getElementById('stats-section');
+	if (statsSection) statsObs.observe(statsSection);
+
+	// ── Nav Active + Smooth Scroll ─────────────────────────────
+	const navLinks = document.querySelectorAll('.nav-links a');
+	navLinks.forEach(a => {
+		a.addEventListener('click', e => {
+			const href = a.getAttribute('href');
+			if (href.startsWith('#')) {
+				const target = document.querySelector(href);
+				if (target) {
+					e.preventDefault();
+					target.scrollIntoView({ behavior: 'smooth' });
+					document.querySelector('.nav-links').classList.remove('open');
+				}
+			}
+		});
+	});
+
+	// ── Mobile Nav Toggle ──────────────────────────────────────
+	document.getElementById('nav-toggle').addEventListener('click', () => {
+		document.querySelector('.nav-links').classList.toggle('open');
+	});
+
+	// ── Page Loader ────────────────────────────────────────────
+	window.addEventListener('load', () => {
+		const loader = document.getElementById('page-loader');
+		const header = document.getElementById('header');
+		loader.classList.add('loaded');
+		setTimeout(() => { if(header) header.classList.add('loaded'); }, 100);
+	});
+
+	// ── Scroll-to-top ───────────────────────────────────────────
+	const scrollBtn = document.getElementById('scroll-top');
+	window.addEventListener('scroll', () => {
+		scrollBtn.classList.toggle('visible', window.scrollY > 400);
+	});
+	scrollBtn.addEventListener('click', () => window.scrollTo({ top:0, behavior:'smooth' }));
+
+	// ── Project Filter ──────────────────────────────────────────
+	document.querySelectorAll('.filter-btn').forEach(btn => {
+		btn.addEventListener('click', () => {
+			document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+			btn.classList.add('active');
+			const filter = btn.dataset.filter;
+			document.querySelectorAll('.reel-item').forEach(item => {
+				item.classList.toggle('hidden', filter !== 'all' && item.dataset.tool !== filter);
+			});
+		});
+	});
+
+	// ── Carousel: arrow buttons ─────────────────────────────────
+	const reel = document.getElementById('project-reel');
+	const prevBtn = document.querySelector('.reel-prev');
+	const nextBtn = document.querySelector('.reel-next');
+	const SCROLL_AMT = 320;
+
+	function updateArrows() {
+		if (!reel) return;
+		prevBtn.classList.toggle('hidden', reel.scrollLeft <= 10);
+		nextBtn.classList.toggle('hidden', reel.scrollLeft + reel.clientWidth >= reel.scrollWidth - 10);
+	}
+	if (prevBtn) prevBtn.addEventListener('click', () => { reel.scrollBy({ left: -SCROLL_AMT, behavior: 'smooth' }); });
+	if (nextBtn) nextBtn.addEventListener('click', () => { reel.scrollBy({ left:  SCROLL_AMT, behavior: 'smooth' }); });
+	if (reel)    reel.addEventListener('scroll', updateArrows);
+	updateArrows();
+	</script>
+	</body>
+</html>
