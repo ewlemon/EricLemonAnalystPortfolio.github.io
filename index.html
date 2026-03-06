@@ -22,7 +22,7 @@
 			--accent:        #2b6cb0;
 			--accent-hover:  #1a4f8a;
 			--bg-white:      #ffffff;
-			--bg-light:      #f7f8fa;
+			--bg-light:      #eef1f5;
 			--border:        #e2e8f0;
 			--text-dark:     #1a202c;
 			--text-mid:      #4a5568;
@@ -42,7 +42,7 @@
 			--accent:        #63b3ed;
 			--accent-hover:  #90cdf4;
 			--bg-white:      #0f1117;
-			--bg-light:      #1a1d27;
+			--bg-light:      #141720;
 			--border:        #2d3249;
 			--text-dark:     #e8ecf4;
 			--text-mid:      #a0aabf;
@@ -359,7 +359,7 @@
 		/* ═══ Tools & Skills ══════════════════════════════════════ */
 		#skills-tools {
 			padding:var(--section-gap) 1.5rem;
-			background:var(--bg-white);
+			background:var(--bg-light);
 			text-align:center;
 			transition:background 0.3s;
 		}
@@ -636,6 +636,7 @@
 
 	<!-- ═══════════ BANNER / ABOUT ═══════════════════════════════ -->
 	<section id="banner" style="background:var(--bg-white);">
+	<span class="section-eyebrow"><i class="fa-solid fa-user"></i> Introduction</span>
 		<h2><strong>Welcome!</strong></h2>
 		<div class="banner-inner">
 			<div class="headshot-wrap">
@@ -651,26 +652,53 @@
 
 
 	<!-- ═══════════ TOOLS & SKILLS ═══════════════════════════════ -->
-	<section id="skills-tools" style="background:var(--bg-light);">
+	<section id="skills-tools">
+	<div class="skills-inner">
+		<div class="skills-header">
+		<span class="section-eyebrow"><i class="fa-solid fa-toolbox"></i> Toolkit</span>
 		<h2>Tools &amp; Skills</h2>
-		<div class="chips-wrap">
-			<div class="chip"><i class="fas fa-database"></i> SQL</div>
-			<div class="chip"><i class="fab fa-python"></i> Python</div>
-			<div class="chip"><i class="fas fa-chart-bar"></i> Tableau</div>
-			<div class="chip"><i class="fas fa-file-excel"></i> Excel</div>
-			<div class="chip"><i class="fas fa-code"></i> R</div>
-			<div class="chip"><i class="fas fa-broom"></i> Data Cleaning</div>
-			<div class="chip"><i class="fas fa-filter"></i> Data Wrangling</div>
-			<div class="chip"><i class="fas fa-chart-line"></i> Visualization</div>
-			<div class="chip"><i class="fas fa-square-root-alt"></i> Statistical Analysis</div>
-			<div class="chip"><i class="fas fa-layer-group"></i> Dashboard Design</div>
+		<p style="color:var(--text-mid); max-width:640px; margin:0 auto 0.5rem; text-align:center;">The toolkit behind the analysis</p>
 		</div>
+
+		<div class="skills-grid">
+
+		<div class="skill-category">
+			<div class="category-label"><i class="fas fa-code"></i> Languages</div>
+			<div class="skill-list">
+			<div class="skill-pill"><i class="fas fa-database"></i> SQL</div>
+			<div class="skill-pill"><i class="fab fa-python"></i> Python</div>
+			<div class="skill-pill"><i class="fas fa-code"></i> R</div>
+			</div>
+		</div>
+
+		<div class="skill-category">
+			<div class="category-label"><i class="fas fa-tools"></i> Tools</div>
+			<div class="skill-list">
+			<div class="skill-pill"><i class="fas fa-chart-bar"></i> Tableau</div>
+			<div class="skill-pill"><i class="fas fa-file-excel"></i> Excel</div>
+			</div>
+		</div>
+
+		<div class="skill-category">
+			<div class="category-label"><i class="fas fa-brain"></i> Techniques</div>
+			<div class="skill-list">
+			<div class="skill-pill"><i class="fas fa-broom"></i> Data Cleaning</div>
+			<div class="skill-pill"><i class="fas fa-filter"></i> Data Wrangling</div>
+			<div class="skill-pill"><i class="fas fa-chart-line"></i> Visualization</div>
+			<div class="skill-pill"><i class="fas fa-square-root-alt"></i> Statistical Analysis</div>
+			<div class="skill-pill"><i class="fas fa-layer-group"></i> Dashboard Design</div>
+			</div>
+		</div>
+
+		</div>
+	</div>
 	</section>
 
 
 	<!-- ═══════════ PROJECT CAROUSEL ═════════════════════════════ -->
 	<section class="carousel" id="projects-section" style="background:var(--bg-white); overflow:visible; position:relative;">
 		<div class="carousel-header">
+			<span class="section-eyebrow"><i class="fa-solid fa-folder-open"></i> Portfolio</span>
 			<h2>Individual Projects</h2>
 			<div class="filter-tabs">
 				<button class="filter-btn active" data-filter="all">All</button>
@@ -812,9 +840,7 @@
 
 			<!-- Section label -->
 			<div style="text-align:center; margin-bottom:1.5rem;">
-				<span style="display:inline-flex;align-items:center;gap:0.4rem;font-size:0.75rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--accent);">
-					<i class="fa-solid fa-star"></i> Featured Project
-				</span>
+				<span class="section-eyebrow"><i class="fa-solid fa-star"></i> Featured Project</span>
 				<h2 style="margin:0.4rem 0 0.5rem;">U.S. Stock Market Index Analysis</h2>
 				<p style="color:var(--text-mid); max-width:640px; margin:0 auto 0.5rem; text-align:center;">
 					Long-term trend modeling, correlation analysis, and rolling volatility across five major indexes with a daily-updating automated data pipeline.
@@ -874,6 +900,7 @@
 	<div id="grad-section">
 	<section id="features-wrapper" style="background:var(--bg-white);">
 		<header>
+			<span class="section-eyebrow"><i class="fa-solid fa-graduation-cap"></i> Academic Work</span>
 			<h2>Graduate Degree Projects</h2>
 			<p style="text-align:center;">Projects undertaken as part of the Business Informatics: Business Analytics master's program</p>
 		</header>
@@ -936,9 +963,7 @@
 	<!-- ═══════════ COURSES ═════════════════════════════════════ -->
 	<section id="courses" style="padding:var(--section-gap) 1.5rem; background:var(--bg-light); text-align:center; transition:background .3s;">
 		<div style="max-width:1000px; margin:0 auto;">
-			<span style="display:inline-flex;align-items:center;gap:0.4rem;font-size:0.75rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--accent);margin-bottom:0.4rem;">
-				<i class="fa-solid fa-graduation-cap"></i> M.S. Business Analytics
-			</span>
+			<span class="section-eyebrow"><i class="fa-solid fa-graduation-cap"></i> M.S. Business Analytics</span>
 			<h2 style="margin:0.4rem 0 0.5rem;">Graduate Coursework</h2>
 			<p style="text-align:center;color:var(--text-mid);margin-bottom:2.5rem;">Business Informatics: Business Analytics program at Northern Kentucky University</p>
 
