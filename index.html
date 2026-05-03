@@ -13,7 +13,6 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<meta name="description" content="Eric Lemon — Business Analytics graduate student specializing in Tableau dashboards, SQL analysis, Python data pipelines, and data storytelling. M.S. candidate at Northern Kentucky University." />
 
-		<!-- Open Graph / LinkedIn / social sharing -->
 		<meta property="og:type"        content="website" />
 		<meta property="og:title"       content="Eric Lemon | Data &amp; Business Analyst" />
 		<meta property="og:description" content="Portfolio of data and business analytics projects covering Tableau, SQL, Python, R, and Databricks. M.S. Business Analytics candidate." />
@@ -25,20 +24,317 @@
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
 		<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
 		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
-
 		<link rel="stylesheet" href="assets/css/portfolio.css" />
+
+		<style>
+		/* ═══════════════════════════════════════════════
+		   SKILLS SECTION — push to full available width
+		═══════════════════════════════════════════════ */
+		#skills-tools {
+			padding-left: 1rem;
+			padding-right: 1rem;
+		}
+		#skills-tools .skills-inner {
+			max-width: 1500px !important;
+			margin-left: auto;
+			margin-right: auto;
+		}
+
+		/* ═══════════════════════════════════════════════
+		   SKILL PILLS — clickable states
+		═══════════════════════════════════════════════ */
+		.skill-pill.has-projects {
+			cursor: pointer;
+			border-radius: 6px;
+			user-select: none;
+		}
+		.skill-pill.has-projects:hover {
+			background: var(--bg-light);
+			color: var(--accent);
+			padding-left: 0.9em;
+		}
+		.skill-pill.has-projects:hover i { opacity: 1; }
+
+		.skill-pill.has-projects.sp-active {
+			background: var(--accent);
+			color: #fff;
+			padding-left: 0.9em;
+		}
+		.skill-pill.has-projects.sp-active i { opacity: 1; color: #fff; }
+		.skill-pill.has-projects.sp-active .proj-count {
+			background: rgba(255,255,255,0.25);
+			color: #fff;
+		}
+
+		.skill-pill .proj-count {
+			margin-left: auto;
+			background: var(--accent);
+			color: #fff;
+			font-size: 0.64rem;
+			font-weight: 700;
+			padding: 0.14em 0.55em;
+			border-radius: 20px;
+			line-height: 1.6;
+			flex-shrink: 0;
+			transition: background 0.2s;
+			white-space: nowrap;
+		}
+
+		/* ═══════════════════════════════════════════════
+		   FULL-WIDTH SKILL CONTENT PANEL
+		═══════════════════════════════════════════════ */
+		.skill-content-panel {
+			display: grid;
+			grid-template-rows: 0fr;
+			opacity: 0;
+			transition: grid-template-rows 0.44s cubic-bezier(0.4,0,0.2,1),
+			            opacity 0.34s ease,
+			            margin-top 0.38s ease;
+			margin-top: 0;
+		}
+		.skill-content-panel.scp-open {
+			grid-template-rows: 1fr;
+			opacity: 1;
+			margin-top: 2rem;
+		}
+		.scp-overflow { overflow: hidden; }
+
+		.scp-inner {
+			background: var(--card-bg);
+			border: 1px solid var(--border);
+			border-radius: 16px;
+			overflow: hidden;
+			box-shadow: var(--shadow-md);
+			transition: background 0.3s, border-color 0.3s;
+		}
+
+		/* Panel header */
+		.scp-header {
+			display: flex;
+			align-items: center;
+			justify-content: space-between;
+			padding: 0.9rem 2.5rem;
+			border-bottom: 1px solid var(--border);
+			transition: background 0.3s, border-color 0.3s;
+		}
+		.scp-header-label {
+			font-size: 0.8rem;
+			font-weight: 700;
+			text-transform: uppercase;
+			letter-spacing: 0.1em;
+			color: var(--accent);
+			display: flex;
+			align-items: center;
+			gap: 0.5rem;
+		}
+		.scp-close {
+			background: none;
+			border: 1.5px solid var(--border);
+			border-radius: 50%;
+			width: 30px;
+			height: 30px;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			cursor: pointer;
+			color: var(--text-mid);
+			font-size: 0.8rem;
+			transition: border-color 0.2s, color 0.2s, background 0.2s;
+			flex-shrink: 0;
+		}
+		.scp-close:hover { border-color: var(--accent); color: var(--accent); background: var(--bg-light); }
+
+		/* Panel body */
+		.scp-body {
+			padding: 2.25rem 2.5rem 0;
+			text-align: center;
+		}
+		@media (max-width: 760px) { .scp-body { padding: 1.5rem 1.25rem 0; } }
+
+		/* Embed container — height driven by data attribute on iframe */
+		.scp-embed-wrap {
+			margin-bottom: 2rem;
+			border-radius: 10px;
+			overflow: hidden;
+			box-shadow: var(--shadow-sm);
+			background: #000;
+			width: 100%;
+		}
+		.scp-embed-wrap iframe {
+			display: block;
+			width: 100%;
+			border: 0;
+		}
+
+		/* Featured summary */
+		.scp-feat-eyebrow {
+			font-size: 0.68rem;
+			font-weight: 700;
+			letter-spacing: 0.13em;
+			text-transform: uppercase;
+			color: var(--accent);
+			margin-bottom: 0.4rem;
+			display: block;
+		}
+		.scp-feat-title {
+			font-size: 1.55rem;
+			font-weight: 700;
+			margin: 0 0 0.85rem;
+			color: var(--text-dark);
+			line-height: 1.2;
+		}
+		.scp-feat-tags {
+			display: flex;
+			flex-wrap: wrap;
+			gap: 0.4rem;
+			margin-bottom: 1.2rem;
+			justify-content: center;
+		}
+		.fi-tag {
+			padding: 0.22rem 0.7rem;
+			border: 1.5px solid var(--border);
+			border-radius: 20px;
+			font-size: 0.72rem;
+			font-weight: 600;
+			color: var(--text-mid);
+			background: var(--bg-light);
+			transition: background 0.3s, border-color 0.3s;
+		}
+		.scp-feat-summary {
+			font-size: 0.97rem;
+			color: var(--text-mid);
+			line-height: 1.8;
+			margin: 0 auto 1.5rem;
+			max-width: 820px;
+			text-align: center;
+		}
+
+		/* CTA Button with arrow flair */
+		.scp-cta {
+			display: inline-flex;
+			align-items: center;
+			gap: 0;
+			padding: 0.72rem 1.65rem;
+			color: #fff !important;
+			border-radius: 8px;
+			font-weight: 700;
+			font-size: 0.9rem;
+			letter-spacing: 0.02em;
+			text-decoration: none;
+			border: none;
+			position: relative;
+			overflow: hidden;
+			box-shadow: 0 3px 10px rgba(0,0,0,0.18);
+			transition: box-shadow 0.25s, transform 0.2s, filter 0.2s;
+			margin-bottom: 2.25rem;
+		}
+		.scp-cta::before {
+			content: '';
+			position: absolute;
+			top: 0;
+			left: -75%;
+			width: 50%;
+			height: 100%;
+			background: linear-gradient(to right, transparent, rgba(255,255,255,0.22), transparent);
+			transform: skewX(-20deg);
+			transition: left 0.45s ease;
+		}
+		.scp-cta:hover::before { left: 140%; }
+		.scp-cta:hover {
+			filter: brightness(1.1);
+			transform: translateY(-2px);
+			box-shadow: 0 7px 20px rgba(0,0,0,0.22);
+			color: #fff !important;
+		}
+		.scp-cta .btn-label { margin-right: 0.65rem; }
+		.scp-cta .btn-arr {
+			display: inline-block;
+			font-size: 1rem;
+			line-height: 1;
+			transition: transform 0.22s ease;
+		}
+		.scp-cta:hover .btn-arr { transform: translateX(5px); }
+
+		/* Secondary projects strip — centered grid */
+		.scp-others {
+			border-top: 1px solid var(--border);
+			padding: 1.5rem 2.5rem 1.75rem;
+			transition: border-color 0.3s;
+		}
+		@media (max-width: 760px) { .scp-others { padding: 1.25rem; } }
+		.scp-others-heading {
+			font-size: 0.74rem;
+			font-weight: 700;
+			text-transform: uppercase;
+			letter-spacing: 0.1em;
+			color: var(--text-mid);
+			margin: 0 0 1rem;
+			text-align: center;
+		}
+		.scp-others-grid {
+			display: flex;
+			flex-wrap: wrap;
+			gap: 0.9rem;
+			justify-content: center;
+		}
+		.scp-other-card {
+			background: var(--bg-light);
+			border: 1px solid var(--border);
+			border-left: 3px solid var(--accent);
+			border-radius: 10px;
+			padding: 1rem 1.1rem;
+			text-decoration: none;
+			color: var(--text-dark);
+			display: flex;
+			flex-direction: column;
+			gap: 0.35rem;
+			text-align: left;
+			width: 280px;
+			flex-shrink: 0;
+			transition: background 0.2s, border-color 0.2s, transform 0.15s, box-shadow 0.2s;
+		}
+		.scp-other-card:hover {
+			background: var(--bg-white);
+			border-color: var(--accent);
+			transform: translateY(-3px);
+			box-shadow: var(--shadow-sm);
+			color: var(--text-dark);
+		}
+		.scp-other-title {
+			font-weight: 700;
+			font-size: 0.92rem;
+			color: var(--text-dark);
+			line-height: 1.3;
+		}
+		.scp-other-desc {
+			font-size: 0.82rem;
+			color: var(--text-mid);
+			line-height: 1.5;
+			flex: 1;
+		}
+		.scp-other-link {
+			font-size: 0.74rem;
+			font-weight: 600;
+			color: var(--accent);
+			margin-top: 0.35rem;
+			display: flex;
+			align-items: center;
+			gap: 0.3rem;
+			transition: gap 0.2s;
+		}
+		.scp-other-card:hover .scp-other-title { color: var(--accent); }
+		.scp-other-card:hover .scp-other-link { gap: 0.5rem; }
+		</style>
 	</head>
 
 	<body class="homepage">
 
-	<!-- Page Loader -->
 	<div id="page-loader">
 		<div class="loader-dot"></div>
 		<div class="loader-dot"></div>
 		<div class="loader-dot"></div>
 	</div>
 
-	<!-- Scroll-to-top button -->
 	<button id="scroll-top" aria-label="Scroll to top"><i class="fa-solid fa-arrow-up"></i></button>
 
 	<noscript>
@@ -56,8 +352,7 @@
 		<div class="nav-right">
 			<ul class="nav-links">
 				<li><a href="#banner">About</a></li>
-				<li><a href="#skills-tools">Skills</a></li>
-				<li><a href="#projects-section">Projects</a></li>
+				<li><a href="#skills-tools">Skills &amp; Projects</a></li>
 				<li><a href="#courses">Courses</a></li>
 				<li><a href="#footer" class="nav-cta">Contact</a></li>
 			</ul>
@@ -108,38 +403,76 @@
 
 
 	<!-- ═══════════════════════════════════════════════════════════
-	     TOOLS & SKILLS
+	     SKILLS, TOOLS & PROJECTS  (fully merged)
 	═══════════════════════════════════════════════════════════ -->
 	<section id="skills-tools">
 		<div class="skills-inner">
 			<div class="skills-header">
-				<span class="section-eyebrow"><i class="fa-solid fa-toolbox"></i> Toolkit</span>
-				<h2>Tools &amp; Skills</h2>
-				<p style="color:var(--text-mid); max-width:640px; margin:0 auto 0.5rem; text-align:center;">The toolkit behind the analysis</p>
+				<span class="section-eyebrow"><i class="fa-solid fa-toolbox"></i> Toolkit &amp; Projects</span>
+				<h2>Skills, Tools, &amp; Projects</h2>
+				<p style="color:var(--text-mid); max-width:620px; margin:0 auto 0.4rem; text-align:center;">
+					Select any skill below to see its featured project and all related work.
+				</p>
 			</div>
 
 			<div class="skills-grid">
 
+				<!-- ── Languages ─────────────────────────────────── -->
 				<div class="skill-category">
 					<div class="category-label"><i class="fas fa-code"></i> Languages</div>
 					<div class="skill-list">
-						<div class="skill-pill"><i class="fas fa-database"></i> SQL</div>
-						<div class="skill-pill"><i class="fab fa-python"></i> Python</div>
-						<div class="skill-pill"><i class="fas fa-code"></i> R</div>
+
+						<div class="skill-pill has-projects" data-skill="sql" tabindex="0" role="button" aria-expanded="false">
+							<i class="fas fa-database"></i> SQL
+							<span class="proj-count">3 projects</span>
+						</div>
+
+						<div class="skill-pill has-projects" data-skill="python" tabindex="0" role="button" aria-expanded="false">
+							<i class="fab fa-python"></i> Python
+							<span class="proj-count">4 projects</span>
+						</div>
+
+						<div class="skill-pill has-projects" data-skill="r" tabindex="0" role="button" aria-expanded="false">
+							<i class="fas fa-code"></i> R
+							<span class="proj-count">1 project</span>
+						</div>
+
 					</div>
 				</div>
 
+				<!-- ── Tools ─────────────────────────────────────── -->
 				<div class="skill-category">
 					<div class="category-label"><i class="fas fa-tools"></i> Tools</div>
 					<div class="skill-list">
-						<div class="skill-pill"><i class="fas fa-chart-bar"></i> Tableau</div>
-						<div class="skill-pill"><i class="fas fa-file-excel"></i> Excel</div>
-						<div class="skill-pill"><i class="fas fa-fire-flame-curved"></i> Databricks</div>
-						<div class="skill-pill"><i class="fas fa-globe"></i> Web Design (HTML/CSS)</div>
-						<div class="skill-pill"><i class="fas fa-robot"></i> AI (Claude / ChatGPT)</div>
+
+						<div class="skill-pill has-projects" data-skill="tableau" tabindex="0" role="button" aria-expanded="false">
+							<i class="fas fa-chart-bar"></i> Tableau
+							<span class="proj-count">4 projects</span>
+						</div>
+
+						<div class="skill-pill has-projects" data-skill="excel" tabindex="0" role="button" aria-expanded="false">
+							<i class="fas fa-file-excel"></i> Excel
+							<span class="proj-count">3 projects</span>
+						</div>
+
+						<div class="skill-pill has-projects" data-skill="databricks" tabindex="0" role="button" aria-expanded="false">
+							<i class="fas fa-fire-flame-curved"></i> Databricks
+							<span class="proj-count">1 project</span>
+						</div>
+
+						<div class="skill-pill has-projects" data-skill="ai" tabindex="0" role="button" aria-expanded="false">
+							<i class="fas fa-robot"></i> AI (Claude / ChatGPT)
+							<span class="proj-count">1 project</span>
+						</div>
+
+						<div class="skill-pill">
+							<i class="fas fa-globe"></i> Web Design (HTML/CSS)
+						</div>
+
 					</div>
 				</div>
 
+				<!-- ── Techniques ─────────────────────────────────── -->
 				<div class="skill-category">
 					<div class="category-label"><i class="fas fa-brain"></i> Techniques</div>
 					<div class="skill-list">
@@ -151,446 +484,14 @@
 					</div>
 				</div>
 
-			</div>
-		</div>
-	</section>
+			</div><!-- /skills-grid -->
 
-
-	<!-- ═══════════════════════════════════════════════════════════
-	     UNIFIED PROJECTS SECTION
-	═══════════════════════════════════════════════════════════ -->
-	<section id="projects-section">
-		<div class="projects-section-inner">
-
-			<div class="projects-header fade-in">
-				<span class="section-eyebrow"><i class="fa-solid fa-folder-open"></i> Portfolio</span>
-				<h2>Projects</h2>
-				<p style="color:var(--text-mid); max-width:600px; margin:0 auto 0.5rem;">
-					Individual and graduate school projects spanning Tableau, SQL, Python, R, Databricks, and Excel.
-				</p>
-				<p style="font-size:0.85rem; color:var(--text-mid); text-align:center;">
-					<i class="fa-solid fa-star" style="color:var(--accent);"></i>
-					<a href="#featured-section" style="color:var(--accent); font-weight:600;">See the featured stock market project &darr;</a>
-				</p>
-			</div>
-
-			<!-- Dual filter controls -->
-			<div class="dual-filter fade-in">
-				<div class="filter-row" role="group" aria-labelledby="type-filter-label">
-					<span class="filter-label" id="type-filter-label">Type</span>
-					<div class="filter-tabs" id="type-filters">
-						<button class="filter-btn active" data-type-filter="all" aria-pressed="true">All</button>
-						<button class="filter-btn" data-type-filter="individual" aria-pressed="false">
-							<i class="fa-solid fa-user" aria-hidden="true"></i> Individual
-						</button>
-						<button class="filter-btn" data-type-filter="school" aria-pressed="false">
-							<i class="fa-solid fa-graduation-cap" aria-hidden="true"></i> Graduate
-						</button>
-					</div>
-				</div>
-				<div class="filter-row" role="group" aria-labelledby="tool-filter-label">
-					<span class="filter-label" id="tool-filter-label">Tool</span>
-					<div class="filter-tabs" id="tool-filters">
-						<button class="filter-btn active" data-tool-filter="all" aria-pressed="true">All</button>
-						<button class="filter-btn" data-tool-filter="tableau" aria-pressed="false">
-							<i class="fa-solid fa-chart-line" aria-hidden="true"></i> Tableau
-						</button>
-						<button class="filter-btn" data-tool-filter="sql" aria-pressed="false">
-							<i class="fa-solid fa-database" aria-hidden="true"></i> SQL
-						</button>
-						<button class="filter-btn" data-tool-filter="python" aria-pressed="false">
-							<i class="fa-brands fa-python" aria-hidden="true"></i> Python
-						</button>
-						<button class="filter-btn" data-tool-filter="r" aria-pressed="false">
-							<i class="fa-brands fa-r-project" aria-hidden="true"></i> R
-						</button>
-						<button class="filter-btn" data-tool-filter="databricks" aria-pressed="false">
-							<i class="fa-solid fa-fire-flame-curved" aria-hidden="true"></i> Databricks
-						</button>
-						<button class="filter-btn" data-tool-filter="excel" aria-pressed="false">
-							<i class="fa-solid fa-file-excel" aria-hidden="true"></i> Excel
-						</button>
-					</div>
+			<!-- Full-width project panel -->
+			<div class="skill-content-panel" id="skill-content-panel" aria-live="polite">
+				<div class="scp-overflow">
+					<div class="scp-inner" id="scp-inner"></div>
 				</div>
 			</div>
-
-			<!-- Projects grid -->
-			<div class="projects-grid" id="projects-grid">
-
-				<!-- ── INDIVIDUAL: TABLEAU ─────────────────────────── -->
-				<div class="project-card-wrap" data-type="individual" data-tool="tableau">
-					<a href="https://public.tableau.com/app/profile/eric.lemon/viz/Project9_17550177343090/Dashboard"
-					   target="_blank" class="project-card-link">
-						<div class="project-card fade-in tableau-card">
-							<div class="card-top">
-								<span class="card-badge"><i class="fa-solid fa-chart-line"></i> Tableau</span>
-								<span class="card-type-tag type-individual">Individual</span>
-							</div>
-							<i class="fa-solid fa-chart-line card-icon"></i>
-							<h3>Covid-19 Tableau Dashboard</h3>
-							<p>Interactive dashboard analyzing national COVID-19 trends through April 2021, including cases, mortality, and regional comparisons.</p>
-							<div class="bar-chart">
-								<div class="bar b1"></div><div class="bar b2"></div><div class="bar b3"></div>
-								<div class="bar b4"></div><div class="bar b5"></div><div class="bar b6"></div><div class="bar b7"></div>
-							</div>
-						</div>
-					</a>
-				</div>
-
-				<div class="project-card-wrap" data-type="individual" data-tool="tableau">
-					<a href="https://public.tableau.com/app/profile/eric.lemon/viz/Project8_17527841417050/HRSummary"
-					   target="_blank" class="project-card-link">
-						<div class="project-card fade-in tableau-card">
-							<div class="card-top">
-								<span class="card-badge"><i class="fa-solid fa-chart-line"></i> Tableau</span>
-								<span class="card-type-tag type-individual">Individual</span>
-							</div>
-							<i class="fa-solid fa-chart-line card-icon"></i>
-							<h3>HR Tableau Dashboard</h3>
-							<p>Human resources dashboard built from a synthetic dataset to explore workforce trends, retention risks, and role distribution.</p>
-							<div class="bar-chart">
-								<div class="bar b1"></div><div class="bar b2"></div><div class="bar b3"></div>
-								<div class="bar b4"></div><div class="bar b5"></div><div class="bar b6"></div><div class="bar b7"></div>
-							</div>
-						</div>
-					</a>
-				</div>
-
-				<div class="project-card-wrap" data-type="individual" data-tool="tableau">
-					<a href="https://public.tableau.com/app/profile/eric.lemon/viz/Project7_17515896957860/Dashboard1"
-					   target="_blank" class="project-card-link">
-						<div class="project-card fade-in tableau-card">
-							<div class="card-top">
-								<span class="card-badge"><i class="fa-solid fa-chart-line"></i> Tableau</span>
-								<span class="card-type-tag type-individual">Individual</span>
-							</div>
-							<i class="fa-solid fa-chart-line card-icon"></i>
-							<h3>AirHelp Score Dashboard</h3>
-							<p>Tableau dashboard evaluating global airport performance using AirHelp scores, ranking airports by service quality and on-time metrics.</p>
-							<div class="bar-chart">
-								<div class="bar b1"></div><div class="bar b2"></div><div class="bar b3"></div>
-								<div class="bar b4"></div><div class="bar b5"></div><div class="bar b6"></div><div class="bar b7"></div>
-							</div>
-						</div>
-					</a>
-				</div>
-
-				<!-- ── INDIVIDUAL: SQL ─────────────────────────────── -->
-				<div class="project-card-wrap" data-type="individual" data-tool="sql">
-					<a href="https://github.com/ewlemon/SQL-Project-5/blob/main/SQLProject5.sql"
-					   target="_blank" class="project-card-link">
-						<div class="project-card fade-in sql-card">
-							<div class="card-top">
-								<span class="card-badge"><i class="fa-solid fa-database"></i> SQL</span>
-								<span class="card-type-tag type-individual">Individual</span>
-							</div>
-							<i class="fa-solid fa-database card-icon"></i>
-							<h3>Crime Data SQL Project</h3>
-							<p>SQL-based data cleaning and exploratory analysis of LAPD crime data, focusing on trends, frequency, and incident categorization.</p>
-							<div class="bar-chart">
-								<div class="bar b1"></div><div class="bar b2"></div><div class="bar b3"></div>
-								<div class="bar b4"></div><div class="bar b5"></div><div class="bar b6"></div><div class="bar b7"></div>
-							</div>
-						</div>
-					</a>
-				</div>
-
-				<div class="project-card-wrap" data-type="individual" data-tool="sql">
-					<a href="https://github.com/ewlemon/SQL-Project-4/blob/main/SQLProject4.sql"
-					   target="_blank" class="project-card-link">
-						<div class="project-card fade-in sql-card">
-							<div class="card-top">
-								<span class="card-badge"><i class="fa-solid fa-database"></i> SQL</span>
-								<span class="card-type-tag type-individual">Individual</span>
-							</div>
-							<i class="fa-solid fa-database card-icon"></i>
-							<h3>Chronic Diseases SQL Project</h3>
-							<p>SQL project that cleans, standardizes, and analyzes U.S. chronic disease indicators to support public-health insights.</p>
-							<div class="bar-chart">
-								<div class="bar b1"></div><div class="bar b2"></div><div class="bar b3"></div>
-								<div class="bar b4"></div><div class="bar b5"></div><div class="bar b6"></div><div class="bar b7"></div>
-							</div>
-						</div>
-					</a>
-				</div>
-
-				<div class="project-card-wrap" data-type="individual" data-tool="sql">
-					<a href="https://github.com/ewlemon/SQL-Project-3/blob/main/Project%206%20Data.sqbpro"
-					   target="_blank" class="project-card-link">
-						<div class="project-card fade-in sql-card">
-							<div class="card-top">
-								<span class="card-badge"><i class="fa-solid fa-database"></i> SQL</span>
-								<span class="card-type-tag type-individual">Individual</span>
-							</div>
-							<i class="fa-solid fa-database card-icon"></i>
-							<h3>Northwind SQL Project</h3>
-							<p>End-to-end SQL workflow creating cleaned, structured tables used to power an interactive Tableau business performance dashboard.</p>
-							<div class="bar-chart">
-								<div class="bar b1"></div><div class="bar b2"></div><div class="bar b3"></div>
-								<div class="bar b4"></div><div class="bar b5"></div><div class="bar b6"></div><div class="bar b7"></div>
-							</div>
-						</div>
-					</a>
-				</div>
-
-				<!-- ── INDIVIDUAL: PYTHON ──────────────────────────── -->
-				<div class="project-card-wrap" data-type="individual" data-tool="python">
-					<a href="https://github.com/ewlemon/Python-Pandas/blob/main/PandasExploratoryAnalysis1.ipynb"
-					   target="_blank" class="project-card-link">
-						<div class="project-card fade-in python-card">
-							<div class="card-top">
-								<span class="card-badge"><i class="fa-brands fa-python"></i> Python</span>
-								<span class="card-type-tag type-individual">Individual</span>
-							</div>
-							<i class="fa-brands fa-python card-icon"></i>
-							<h3>Python Exploratory Analysis</h3>
-							<p>Python project using Pandas, NumPy, and visualization libraries to organize, clean, and analyze global population trends.</p>
-							<div class="bar-chart">
-								<div class="bar b1"></div><div class="bar b2"></div><div class="bar b3"></div>
-								<div class="bar b4"></div><div class="bar b5"></div><div class="bar b6"></div><div class="bar b7"></div>
-							</div>
-						</div>
-					</a>
-				</div>
-
-				<div class="project-card-wrap" data-type="individual" data-tool="python">
-					<a href="https://github.com/ewlemon/Python-Files/blob/main/Basics9(MatPlotLib).ipynb"
-					   target="_blank" class="project-card-link">
-						<div class="project-card fade-in python-card">
-							<div class="card-top">
-								<span class="card-badge"><i class="fa-brands fa-python"></i> Python</span>
-								<span class="card-type-tag type-individual">Individual</span>
-							</div>
-							<i class="fa-brands fa-python card-icon"></i>
-							<h3>Python Library Exploration</h3>
-							<p>Exploratory Jupyter Notebook demonstrating data manipulation and visualization using Pandas, NumPy, Matplotlib, and Seaborn.</p>
-							<div class="bar-chart">
-								<div class="bar b1"></div><div class="bar b2"></div><div class="bar b3"></div>
-								<div class="bar b4"></div><div class="bar b5"></div><div class="bar b6"></div><div class="bar b7"></div>
-							</div>
-						</div>
-					</a>
-				</div>
-
-				<!-- ── INDIVIDUAL: ANALYSIS CASE STUDY ───────────────── -->
-				<div class="project-card-wrap" data-type="individual" data-tool="python">
-					<a href="https://github.com/ewlemon/Analysis-Case-Study"
-					   target="_blank" class="project-card-link">
-						<div class="project-card fade-in python-card">
-							<div class="card-top">
-								<span class="card-badge"><i class="fa-brands fa-python"></i> Python</span>
-								<span class="card-type-tag type-individual">Individual</span>
-							</div>
-							<i class="fa-brands fa-python card-icon"></i>
-							<h3>Analysis Case Study</h3>
-							<p>Internship interview assessment analyzing workforce absenteeism, engagement surveys, and consultant utilization across multiple datasets.</p>
-							<div class="bar-chart">
-								<div class="bar b1"></div><div class="bar b2"></div><div class="bar b3"></div>
-								<div class="bar b4"></div><div class="bar b5"></div><div class="bar b6"></div><div class="bar b7"></div>
-							</div>
-						</div>
-					</a>
-				</div>
-
-				<!-- ── INDIVIDUAL: R ───────────────────────────────── -->
-				<div class="project-card-wrap" data-type="individual" data-tool="r">
-					<a href="https://github.com/ewlemon/R-Project-1/blob/main/Crime_Data.R"
-					   target="_blank" class="project-card-link">
-						<div class="project-card fade-in r-card">
-							<div class="card-top">
-								<span class="card-badge"><i class="fa-brands fa-r-project"></i> R</span>
-								<span class="card-type-tag type-individual">Individual</span>
-							</div>
-							<i class="fa-brands fa-r-project card-icon"></i>
-							<h3>Crime Data R Project</h3>
-							<p>R and R Markdown project cleaning crime datasets and generating clear, publication-style visualizations and summaries.</p>
-							<div class="bar-chart">
-								<div class="bar b1"></div><div class="bar b2"></div><div class="bar b3"></div>
-								<div class="bar b4"></div><div class="bar b5"></div><div class="bar b6"></div><div class="bar b7"></div>
-							</div>
-						</div>
-					</a>
-				</div>
-
-				<!-- ── INDIVIDUAL: DATABRICKS ─────────────────────── -->
-				<div class="project-card-wrap" data-type="individual" data-tool="databricks">
-					<a href="https://dbc-775b9b39-494b.cloud.databricks.com/dashboardsv3/01f0d06b765a15b2bb4cf0e9fe562483/published?o=1864074656503127"
-					   target="_blank" class="project-card-link">
-						<div class="project-card fade-in databricks-card">
-							<div class="card-top">
-								<span class="card-badge"><i class="fa-solid fa-fire-flame-curved"></i> Databricks</span>
-								<span class="card-type-tag type-individual">Individual</span>
-							</div>
-							<i class="fa-solid fa-fire-flame-curved card-icon"></i>
-							<h3>Databricks Emissions Dashboard</h3>
-							<p>Interactive Databricks dashboard analyzing U.S. CO&#8322; emissions data from 2023.</p>
-							<div class="bar-chart">
-								<div class="bar b1"></div><div class="bar b2"></div><div class="bar b3"></div>
-								<div class="bar b4"></div><div class="bar b5"></div><div class="bar b6"></div><div class="bar b7"></div>
-							</div>
-						</div>
-					</a>
-				</div>
-
-				<!-- ── INDIVIDUAL: SQL PRACTICE SITE ─────────────────── -->
-				<div class="project-card-wrap" data-type="individual" data-tool="sql">
-					<a href="https://sql-practice-two.vercel.app/" target="_blank" class="project-card-link">
-						<div class="project-card fade-in sql-card">
-							<div class="card-top">
-								<span class="card-badge"><i class="fa-solid fa-database"></i> SQL</span>
-								<span class="card-type-tag type-individual">Individual</span>
-							</div>
-							<i class="fa-solid fa-laptop-code card-icon"></i>
-							<h3>SQL Practice</h3>
-							<p>An interactive website built with Claude AI to help users practice and improve their SQL skills through guided exercises and real query challenges.</p>
-							<div class="bar-chart">
-								<div class="bar b1"></div><div class="bar b2"></div><div class="bar b3"></div>
-								<div class="bar b4"></div><div class="bar b5"></div><div class="bar b6"></div><div class="bar b7"></div>
-							</div>
-						</div>
-					</a>
-				</div>
-
-				<!-- ── GRADUATE: TABLEAU ──────────────────────────── -->
-				<div class="project-card-wrap" data-type="school" data-tool="tableau">
-					<a href="https://public.tableau.com/app/profile/eric.lemon/viz/LemonAssignmentFinal/Dashboard"
-					   target="_blank" class="project-card-link">
-						<div class="project-card fade-in tableau-card">
-							<div class="card-top">
-								<span class="card-badge"><i class="fa-solid fa-chart-line"></i> Tableau</span>
-								<span class="card-type-tag type-school">Graduate</span>
-							</div>
-							<i class="fa-solid fa-chart-line card-icon"></i>
-							<h3>Career Trends Tableau Dashboard</h3>
-							<p>Interactive dashboard highlighting long-term career, salary, and job-market trends through engaging visual analytics.</p>
-							<div class="bar-chart">
-								<div class="bar b1"></div><div class="bar b2"></div><div class="bar b3"></div>
-								<div class="bar b4"></div><div class="bar b5"></div><div class="bar b6"></div><div class="bar b7"></div>
-							</div>
-						</div>
-					</a>
-				</div>
-
-				<!-- ── GRADUATE: EXCEL ────────────────────────────── -->
-				<div class="project-card-wrap" data-type="school" data-tool="excel">
-					<a href="https://github.com/ewlemon/Excel-Project-2/blob/main/DecisionAnalysisProblems.xlsx"
-					   target="_blank" class="project-card-link">
-						<div class="project-card fade-in excel-card">
-							<div class="card-top">
-								<span class="card-badge"><i class="fa-solid fa-file-excel"></i> Excel</span>
-								<span class="card-type-tag type-school">Graduate</span>
-							</div>
-							<i class="fa-solid fa-file-excel card-icon"></i>
-							<h3>Decision Analytics Excel Problems</h3>
-							<p>Over 25 optimization problems solved using Solver, demonstrating practical linear programming and optimization modeling in business.</p>
-							<div class="bar-chart">
-								<div class="bar b1"></div><div class="bar b2"></div><div class="bar b3"></div>
-								<div class="bar b4"></div><div class="bar b5"></div><div class="bar b6"></div><div class="bar b7"></div>
-							</div>
-						</div>
-					</a>
-				</div>
-
-				<div class="project-card-wrap" data-type="school" data-tool="excel">
-					<a href="https://github.com/ewlemon/Excel-Project-3/blob/main/BusinessAnalysisProblems.xlsx"
-					   target="_blank" class="project-card-link">
-						<div class="project-card fade-in excel-card">
-							<div class="card-top">
-								<span class="card-badge"><i class="fa-solid fa-file-excel"></i> Excel</span>
-								<span class="card-type-tag type-school">Graduate</span>
-							</div>
-							<i class="fa-solid fa-file-excel card-icon"></i>
-							<h3>Business Analytics Excel Problems</h3>
-							<p>Notes and optimization problems solved using Solver and regression analysis, demonstrating effective problem modeling and insights communication.</p>
-							<div class="bar-chart">
-								<div class="bar b1"></div><div class="bar b2"></div><div class="bar b3"></div>
-								<div class="bar b4"></div><div class="bar b5"></div><div class="bar b6"></div><div class="bar b7"></div>
-							</div>
-						</div>
-					</a>
-				</div>
-
-				<!-- Empty state message -->
-				<div class="projects-empty" id="projects-empty">
-					<i class="fa-solid fa-filter" style="font-size:2rem; opacity:0.3; margin-bottom:0.75rem; display:block;"></i>
-					No projects match the selected filters.
-				</div>
-
-			</div><!-- /projects-grid -->
-		</div><!-- /projects-section-inner -->
-	</section>
-
-
-	<!-- ═══════════════════════════════════════════════════════════
-	     FEATURED PROJECT
-	═══════════════════════════════════════════════════════════ -->
-	<section id="featured-section">
-		<div class="inner">
-
-			<div style="text-align:center; margin-bottom:1.5rem;">
-				<span class="section-eyebrow"><i class="fa-solid fa-star"></i> Featured Project</span>
-				<h2 style="margin:0.4rem 0 0.5rem;">U.S. Stock Market Index Analysis</h2>
-				<p style="color:var(--text-mid); max-width:640px; margin:0 auto 0.5rem; text-align:center;">
-					Long-term trend modeling, correlation analysis, and rolling volatility across five major indexes
-					with a daily-updating automated data pipeline.
-				</p>
-				<div style="display:flex; flex-wrap:wrap; justify-content:center; gap:0.5rem; margin-top:0.75rem;">
-					<span style="background:var(--bg-white); border:1.5px solid var(--border); border-radius:20px; padding:0.25rem 0.75rem; font-size:0.78rem; font-weight:600; color:var(--text-mid); transition:background .3s, border-color .3s;">
-						<i class="fab fa-python"></i> Python
-					</span>
-					<span style="background:var(--bg-white); border:1.5px solid var(--border); border-radius:20px; padding:0.25rem 0.75rem; font-size:0.78rem; font-weight:600; color:var(--text-mid); transition:background .3s, border-color .3s;">
-						<i class="fa-solid fa-file-excel"></i> Excel
-					</span>
-					<span style="background:var(--bg-white); border:1.5px solid var(--border); border-radius:20px; padding:0.25rem 0.75rem; font-size:0.78rem; font-weight:600; color:var(--text-mid); transition:background .3s, border-color .3s;">
-						<i class="fab fa-github"></i> GitHub Actions
-					</span>
-					<span style="background:var(--bg-white); border:1.5px solid var(--border); border-radius:20px; padding:0.25rem 0.75rem; font-size:0.78rem; font-weight:600; color:var(--text-mid); transition:background .3s, border-color .3s;">
-						Regression Modeling
-					</span>
-				</div>
-			</div>
-
-			<!-- Prezi embed -->
-			<iframe src="https://prezi.com/p/embed/PR9nilFAxgJ8tyPwI5dP/"
-				frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen
-				allow="autoplay; fullscreen" height="560" width="100%"
-				style="border-radius:10px; box-shadow:var(--shadow-md); display:block;"></iframe>
-
-			<!-- Highlight cards -->
-			<div style="display:grid; grid-template-columns:repeat(auto-fill,minmax(220px,1fr)); gap:1rem; margin-top:2rem;">
-
-				<div style="background:var(--bg-white); border:1px solid var(--border); border-radius:12px; padding:1.25rem; transition:background .3s, border-color .3s;">
-					<div style="font-size:1.5rem; margin-bottom:0.5rem;">📈</div>
-					<h3 style="font-size:0.95rem; margin:0 0 0.35rem;">Trend Modeling</h3>
-					<p style="font-size:0.87rem; color:var(--text-mid); margin:0;">Degree-3 polynomial regression best captured long-run nonlinear growth across all five indexes.</p>
-				</div>
-
-				<div style="background:var(--bg-white); border:1px solid var(--border); border-radius:12px; padding:1.25rem; transition:background .3s, border-color .3s;">
-					<div style="font-size:1.5rem; margin-bottom:0.5rem;">🔗</div>
-					<h3 style="font-size:0.95rem; margin:0 0 0.35rem;">Correlation Patterns</h3>
-					<p style="font-size:0.87rem; color:var(--text-mid); margin:0;">Large-cap indexes move together strongly; the Russell 2000 behaves more independently during stress.</p>
-				</div>
-
-				<div style="background:var(--bg-white); border:1px solid var(--border); border-radius:12px; padding:1.25rem; transition:background .3s, border-color .3s;">
-					<div style="font-size:1.5rem; margin-bottom:0.5rem;">⚡</div>
-					<h3 style="font-size:0.95rem; margin:0 0 0.35rem;">Volatility Insights</h3>
-					<p style="font-size:0.87rem; color:var(--text-mid); margin:0;">The Nasdaq-100 consistently led volatility spikes during the Dot-com bubble, 2008, and COVID crash.</p>
-				</div>
-
-				<div style="background:var(--bg-white); border:1px solid var(--border); border-radius:12px; padding:1.25rem; transition:background .3s, border-color .3s;">
-					<div style="font-size:1.5rem; margin-bottom:0.5rem;">🤖</div>
-					<h3 style="font-size:0.95rem; margin:0 0 0.35rem;">Automated Pipeline</h3>
-					<p style="font-size:0.87rem; color:var(--text-mid); margin:0;">GitHub Actions refreshes the Excel dataset daily, keeping the analysis current year-round.</p>
-				</div>
-
-			</div>
-
-			<p style="margin-top:1.75rem; text-align:center;">
-				<a href="https://github.com/ewlemon/Stock-Project" target="_blank"
-				   style="display:inline-flex; align-items:center; gap:0.5rem; padding:0.65rem 1.5rem; background:var(--accent); color:#fff; border-radius:7px; font-weight:600; font-size:0.95rem; transition:background .2s;">
-					<i class="fab fa-github"></i> View on GitHub
-				</a>
-			</p>
 
 		</div>
 	</section>
@@ -621,6 +522,7 @@
 						<li class="course-item"><i class="fa-solid fa-check course-icon completed-icon"></i>Data Visualization and Analytics</li>
 						<li class="course-item"><i class="fa-solid fa-check course-icon completed-icon"></i>Business Analytics</li>
 						<li class="course-item"><i class="fa-solid fa-check course-icon completed-icon"></i>Database Management Systems</li>
+						<li class="course-item"><i class="fa-solid fa-check course-icon completed-icon"></i>Information Security &amp; Governance</li>
 					</ul>
 				</div>
 
@@ -630,7 +532,7 @@
 					</div>
 					<ul class="course-list">
 						<li class="course-item current-item">
-							<i class="fa-solid fa-circle-dot course-icon current-icon"></i>Information Security &amp; Governance
+							<i class="fa-solid fa-circle-dot course-icon current-icon"></i>Corporate Information System Management
 						</li>
 					</ul>
 				</div>
@@ -640,7 +542,6 @@
 						<i class="fa-solid fa-circle-arrow-right"></i> Upcoming
 					</div>
 					<ul class="course-list">
-						<li class="course-item upcoming-item"><i class="fa-regular fa-circle course-icon upcoming-icon"></i>Corporate Information System Management</li>
 						<li class="course-item upcoming-item"><i class="fa-regular fa-circle course-icon upcoming-icon"></i>Business Intelligence Development</li>
 						<li class="course-item upcoming-item"><i class="fa-regular fa-circle course-icon upcoming-icon"></i>Systems Analysis And Design</li>
 					</ul>
@@ -656,7 +557,6 @@
 	═══════════════════════════════════════════════════════════ -->
 	<div id="footer" class="parallax-section" style="padding:0;">
 
-		<!-- Stats strip -->
 		<div id="stats-section" class="overlay-content" style="padding:4.5rem 1.5rem 3rem;">
 			<blockquote>"Turning data into decisions, one analysis at a time."</blockquote>
 			<div class="stats-row">
@@ -679,12 +579,10 @@
 			</div>
 		</div>
 
-		<!-- Divider -->
 		<div style="position:relative; z-index:1; display:flex; justify-content:center; padding:0.25rem 0;">
 			<div style="width:80px; height:1px; background:rgba(255,255,255,0.35);"></div>
 		</div>
 
-		<!-- Contact + links -->
 		<div class="footer-inner" style="padding:2.5rem 1.5rem 4rem;">
 			<h3>Want to get in touch?</h3>
 			<p style="text-align:center;">Reach out via LinkedIn or Gmail, or explore more work through the links below.</p>
@@ -708,7 +606,8 @@
 	<!-- ═══════════════════════════════════════════════════════════
 	     SCRIPTS
 	═══════════════════════════════════════════════════════════ -->
-	<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="assets/js/jquery.min.js"></script>
+	<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
+	<script src="assets/js/jquery.min.js"></script>
 	<script src="assets/js/jquery.scrolly.min.js"></script>
 	<script src="assets/js/browser.min.js"></script>
 	<script src="assets/js/breakpoints.min.js"></script>
@@ -716,11 +615,289 @@
 	<script src="assets/js/main.js"></script>
 
 	<script>
-	// ── Dark Mode ──────────────────────────────────────────────────
+	// ═══════════════════════════════════════════════════════════
+	//  PROJECT DATA
+	// ═══════════════════════════════════════════════════════════
+	const SKILL_DATA = {
+
+		sql: {
+			label: 'SQL',
+			icon: 'fa-solid fa-database',
+			accentColor: '#2b6cb0',
+			featured: {
+				eyebrow: 'Featured SQL Project',
+				title: 'Crime Data SQL Project',
+				tags: ['SQL', 'Data Cleaning', 'Exploratory Analysis', 'LAPD'],
+				summary: 'An end-to-end SQL analysis of LAPD crime data, starting with the messy reality of real-world records and working toward something actually useful. Most of the effort is in the cleanup: inconsistent formatting, missing fields, and duplicated entries all need to be resolved before a single analysis can run. Once the data is in shape, clear patterns surface around crime frequency, time-of-day clustering, and district-level variation that would be easy to miss in the raw numbers.',
+				url: 'https://github.com/ewlemon/SQL-Project-5/blob/main/SQLProject5.sql',
+				urlLabel: 'View on GitHub'
+			},
+			others: [
+				{
+					title: 'Chronic Diseases SQL',
+					desc: 'Cleans and standardizes U.S. chronic disease indicators to surface actionable public-health insights across states and demographics.',
+					url: 'https://github.com/ewlemon/SQL-Project-4/blob/main/SQLProject4.sql'
+				},
+				{
+					title: 'Northwind SQL Project',
+					desc: 'End-to-end workflow building cleaned, structured tables used to power an interactive Tableau business performance dashboard.',
+					url: 'https://github.com/ewlemon/SQL-Project-3/blob/main/Project%206%20Data.sqbpro'
+				}
+			]
+		},
+
+		python: {
+			label: 'Python',
+			icon: 'fa-brands fa-python',
+			accentColor: '#b56f00',
+			featured: {
+				eyebrow: 'Featured Python Project',
+				title: 'U.S. Stock Market Index Analysis',
+				tags: ['Python', 'Excel', 'GitHub Actions', 'Regression Modeling'],
+				embed: {
+					src: 'https://prezi.com/p/embed/PR9nilFAxgJ8tyPwI5dP/',
+					height: 750,
+					extra: 'webkitallowfullscreen mozallowfullscreen allowfullscreen allow="autoplay; fullscreen"'
+				},
+				summary: 'A multi-index analysis of long-term U.S. stock market trends, built around the question of which modeling approach actually captures how markets grow over time. The project pairs statistical analysis with a fully automated data pipeline so the findings stay current without any manual work after the initial build.',
+				url: 'https://github.com/ewlemon/Stock-Project',
+				urlLabel: 'View on GitHub'
+			},
+			others: [
+				{
+					title: 'Exploratory Analysis',
+					desc: 'Pandas and NumPy analysis of global population trends with Matplotlib and Seaborn visualizations.',
+					url: 'https://github.com/ewlemon/Python-Pandas/blob/main/PandasExploratoryAnalysis1.ipynb'
+				},
+				{
+					title: 'Library Exploration',
+					desc: 'Jupyter Notebook demonstrating data manipulation and visualization across Pandas, NumPy, Matplotlib, and Seaborn.',
+					url: 'https://github.com/ewlemon/Python-Files/blob/main/Basics9(MatPlotLib).ipynb'
+				},
+				{
+					title: 'Analysis Case Study',
+					desc: 'Internship assessment analyzing workforce absenteeism, engagement surveys, and consultant utilization across multiple datasets.',
+					url: 'https://github.com/ewlemon/Analysis-Case-Study'
+				}
+			]
+		},
+
+		r: {
+			label: 'R',
+			icon: 'fa-brands fa-r-project',
+			accentColor: '#1a65b9',
+			featured: {
+				eyebrow: 'Featured R Project',
+				title: 'Crime Data R Project',
+				tags: ['R', 'R Markdown', 'ggplot2', 'Data Cleaning'],
+				summary: 'An R and R Markdown project that cleans crime datasets and generates publication-style visualizations and summaries. The focus was on building something reproducible, where the code, outputs, and methodology all live together in a single document that anyone can re-run and verify.',
+				url: 'https://github.com/ewlemon/R-Project-1/blob/main/Crime_Data.R',
+				urlLabel: 'View on GitHub'
+			},
+			others: []
+		},
+
+		tableau: {
+			label: 'Tableau',
+			icon: 'fa-solid fa-chart-bar',
+			accentColor: '#276749',
+			featured: {
+				eyebrow: 'Featured Tableau Project',
+				title: 'Career Trends Tableau Dashboard',
+				tags: ['Tableau', 'Dashboard Design', 'Data Storytelling', 'Graduate'],
+				embed: {
+					src: 'https://public.tableau.com/views/LemonAssignmentFinal/Dashboard?:showVizHome=no&:embed=true&:toolbar=bottom',
+					height: 900,
+					extra: 'allowfullscreen'
+				},
+				summary: 'An interactive dashboard built for a graduate course around long-term career, salary, and job-market trends. A big part of the work was editorial: deciding what to include, what to leave out, and how to present salary data honestly without making it easy to misread. The filter design went through several iterations before it felt natural to use.',
+				url: 'https://public.tableau.com/app/profile/eric.lemon/viz/LemonAssignmentFinal/Dashboard',
+				urlLabel: 'View on Tableau Public'
+			},
+			others: [
+				{
+					title: 'HR Analytics Dashboard',
+					desc: 'Workforce trends, retention risks, and role distribution built from a synthetic HR dataset with a clean summary-to-detail navigation flow.',
+					url: 'https://public.tableau.com/app/profile/eric.lemon/viz/Project8_17527841417050/HRSummary'
+				},
+				{
+					title: 'Covid-19 Dashboard',
+					desc: 'National COVID-19 trends through April 2021: cases, mortality, and regional comparisons in a single interactive view.',
+					url: 'https://public.tableau.com/app/profile/eric.lemon/viz/Project9_17550177343090/Dashboard'
+				},
+				{
+					title: 'AirHelp Score Dashboard',
+					desc: 'Global airport performance ranked by service quality and on-time metrics using AirHelp scoring data.',
+					url: 'https://public.tableau.com/app/profile/eric.lemon/viz/Project7_17515896957860/Dashboard1'
+				}
+			]
+		},
+
+		excel: {
+			label: 'Excel',
+			icon: 'fa-solid fa-file-excel',
+			accentColor: '#276749',
+			featured: {
+				eyebrow: 'Featured Excel Project',
+				title: 'Decision Analytics Excel Problems',
+				tags: ['Excel', 'Solver', 'Linear Programming', 'Optimization', 'Graduate'],
+				summary: 'Over 25 optimization problems solved using Excel Solver, covering linear programming, integer programming, and resource allocation across realistic business scenarios. Building models in Solver forces a level of precision that abstract problem statements do not require: you have to define exactly what you are optimizing and what the real constraints are before anything runs.',
+				url: 'https://github.com/ewlemon/Excel-Project-2/blob/main/DecisionAnalysisProblems.xlsx',
+				urlLabel: 'View on GitHub'
+			},
+			others: [
+				{
+					title: 'Business Analytics Problems',
+					desc: 'Regression analysis and optimization modeling with structured problem-solving documentation throughout.',
+					url: 'https://github.com/ewlemon/Excel-Project-3/blob/main/BusinessAnalysisProblems.xlsx'
+				},
+				{
+					title: 'Stock Market Analysis',
+					desc: 'Auto-updating Excel workbook refreshed daily via a GitHub Actions Python pipeline with no manual updates needed.',
+					url: 'https://github.com/ewlemon/Stock-Project'
+				}
+			]
+		},
+
+		databricks: {
+			label: 'Databricks',
+			icon: 'fa-solid fa-fire-flame-curved',
+			accentColor: '#c0392b',
+			featured: {
+				eyebrow: 'Featured Databricks Project',
+				title: 'CO\u2082 Emissions Dashboard',
+				tags: ['Databricks', 'SQL', 'Cloud Analytics', 'Lakehouse'],
+				summary: 'An interactive Databricks dashboard analyzing U.S. CO\u2082 emissions data from 2023. The cloud-native environment handles all the infrastructure, which means the focus stays entirely on the analysis: querying the data, building the transformations, and composing a dashboard that someone without a technical background can actually use.',
+				url: 'https://dbc-775b9b39-494b.cloud.databricks.com/dashboardsv3/01f0d06b765a15b2bb4cf0e9fe562483/published?o=1864074656503127',
+				urlLabel: 'View Dashboard'
+			},
+			others: []
+		},
+
+		ai: {
+			label: 'AI (Claude / ChatGPT)',
+			icon: 'fa-solid fa-robot',
+			accentColor: '#6b46c1',
+			featured: {
+				eyebrow: 'Featured AI-Assisted Project',
+				title: 'Interactive SQL Practice Website',
+				tags: ['Claude AI', 'SQL', 'Web Development', 'Vercel'],
+				summary: 'A fully deployed, interactive website built in collaboration with Claude AI to help people practice and sharpen their SQL skills through guided exercises and real query challenges. The project started as a personal reference tool and evolved into something worth sharing publicly. Most SQL practice sites feel like homework, so the goal here was to make it feel more like working through real problems.',
+				url: 'https://sql-practice-two.vercel.app/',
+				urlLabel: 'Try It Live'
+			},
+			others: []
+		}
+
+	};
+
+
+	// ═══════════════════════════════════════════════════════════
+	//  RENDER & TOGGLE SKILL PANEL
+	// ═══════════════════════════════════════════════════════════
+	let activePill = null;
+
+	function renderSkillPanel(skillKey) {
+		const data  = SKILL_DATA[skillKey];
+		const inner = document.getElementById('scp-inner');
+		const f     = data.featured;
+
+		const tagsHTML = f.tags.map(t => `<span class="fi-tag">${t}</span>`).join('');
+
+		const embedHTML = f.embed ? `
+			<div class="scp-embed-wrap">
+				<iframe src="${f.embed.src}" height="${f.embed.height}"
+					${f.embed.extra || ''} frameborder="0"></iframe>
+			</div>` : '';
+
+		const othersHTML = data.others.length > 0 ? `
+			<div class="scp-others">
+				<p class="scp-others-heading">More ${data.label} Projects</p>
+				<div class="scp-others-grid">
+					${data.others.map(p => `
+						<a href="${p.url}" target="_blank" rel="noopener" class="scp-other-card">
+							<span class="scp-other-title">${p.title}</span>
+							<span class="scp-other-desc">${p.desc}</span>
+							<span class="scp-other-link">
+								<i class="fa-solid fa-arrow-right"></i> Open project
+							</span>
+						</a>`).join('')}
+				</div>
+			</div>` : '';
+
+		inner.innerHTML = `
+			<div class="scp-header">
+				<span class="scp-header-label">
+					<i class="${data.icon}"></i>&nbsp;${data.label} Projects
+				</span>
+				<button class="scp-close" id="scp-close-btn" aria-label="Close panel">
+					<i class="fa-solid fa-xmark"></i>
+				</button>
+			</div>
+			<div class="scp-body">
+				${embedHTML}
+				<span class="scp-feat-eyebrow">${f.eyebrow}</span>
+				<h3 class="scp-feat-title">${f.title}</h3>
+				<div class="scp-feat-tags">${tagsHTML}</div>
+				<p class="scp-feat-summary">${f.summary}</p>
+				<a href="${f.url}" target="_blank" rel="noopener" class="scp-cta"
+				   style="background:${data.accentColor};">
+					<span class="btn-label">${f.urlLabel}</span>
+					<span class="btn-arr">&#8594;</span>
+				</a>
+			</div>
+			${othersHTML}`;
+
+		document.getElementById('scp-close-btn').addEventListener('click', closePanel);
+	}
+
+	function openPanel(skillKey) {
+		renderSkillPanel(skillKey);
+		const panel = document.getElementById('skill-content-panel');
+		panel.classList.add('scp-open');
+		setTimeout(() => panel.scrollIntoView({ behavior: 'smooth', block: 'nearest' }), 80);
+	}
+
+	function closePanel() {
+		document.getElementById('skill-content-panel').classList.remove('scp-open');
+		if (activePill) {
+			activePill.classList.remove('sp-active');
+			activePill.setAttribute('aria-expanded', 'false');
+			activePill = null;
+		}
+	}
+
+	document.querySelectorAll('.skill-pill.has-projects').forEach(pill => {
+		function handleToggle() {
+			const skillKey = pill.dataset.skill;
+			const isActive = pill.classList.contains('sp-active');
+			document.querySelectorAll('.skill-pill.has-projects.sp-active').forEach(p => {
+				p.classList.remove('sp-active');
+				p.setAttribute('aria-expanded', 'false');
+			});
+			if (isActive) {
+				closePanel();
+			} else {
+				pill.classList.add('sp-active');
+				pill.setAttribute('aria-expanded', 'true');
+				activePill = pill;
+				openPanel(skillKey);
+			}
+		}
+		pill.addEventListener('click', handleToggle);
+		pill.addEventListener('keydown', e => {
+			if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); handleToggle(); }
+		});
+	});
+
+
+	// ═══════════════════════════════════════════════════════════
+	//  STANDARD PAGE JS
+	// ═══════════════════════════════════════════════════════════
+
 	const body   = document.body;
 	const toggle = document.getElementById('dark-toggle');
 	const icon   = document.getElementById('dark-icon');
-
 	function applyTheme(dark) {
 		body.classList.toggle('dark', dark);
 		icon.className = dark ? 'fa-solid fa-sun' : 'fa-solid fa-moon';
@@ -729,30 +906,21 @@
 	applyTheme(localStorage.getItem('theme') === 'dark');
 	toggle.addEventListener('click', () => applyTheme(!body.classList.contains('dark')));
 
-
-	// ── Page Loader + Hero ─────────────────────────────────────────
 	window.addEventListener('load', () => {
 		document.getElementById('page-loader').classList.add('loaded');
 		setTimeout(() => {
-			const header = document.getElementById('header');
-			if (header) header.classList.add('loaded');
+			const h = document.getElementById('header');
+			if (h) h.classList.add('loaded');
 		}, 100);
 	});
 
-
-	// ── Fade-in on Scroll ──────────────────────────────────────────
 	const fadeObs = new IntersectionObserver((entries, obs) => {
 		entries.forEach(e => {
-			if (e.isIntersecting) {
-				e.target.classList.add('visible');
-				obs.unobserve(e.target);
-			}
+			if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); }
 		});
-	}, { threshold: 0.1 });
+	}, { threshold: 0.08 });
 	document.querySelectorAll('.fade-in').forEach(el => fadeObs.observe(el));
 
-
-	// ── Count-Up Animation ─────────────────────────────────────────
 	function countUp(el, target, suffix, duration) {
 		let start = 0;
 		const step = target / (duration / 16);
@@ -762,15 +930,13 @@
 			el.textContent = Math.floor(start) + suffix;
 		}, 16);
 	}
-
 	const statsObs = new IntersectionObserver((entries, obs) => {
 		entries.forEach(e => {
 			if (e.isIntersecting) {
 				document.querySelectorAll('.stat-number[data-target]').forEach(el => {
 					const target = el.dataset.target;
-					const suffix = el.dataset.suffix || '';
 					if (!target) return;
-					countUp(el, parseInt(target), suffix, 1200);
+					countUp(el, parseInt(target), el.dataset.suffix || '', 1200);
 				});
 				obs.unobserve(e.target);
 			}
@@ -779,8 +945,6 @@
 	const statsSection = document.getElementById('stats-section');
 	if (statsSection) statsObs.observe(statsSection);
 
-
-	// ── Nav: smooth scroll + active state ─────────────────────────
 	document.querySelectorAll('.nav-links a').forEach(a => {
 		a.addEventListener('click', e => {
 			const href = a.getAttribute('href');
@@ -795,7 +959,6 @@
 		});
 	});
 
-	// Highlight active nav link on scroll
 	const sections = document.querySelectorAll('section[id], div[id]');
 	const navLinks = document.querySelectorAll('.nav-links a[href^="#"]');
 	const scrollSpy = new IntersectionObserver(entries => {
@@ -809,75 +972,19 @@
 	}, { threshold: 0.4 });
 	sections.forEach(s => scrollSpy.observe(s));
 
-
-	// ── Mobile Nav Toggle ──────────────────────────────────────────
 	document.getElementById('nav-toggle').addEventListener('click', () => {
 		document.querySelector('.nav-links').classList.toggle('open');
 	});
 
-
-	// ── Scroll-to-top ──────────────────────────────────────────────
 	const scrollBtn = document.getElementById('scroll-top');
 	window.addEventListener('scroll', () => {
 		scrollBtn.classList.toggle('visible', window.scrollY > 400);
 	});
 	scrollBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
 
-
-	// ── Dual Project Filter ────────────────────────────────────────
-	let activeType = 'all';
-	let activeTool = 'all';
-
-	function applyFilters() {
-		const cards   = document.querySelectorAll('.project-card-wrap');
-		const empty   = document.getElementById('projects-empty');
-		let   visible = 0;
-
-		cards.forEach(card => {
-			if (card.id === 'projects-empty') return;
-			const typeMatch = activeType === 'all' || card.dataset.type === activeType;
-			const toolMatch = activeTool === 'all' || card.dataset.tool === activeTool;
-			const show = typeMatch && toolMatch;
-			card.classList.toggle('hidden', !show);
-			if (show) visible++;
-		});
-
-		// Show/hide empty state
-		if (empty) empty.style.display = visible === 0 ? 'block' : 'none';
-	}
-
-	document.querySelectorAll('#type-filters .filter-btn').forEach(btn => {
-		btn.addEventListener('click', () => {
-			document.querySelectorAll('#type-filters .filter-btn').forEach(b => {
-				b.classList.remove('active');
-				b.setAttribute('aria-pressed', 'false');
-			});
-			btn.classList.add('active');
-			btn.setAttribute('aria-pressed', 'true');
-			activeType = btn.dataset.typeFilter;
-			applyFilters();
-		});
-	});
-
-	document.querySelectorAll('#tool-filters .filter-btn').forEach(btn => {
-		btn.addEventListener('click', () => {
-			document.querySelectorAll('#tool-filters .filter-btn').forEach(b => {
-				b.classList.remove('active');
-				b.setAttribute('aria-pressed', 'false');
-			});
-			btn.classList.add('active');
-			btn.setAttribute('aria-pressed', 'true');
-			activeTool = btn.dataset.toolFilter;
-			applyFilters();
-		});
-	});
-
-	// ── Gmail link — built via JS so Cloudflare can't obfuscate it ──
 	(function() {
-		const u = 'ewlemon7';
-		const d = 'gmail.com';
 		const el = document.getElementById('gmail-link');
-		if (el) el.href = 'mailto:' + u + '@' + d;
+		if (el) el.href = 'mailto:' + 'ewlemon7' + '@' + 'gmail.com';
 	})();
 	</script>
 
