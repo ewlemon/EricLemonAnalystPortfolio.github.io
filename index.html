@@ -462,7 +462,7 @@
 
 						<div class="skill-pill has-projects" data-skill="ai" tabindex="0" role="button" aria-expanded="false">
 							<i class="fas fa-robot"></i> AI (Claude / ChatGPT)
-							<span class="proj-count">1 project</span>
+							<span class="proj-count">2 projects</span>
 						</div>
 
 						<div class="skill-pill">
@@ -785,19 +785,25 @@
     icon: 'fa-solid fa-robot',
     accentColor: '#6b46c1',
     featured: {
-        eyebrow: 'Featured AI-Assisted Project',
-        title: 'Interactive SQL Practice Website',
-        tags: ['Claude AI', 'SQL', 'Web Development', 'Vercel'],
+        eyebrow: 'Featured AI Project',
+        title: 'AI Analyst Copilot Agent',
+        tags: ['Claude API', 'AI Agents', 'Python', 'SQL', 'Streamlit'],
         embed: {
-            src: 'https://sql-practice-two.vercel.app/',
-            height: 750,
+            src: 'https://analyst-copilot-agent-5gpanuic33nqb66wxlvcrd.streamlit.app/?embed=true',
+            height: 800,
             extra: 'allowfullscreen'
         },
-        summary: 'A fully deployed, interactive website built in collaboration with Claude AI around the question of what good SQL practice actually looks like. Most practice sites feel like homework, so the goal was to build something grounded in realistic schemas and real business problems, where the questions reward analytical thinking rather than just syntax recall.',
-        url: 'https://sql-practice-two.vercel.app/',
-        urlLabel: 'Try It Live'
+        summary: 'A live AI agent that answers business questions in plain English: ask it something like "which product categories are most profitable?" and it inspects the database, writes its own read-only SQL, runs it, charts the result, and explains the finding, while showing you every query it ran. I built it as an analyst copilot rather than a black box, because the interesting engineering is the control layer, not the model: two independent guardrails keep it strictly read-only, and every answer surfaces its SQL plus a short caveats note so a human analyst stays in the loop and owns the decision. It runs on the Claude API’s tool-use feature, and for each example I re-ran the agent’s query myself to confirm the numbers matched. The skill it demonstrates is directing and supervising AI to do real analytics work, not being replaced by it.',
+        url: 'https://github.com/ewlemon/analyst-copilot-agent',
+        urlLabel: 'View on GitHub'
     },
-    others: []
+    others: [
+        {
+            title: 'Interactive SQL Practice Website',
+            desc: 'A deployed, interactive SQL practice site built with Claude AI — realistic schemas and business-style questions that reward analytical thinking over syntax recall.',
+            url: 'https://sql-practice-two.vercel.app/'
+        }
+    ]
 },
 
 	};
