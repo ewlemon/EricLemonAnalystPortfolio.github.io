@@ -16,315 +16,20 @@
 		<meta property="og:type"        content="website" />
 		<meta property="og:title"       content="Eric Lemon | Data &amp; Business Analyst" />
 		<meta property="og:description" content="Portfolio of data and business analytics projects covering Tableau, SQL, Python, R, and Databricks. M.S. Business Analytics candidate." />
-		<meta property="og:image"       content="images/headshot.png" />
-		<meta property="og:url"         content="https://ewlemon.github.io" />
-		<meta name="twitter:card"       content="summary" />
+		<meta property="og:image"       content="https://ewlemon.github.io/EricLemonAnalystPortfolio.github.io/images/og-card.png" />
+		<meta property="og:url"         content="https://ewlemon.github.io/EricLemonAnalystPortfolio.github.io/" />
+		<meta name="twitter:card"       content="summary_large_image" />
 
-		<link rel="stylesheet" href="assets/css/main.css" />
+		<link rel="icon" type="image/svg+xml" href="images/favicon.svg" />
+
+		<link rel="stylesheet" href="assets/css/main.css?v=6" />
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
 		<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
 		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
-		<link rel="stylesheet" href="assets/css/portfolio.css" />
+		<link rel="stylesheet" href="assets/css/portfolio.css?v=10" />
 
-		<style>
-		/* ═══════════════════════════════════════════════
-		   SKILLS SECTION: push to full available width
-		═══════════════════════════════════════════════ */
-		#skills-tools {
-			padding-left: 1rem;
-			padding-right: 1rem;
-		}
-		#skills-tools .skills-inner {
-			max-width: 1500px !important;
-			margin-left: auto;
-			margin-right: auto;
-		}
 
-		/* ═══════════════════════════════════════════════
-		   SKILL PILLS: clickable states
-		═══════════════════════════════════════════════ */
-		.skill-pill.has-projects {
-			cursor: pointer;
-			border-radius: 6px;
-			user-select: none;
-		}
-		.skill-pill.has-projects:hover {
-			background: var(--bg-light);
-			color: var(--accent);
-			padding-left: 0.9em;
-		}
-		.skill-pill.has-projects:hover i { opacity: 1; }
 
-		.skill-pill.has-projects.sp-active {
-			background: var(--accent);
-			color: #fff;
-			padding-left: 0.9em;
-		}
-		.skill-pill.has-projects.sp-active i { opacity: 1; color: #fff; }
-		.skill-pill.has-projects.sp-active .proj-count {
-			background: rgba(255,255,255,0.25);
-			color: #fff;
-		}
-
-		.skill-pill .proj-count {
-			margin-left: auto;
-			background: var(--accent);
-			color: #fff;
-			font-size: 0.64rem;
-			font-weight: 700;
-			padding: 0.14em 0.55em;
-			border-radius: 20px;
-			line-height: 1.6;
-			flex-shrink: 0;
-			transition: background 0.2s;
-			white-space: nowrap;
-		}
-
-		/* ═══════════════════════════════════════════════
-		   FULL-WIDTH SKILL CONTENT PANEL
-		═══════════════════════════════════════════════ */
-		.skill-content-panel {
-			display: grid;
-			grid-template-rows: 0fr;
-			opacity: 0;
-			transition: grid-template-rows 0.44s cubic-bezier(0.4,0,0.2,1),
-			            opacity 0.34s ease,
-			            margin-top 0.38s ease;
-			margin-top: 0;
-		}
-		.skill-content-panel.scp-open {
-			grid-template-rows: 1fr;
-			opacity: 1;
-			margin-top: 2rem;
-		}
-		.scp-overflow { overflow: hidden; }
-
-		.scp-inner {
-			background: var(--card-bg);
-			border: 1px solid var(--border);
-			border-radius: 16px;
-			overflow: hidden;
-			box-shadow: var(--shadow-md);
-			transition: background 0.3s, border-color 0.3s;
-		}
-
-		/* Panel header */
-		.scp-header {
-			display: flex;
-			align-items: center;
-			justify-content: space-between;
-			padding: 0.9rem 2.5rem;
-			border-bottom: 1px solid var(--border);
-			transition: background 0.3s, border-color 0.3s;
-		}
-		.scp-header-label {
-			font-size: 0.8rem;
-			font-weight: 700;
-			text-transform: uppercase;
-			letter-spacing: 0.1em;
-			color: var(--accent);
-			display: flex;
-			align-items: center;
-			gap: 0.5rem;
-		}
-		.scp-close {
-			background: none;
-			border: 1.5px solid var(--border);
-			border-radius: 50%;
-			width: 30px;
-			height: 30px;
-			display: flex;
-			align-items: center;
-			justify-content: center;
-			cursor: pointer;
-			color: var(--text-mid);
-			font-size: 0.8rem;
-			transition: border-color 0.2s, color 0.2s, background 0.2s;
-			flex-shrink: 0;
-		}
-		.scp-close:hover { border-color: var(--accent); color: var(--accent); background: var(--bg-light); }
-
-		/* Panel body */
-		.scp-body {
-			padding: 2.25rem 2.5rem 0;
-			text-align: center;
-		}
-		@media (max-width: 760px) { .scp-body { padding: 1.5rem 1.25rem 0; } }
-
-		/* Embed container: height driven by data attribute on iframe */
-		.scp-embed-wrap {
-			margin-bottom: 2rem;
-			border-radius: 10px;
-			overflow: hidden;
-			box-shadow: var(--shadow-sm);
-			background: #000;
-			width: 100%;
-		}
-		.scp-embed-wrap iframe {
-			display: block;
-			width: 100%;
-			border: 0;
-		}
-
-		/* Featured summary */
-		.scp-feat-eyebrow {
-			font-size: 0.68rem;
-			font-weight: 700;
-			letter-spacing: 0.13em;
-			text-transform: uppercase;
-			color: var(--accent);
-			margin-bottom: 0.4rem;
-			display: block;
-		}
-		.scp-feat-title {
-			font-size: 1.55rem;
-			font-weight: 700;
-			margin: 0 0 0.85rem;
-			color: var(--text-dark);
-			line-height: 1.2;
-		}
-		.scp-feat-tags {
-			display: flex;
-			flex-wrap: wrap;
-			gap: 0.4rem;
-			margin-bottom: 1.2rem;
-			justify-content: center;
-		}
-		.fi-tag {
-			padding: 0.22rem 0.7rem;
-			border: 1.5px solid var(--border);
-			border-radius: 20px;
-			font-size: 0.72rem;
-			font-weight: 600;
-			color: var(--text-mid);
-			background: var(--bg-light);
-			transition: background 0.3s, border-color 0.3s;
-		}
-		.scp-feat-summary {
-			font-size: 0.97rem;
-			color: var(--text-mid);
-			line-height: 1.8;
-			margin: 0 auto 1.5rem;
-			max-width: 820px;
-			text-align: center;
-		}
-
-		/* CTA Button with arrow flair */
-		.scp-cta {
-			display: inline-flex;
-			align-items: center;
-			gap: 0;
-			padding: 0.72rem 1.65rem;
-			color: #fff !important;
-			border-radius: 8px;
-			font-weight: 700;
-			font-size: 0.9rem;
-			letter-spacing: 0.02em;
-			text-decoration: none;
-			border: none;
-			position: relative;
-			overflow: hidden;
-			box-shadow: 0 3px 10px rgba(0,0,0,0.18);
-			transition: box-shadow 0.25s, transform 0.2s, filter 0.2s;
-			margin-bottom: 2.25rem;
-		}
-		.scp-cta::before {
-			content: '';
-			position: absolute;
-			top: 0;
-			left: -75%;
-			width: 50%;
-			height: 100%;
-			background: linear-gradient(to right, transparent, rgba(255,255,255,0.22), transparent);
-			transform: skewX(-20deg);
-			transition: left 0.45s ease;
-		}
-		.scp-cta:hover::before { left: 140%; }
-		.scp-cta:hover {
-			filter: brightness(1.1);
-			transform: translateY(-2px);
-			box-shadow: 0 7px 20px rgba(0,0,0,0.22);
-			color: #fff !important;
-		}
-		.scp-cta .btn-label { margin-right: 0.65rem; }
-		.scp-cta .btn-arr {
-			display: inline-block;
-			font-size: 1rem;
-			line-height: 1;
-			transition: transform 0.22s ease;
-		}
-		.scp-cta:hover .btn-arr { transform: translateX(5px); }
-
-		/* Secondary projects strip: centered grid */
-		.scp-others {
-			border-top: 1px solid var(--border);
-			padding: 1.5rem 2.5rem 1.75rem;
-			transition: border-color 0.3s;
-		}
-		@media (max-width: 760px) { .scp-others { padding: 1.25rem; } }
-		.scp-others-heading {
-			font-size: 0.74rem;
-			font-weight: 700;
-			text-transform: uppercase;
-			letter-spacing: 0.1em;
-			color: var(--text-mid);
-			margin: 0 0 1rem;
-			text-align: center;
-		}
-		.scp-others-grid {
-			display: flex;
-			flex-wrap: wrap;
-			gap: 0.9rem;
-			justify-content: center;
-		}
-		.scp-other-card {
-			background: var(--bg-light);
-			border: 1px solid var(--border);
-			border-left: 3px solid var(--accent);
-			border-radius: 10px;
-			padding: 1rem 1.1rem;
-			text-decoration: none;
-			color: var(--text-dark);
-			display: flex;
-			flex-direction: column;
-			gap: 0.35rem;
-			text-align: left;
-			width: 280px;
-			flex-shrink: 0;
-			transition: background 0.2s, border-color 0.2s, transform 0.15s, box-shadow 0.2s;
-		}
-		.scp-other-card:hover {
-			background: var(--bg-white);
-			border-color: var(--accent);
-			transform: translateY(-3px);
-			box-shadow: var(--shadow-sm);
-			color: var(--text-dark);
-		}
-		.scp-other-title {
-			font-weight: 700;
-			font-size: 0.92rem;
-			color: var(--text-dark);
-			line-height: 1.3;
-		}
-		.scp-other-desc {
-			font-size: 0.82rem;
-			color: var(--text-mid);
-			line-height: 1.5;
-			flex: 1;
-		}
-		.scp-other-link {
-			font-size: 0.74rem;
-			font-weight: 600;
-			color: var(--accent);
-			margin-top: 0.35rem;
-			display: flex;
-			align-items: center;
-			gap: 0.3rem;
-			transition: gap 0.2s;
-		}
-		.scp-other-card:hover .scp-other-title { color: var(--accent); }
-		.scp-other-card:hover .scp-other-link { gap: 0.5rem; }
-		</style>
 	</head>
 
 	<body class="homepage">
@@ -352,6 +57,7 @@
 		<div class="nav-right">
 			<ul class="nav-links">
 				<li><a href="#banner">About</a></li>
+				<li><a href="#featured">Case Studies</a></li>
 				<li><a href="#skills-tools">Skills &amp; Projects</a></li>
 				<li><a href="#courses">Courses</a></li>
 				<li><a href="#footer" class="nav-cta">Contact</a></li>
@@ -363,6 +69,7 @@
 				<span></span><span></span><span></span>
 			</button>
 		</div>
+		<div id="scroll-progress"></div>
 	</nav>
 
 
@@ -370,12 +77,39 @@
 	     HEADER / HERO
 	═══════════════════════════════════════════════════════════ -->
 	<div id="header">
+		<canvas id="hero-canvas" aria-hidden="true"></canvas>
+
+		<div class="hero-kpis" aria-hidden="true">
+			<div class="kpi-card kpi-1">
+				<span class="kpi-num">18+</span>
+				<span class="kpi-label">Projects</span>
+			</div>
+			<div class="kpi-card kpi-2">
+				<span class="kpi-num">7+</span>
+				<span class="kpi-label">Tools &amp; Languages</span>
+			</div>
+			<div class="kpi-card kpi-3">
+				<span class="kpi-num">M.S.</span>
+				<span class="kpi-label">Business Analytics '26</span>
+			</div>
+			<div class="kpi-card kpi-4">
+				<span class="kpi-num">4</span>
+				<span class="kpi-label">Tableau Dashboards</span>
+			</div>
+		</div>
+
 		<div class="inner">
 			<header>
-				<h1>Making sense of the numbers that matter</h1>
-				<hr />
-				<p style="color:#fff;">Empowering smarter decisions through thoughtful analysis</p>
+				<h1>Making sense of the <span class="grad-text">numbers that matter</span></h1>
+				<div class="hero-bar"></div>
+				<p class="hero-sub"><span id="typed-word">Every dataset has a story to tell</span><span class="typed-cursor" aria-hidden="true"></span></p>
 			</header>
+		</div>
+
+		<div class="wave-divider hero-wave wd-fill-white">
+			<svg viewBox="0 0 1440 64" preserveAspectRatio="none" aria-hidden="true">
+				<path d="M0,34 C240,64 480,4 720,30 C960,56 1200,10 1440,36 L1440,64 L0,64 Z"></path>
+			</svg>
 		</div>
 	</div>
 
@@ -384,18 +118,25 @@
 	     ABOUT / BANNER
 	═══════════════════════════════════════════════════════════ -->
 	<section id="banner">
+		<i class="section-bg-icon bg-icon-right fa-solid fa-magnifying-glass-chart" aria-hidden="true"></i>
 		<span class="section-eyebrow"><i class="fa-solid fa-user"></i> Introduction</span>
-		<h2><strong>Welcome!</strong></h2>
-		<div class="banner-inner">
+		<h2 class="sec-title"><strong>Welcome!</strong></h2>
+		<div class="banner-inner fade-in">
 			<div class="headshot-wrap">
-				<img src="images/headshot.png" alt="Eric Lemon" style="object-position: center 7.5%;">
+				<img src="images/headshot.png" alt="Eric Lemon">
 			</div>
 			<div class="banner-text">
-				<p>My name is <strong>Eric Lemon</strong> and I am a Business Analytics graduate student focused on data storytelling, dashboard design, and uncovering actionable insights.</p>
-				<p>I enjoy cleaning and organizing messy datasets, developing projects powered by Python's core data stack, and creating Tableau dashboards that answer real business questions.</p>
-				<p style="background:var(--bg-light); border-left:3px solid var(--accent); padding:0.75rem 1rem; border-radius:0 8px 8px 0; font-size:0.93rem; color:var(--text-mid); margin-top:0.5rem; transition:background .3s;">
-					<i class="fa-solid fa-magnifying-glass-chart" style="color:var(--accent); margin-right:0.4rem;"></i>
-					<strong style="color:var(--text-dark);">Currently seeking</strong> data analyst or business intelligence roles. Graduating with my M.S. in Business Analytics in Fall of 2026.
+				<p>I'm <strong>Eric Lemon</strong>, a data and business analyst in Cincinnati. Before analytics, I spent seven years as a medical laboratory technician at Quest Diagnostics. Patient results had to be right every single time, across multiple lab systems. That kind of discipline sticks with you, and it shapes how I treat every dataset I work with.</p>
+				<p>These days I'm finishing my M.S. in Business Analytics and building things I can actually point to: SQL pipelines that turn messy exports into answers, Tableau dashboards designed to be hard to misread, and an AI analyst copilot that writes its own SQL (with guardrails, of course).</p>
+				<div class="about-facts">
+					<span class="fact-chip"><i class="fa-solid fa-location-dot"></i> Cincinnati, OH</span>
+					<span class="fact-chip"><i class="fa-solid fa-graduation-cap"></i> M.S. '26 &middot; 4.0 GPA</span>
+					<span class="fact-chip"><i class="fa-solid fa-diagram-project"></i> 18+ projects</span>
+					<span class="fact-chip"><i class="fa-solid fa-flask-vial"></i> 7 yrs lab science</span>
+				</div>
+				<p class="seeking-note">
+					<i class="fa-solid fa-magnifying-glass-chart"></i>
+					<strong>Currently seeking</strong> data analyst or business intelligence roles. Graduating with my M.S. in Business Analytics in Fall of 2026.
 				</p>
 			</div>
 		</div>
@@ -403,37 +144,231 @@
 
 
 	<!-- ═══════════════════════════════════════════════════════════
+	     TOOL STRIP (icon-only badges, single row)
+	═══════════════════════════════════════════════════════════ -->
+	<div class="tool-strip" aria-label="Tools and technologies">
+		<span class="tool-badge" title="Python" aria-label="Python"><i class="fab fa-python tool-python"></i></span>
+		<span class="tool-badge" title="SQL" aria-label="SQL"><i class="fas fa-database tool-sql"></i></span>
+		<span class="tool-badge" title="Tableau" aria-label="Tableau"><i class="fas fa-chart-bar tool-tableau"></i></span>
+		<span class="tool-badge" title="Excel" aria-label="Excel"><i class="fas fa-file-excel tool-excel"></i></span>
+		<span class="tool-badge" title="R" aria-label="R"><i class="fab fa-r-project tool-r"></i></span>
+		<span class="tool-badge" title="Databricks" aria-label="Databricks"><i class="fas fa-fire-flame-curved tool-databricks"></i></span>
+		<span class="tool-badge" title="Claude / ChatGPT" aria-label="Claude / ChatGPT"><i class="fas fa-robot tool-ai"></i></span>
+		<span class="tool-badge" title="GitHub" aria-label="GitHub"><i class="fab fa-github tool-github"></i></span>
+	</div>
+
+	<!-- ═══════════════════════════════════════════════════════════
+	     FEATURED PROJECTS (case studies)
+	═══════════════════════════════════════════════════════════ -->
+	<section id="featured">
+		<i class="section-bg-icon bg-icon-left fa-solid fa-star" aria-hidden="true"></i>
+		<span class="section-eyebrow"><i class="fa-solid fa-star"></i> Featured Work</span>
+		<h2 class="sec-title">Case Studies</h2>
+		<p class="section-intro">Four projects I'm proud of, told the way I'd explain them in an interview: the problem, what I did, and what the data actually said.</p>
+
+		<div class="featured-list">
+
+			<article class="featured-card fade-in tilt-card"
+				data-embed-src="https://analyst-copilot-agent-5gpanuic33nqb66wxlvcrd.streamlit.app/?embed=true"
+				data-embed-height="850"
+				data-embed-extra="allowfullscreen">
+				<div class="fc-main">
+				<div class="fc-visual fc-icon-visual" style="--fc-accent:#7c5cd6;">
+					<i class="fa-solid fa-robot"></i>
+					<span class="fc-live-dot" title="Live app"></span>
+				</div>
+				<div class="fc-body">
+					<div class="fc-tags">
+						<span class="fi-tag">Claude API</span><span class="fi-tag">Python</span><span class="fi-tag">SQL</span><span class="fi-tag">Streamlit</span>
+					</div>
+					<h3 class="fc-title">AI Analyst Copilot Agent</h3>
+					<dl class="fc-case">
+						<div><dt>The problem</dt><dd>Business teams always have one more question for the database, and nobody wants to wait a day for an analyst to run it. But handing an AI direct access to your data raises some obvious trust issues.</dd></div>
+						<div><dt>The approach</dt><dd>I built an agent on the Claude API with three tools: it can inspect the schema, run SQL, and draw charts. Two separate guardrails (a validator that only allows SELECT statements, plus a connection opened in read-only mode) make writes impossible. Every answer shows the exact SQL it ran and a short note on caveats.</dd></div>
+						<div><dt>The outcome</dt><dd>A live agent that answers questions like &ldquo;which product categories are most profitable?&rdquo; in seconds, chart included. I re-ran every example query myself to confirm the numbers matched. The point isn't replacing the analyst; it's giving them a faster first draft.</dd></div>
+					</dl>
+					<div class="fc-links">
+						<button class="fc-link fc-link-primary fc-expand" data-show-label="Try the live app" data-hide-label="Hide the app" aria-expanded="false">
+							<i class="fa-solid fa-bolt"></i> <span class="fc-expand-label">Try the live app</span> <i class="fa-solid fa-chevron-down fc-chev"></i>
+						</button>
+						<a href="https://github.com/ewlemon/analyst-copilot-agent" target="_blank" rel="noopener" class="fc-link"><i class="fab fa-github"></i> Code &amp; README</a>
+					</div>
+				</div>
+				</div><!-- /fc-main -->
+				<div class="fc-embed-panel"><div class="fc-embed-overflow"><div class="fc-embed-inner"></div></div></div>
+			</article>
+
+			<article class="featured-card fade-in tilt-card"
+				data-embed-src="https://prezi.com/p/embed/22UxRRlGPnmYlEYpWKvC/"
+				data-embed-height="700"
+				data-embed-extra='webkitallowfullscreen mozallowfullscreen allowfullscreen allow="autoplay; fullscreen"'>
+				<div class="fc-main">
+				<div class="fc-visual fc-icon-visual" style="--fc-accent:#0891b2;">
+					<i class="fa-solid fa-database"></i>
+				</div>
+				<div class="fc-body">
+					<div class="fc-tags">
+						<span class="fi-tag">T-SQL</span><span class="fi-tag">ETL</span><span class="fi-tag">SQL Server</span>
+					</div>
+					<h3 class="fc-title">Business SQL Project</h3>
+					<dl class="fc-case">
+						<div><dt>The problem</dt><dd>A SaaS company's data lands as six messy CSV exports, about 98K rows covering customers, revenue, product usage, sales pipeline, subscriptions, and support tickets. The IDs have prefixes, every column is text, and somewhere in there is the answer to where revenue is leaking.</dd></div>
+						<div><dt>The approach</dt><dd>I staged everything as raw text first, stripped the ID prefixes, typed each column safely with TRY_CAST, and built reusable views on the clean tables so every analysis could start from the same solid base.</dd></div>
+						<div><dt>The outcome</dt><dd>Average customer lifetime value came out to <strong>$21.6K</strong>, with active customers worth nearly double churned ones. Starter-plan churn runs <strong>2.69%</strong> against 1.18% for Enterprise, and the sales pipeline converts at just <strong>5.6%</strong> with 67% of deals never reaching a demo. Three findings, three levers the business can pull.</dd></div>
+					</dl>
+					<div class="fc-links">
+						<button class="fc-link fc-link-primary fc-expand" data-show-label="Watch the walkthrough" data-hide-label="Hide the walkthrough" aria-expanded="false">
+							<i class="fa-solid fa-circle-play"></i> <span class="fc-expand-label">Watch the walkthrough</span> <i class="fa-solid fa-chevron-down fc-chev"></i>
+						</button>
+						<a href="https://github.com/ewlemon/Business-SQL-Project/blob/main/README.md" target="_blank" rel="noopener" class="fc-link"><i class="fab fa-github"></i> Full write-up</a>
+					</div>
+				</div>
+				</div><!-- /fc-main -->
+				<div class="fc-embed-panel"><div class="fc-embed-overflow"><div class="fc-embed-inner"></div></div></div>
+			</article>
+
+			<article class="featured-card fade-in tilt-card"
+				data-embed-src="https://prezi.com/p/embed/PR9nilFAxgJ8tyPwI5dP/"
+				data-embed-height="700"
+				data-embed-extra='webkitallowfullscreen mozallowfullscreen allowfullscreen allow="autoplay; fullscreen"'>
+				<div class="fc-main">
+				<div class="fc-visual fc-icon-visual" style="--fc-accent:#d97706;">
+					<i class="fa-solid fa-arrow-trend-up"></i>
+				</div>
+				<div class="fc-body">
+					<div class="fc-tags">
+						<span class="fi-tag">Python</span><span class="fi-tag">Regression</span><span class="fi-tag">GitHub Actions</span><span class="fi-tag">Excel</span>
+					</div>
+					<h3 class="fc-title">U.S. Stock Market Index Analysis</h3>
+					<dl class="fc-case">
+						<div><dt>The problem</dt><dd>Everyone says the market grows over time, but which model actually fits that growth best? And could I build the analysis once and have it keep itself up to date?</dd></div>
+						<div><dt>The approach</dt><dd>I modeled five major U.S. indexes with Linear, Ridge, Lasso, and Degree-3 Polynomial regression, compared them on R&sup2; and RMSE, and added rolling-volatility views across the dot-com bust, 2008, and COVID. A GitHub Actions pipeline pulls fresh data every day and writes the results into an Excel workbook.</dd></div>
+						<div><dt>The outcome</dt><dd>The pipeline has run hands-off since launch, over <strong>230 commits</strong> of iteration later. Model comparisons, closing values, and daily returns stay current without me touching a thing.</dd></div>
+					</dl>
+					<div class="fc-links">
+						<button class="fc-link fc-link-primary fc-expand" data-show-label="Watch the walkthrough" data-hide-label="Hide the walkthrough" aria-expanded="false">
+							<i class="fa-solid fa-circle-play"></i> <span class="fc-expand-label">Watch the walkthrough</span> <i class="fa-solid fa-chevron-down fc-chev"></i>
+						</button>
+						<a href="https://github.com/ewlemon/Stock-Project" target="_blank" rel="noopener" class="fc-link"><i class="fab fa-github"></i> Code &amp; pipeline</a>
+					</div>
+				</div>
+				</div><!-- /fc-main -->
+				<div class="fc-embed-panel"><div class="fc-embed-overflow"><div class="fc-embed-inner"></div></div></div>
+			</article>
+
+			<article class="featured-card fade-in tilt-card"
+				data-embed-src="https://public.tableau.com/views/LemonAssignmentFinal/Dashboard?:showVizHome=no&amp;:embed=true&amp;:toolbar=bottom"
+				data-embed-height="950"
+				data-embed-extra="allowfullscreen">
+				<div class="fc-main">
+				<div class="fc-visual fc-icon-visual" style="--fc-accent:#e97627;">
+					<i class="fa-solid fa-briefcase"></i>
+				</div>
+				<div class="fc-body">
+					<div class="fc-tags">
+						<span class="fi-tag">Tableau</span><span class="fi-tag">Dashboard Design</span><span class="fi-tag">Data Storytelling</span>
+					</div>
+					<h3 class="fc-title">Career Trends Dashboard</h3>
+					<dl class="fc-case">
+						<div><dt>The problem</dt><dd>Career and salary stats are some of the easiest data to misread, and the decision they inform is a big one. I wanted a dashboard that was honest before it was pretty.</dd></div>
+						<div><dt>The approach</dt><dd>The dashboard projects 10-year outlooks: annual openings, growth, turnover, wages, and required education. The filters went through several rounds before they felt natural, and just as much work went into deciding what to leave out as what to include.</dd></div>
+						<div><dt>The outcome</dt><dd>One view where you can compare career paths on the numbers that matter, without the presentation nudging you toward a bad read. It's embedded right on this site and published on Tableau Public.</dd></div>
+					</dl>
+					<div class="fc-links">
+						<button class="fc-link fc-link-primary fc-expand" data-show-label="Explore the live dashboard" data-hide-label="Hide the dashboard" aria-expanded="false">
+							<i class="fa-solid fa-chart-bar"></i> <span class="fc-expand-label">Explore the live dashboard</span> <i class="fa-solid fa-chevron-down fc-chev"></i>
+						</button>
+						<a href="https://public.tableau.com/app/profile/eric.lemon/viz/LemonAssignmentFinal/Dashboard" target="_blank" rel="noopener" class="fc-link"><i class="fa-solid fa-arrow-up-right-from-square"></i> Tableau Public</a>
+					</div>
+				</div>
+				</div><!-- /fc-main -->
+				<div class="fc-embed-panel"><div class="fc-embed-overflow"><div class="fc-embed-inner"></div></div></div>
+			</article>
+
+		</div>
+	</section>
+
+
+	<div class="wave-divider wd-bg-light wd-fill-white">
+		<svg viewBox="0 0 1440 64" preserveAspectRatio="none" aria-hidden="true">
+			<path d="M0,30 C240,60 480,0 720,26 C960,52 1200,6 1440,32 L1440,0 L0,0 Z"></path>
+		</svg>
+	</div>
+
+
+	<!-- ═══════════════════════════════════════════════════════════
 	     SKILLS, TOOLS & PROJECTS  (fully merged)
 	═══════════════════════════════════════════════════════════ -->
 	<section id="skills-tools">
+		<i class="section-bg-icon bg-icon-left fa-solid fa-toolbox" aria-hidden="true"></i>
 		<div class="skills-inner">
-			<div class="skills-header">
+			<div class="skills-header fade-in">
 				<span class="section-eyebrow"><i class="fa-solid fa-toolbox"></i> Toolkit &amp; Projects</span>
-				<h2>Skills, Tools, &amp; Projects</h2>
-				<p style="color:var(--text-mid); max-width:620px; margin:0 auto 0.4rem; text-align:center;">
+				<h2 class="sec-title">Skills, Tools, &amp; Projects</h2>
+				<p class="section-intro">
 					Select any skill below to see its featured project and all related work.
 				</p>
+			</div>
+
+			<div class="mini-chart fade-in" id="mini-chart">
+				<p class="mc-title"><i class="fa-solid fa-chart-simple"></i> Projects by Tool</p>
+				<div class="mc-row" data-skill="sql" role="button" tabindex="0" aria-label="View SQL projects">
+					<span class="mc-label">SQL</span>
+					<div class="mc-track"><div class="mc-bar" style="--w:100%"></div></div>
+					<span class="mc-val">4</span>
+				</div>
+				<div class="mc-row" data-skill="python" role="button" tabindex="0" aria-label="View Python projects">
+					<span class="mc-label">Python</span>
+					<div class="mc-track"><div class="mc-bar" style="--w:100%"></div></div>
+					<span class="mc-val">4</span>
+				</div>
+				<div class="mc-row" data-skill="tableau" role="button" tabindex="0" aria-label="View Tableau projects">
+					<span class="mc-label">Tableau</span>
+					<div class="mc-track"><div class="mc-bar" style="--w:100%"></div></div>
+					<span class="mc-val">4</span>
+				</div>
+				<div class="mc-row" data-skill="excel" role="button" tabindex="0" aria-label="View Excel projects">
+					<span class="mc-label">Excel</span>
+					<div class="mc-track"><div class="mc-bar" style="--w:75%"></div></div>
+					<span class="mc-val">3</span>
+				</div>
+				<div class="mc-row" data-skill="ai" role="button" tabindex="0" aria-label="View AI projects">
+					<span class="mc-label">AI</span>
+					<div class="mc-track"><div class="mc-bar" style="--w:50%"></div></div>
+					<span class="mc-val">2</span>
+				</div>
+				<div class="mc-row" data-skill="r" role="button" tabindex="0" aria-label="View R projects">
+					<span class="mc-label">R</span>
+					<div class="mc-track"><div class="mc-bar" style="--w:25%"></div></div>
+					<span class="mc-val">1</span>
+				</div>
+				<div class="mc-row" data-skill="databricks" role="button" tabindex="0" aria-label="View Databricks projects">
+					<span class="mc-label">Databricks</span>
+					<div class="mc-track"><div class="mc-bar" style="--w:25%"></div></div>
+					<span class="mc-val">1</span>
+				</div>
+				<p class="mc-hint">Click a bar to jump to that tool's projects</p>
 			</div>
 
 			<div class="skills-grid">
 
 				<!-- ── Languages ─────────────────────────────────── -->
-				<div class="skill-category">
+				<div class="skill-category fade-in">
 					<div class="category-label"><i class="fas fa-code"></i> Languages</div>
 					<div class="skill-list">
 
 						<div class="skill-pill has-projects" data-skill="sql" tabindex="0" role="button" aria-expanded="false">
-							<i class="fas fa-database"></i> SQL
+							<i class="fas fa-database tool-sql"></i> SQL
 							<span class="proj-count">4 projects</span>
 						</div>
 
 						<div class="skill-pill has-projects" data-skill="python" tabindex="0" role="button" aria-expanded="false">
-							<i class="fab fa-python"></i> Python
+							<i class="fab fa-python tool-python"></i> Python
 							<span class="proj-count">4 projects</span>
 						</div>
 
 						<div class="skill-pill has-projects" data-skill="r" tabindex="0" role="button" aria-expanded="false">
-							<i class="fas fa-code"></i> R
+							<i class="fab fa-r-project tool-r"></i> R
 							<span class="proj-count">1 project</span>
 						</div>
 
@@ -441,27 +376,27 @@
 				</div>
 
 				<!-- ── Tools ─────────────────────────────────────── -->
-				<div class="skill-category">
+				<div class="skill-category fade-in" style="--d:0.12s">
 					<div class="category-label"><i class="fas fa-tools"></i> Tools</div>
 					<div class="skill-list">
 
 						<div class="skill-pill has-projects" data-skill="tableau" tabindex="0" role="button" aria-expanded="false">
-							<i class="fas fa-chart-bar"></i> Tableau
+							<i class="fas fa-chart-bar tool-tableau"></i> Tableau
 							<span class="proj-count">4 projects</span>
 						</div>
 
 						<div class="skill-pill has-projects" data-skill="excel" tabindex="0" role="button" aria-expanded="false">
-							<i class="fas fa-file-excel"></i> Excel
+							<i class="fas fa-file-excel tool-excel"></i> Excel
 							<span class="proj-count">3 projects</span>
 						</div>
 
 						<div class="skill-pill has-projects" data-skill="databricks" tabindex="0" role="button" aria-expanded="false">
-							<i class="fas fa-fire-flame-curved"></i> Databricks
+							<i class="fas fa-fire-flame-curved tool-databricks"></i> Databricks
 							<span class="proj-count">1 project</span>
 						</div>
 
 						<div class="skill-pill has-projects" data-skill="ai" tabindex="0" role="button" aria-expanded="false">
-							<i class="fas fa-robot"></i> AI (Claude / ChatGPT)
+							<i class="fas fa-robot tool-ai"></i> AI (Claude / ChatGPT)
 							<span class="proj-count">2 projects</span>
 						</div>
 
@@ -473,7 +408,7 @@
 				</div>
 
 				<!-- ── Techniques ─────────────────────────────────── -->
-				<div class="skill-category">
+				<div class="skill-category fade-in" style="--d:0.24s">
 					<div class="category-label"><i class="fas fa-brain"></i> Techniques</div>
 					<div class="skill-list">
 						<div class="skill-pill"><i class="fas fa-broom"></i> Data Cleaning</div>
@@ -497,20 +432,36 @@
 	</section>
 
 
+	<div class="wave-divider wd-bg-white wd-fill-light">
+		<svg viewBox="0 0 1440 64" preserveAspectRatio="none" aria-hidden="true">
+			<path d="M0,28 C240,58 480,2 720,28 C960,54 1200,4 1440,30 L1440,0 L0,0 Z"></path>
+		</svg>
+	</div>
+
+
 	<!-- ═══════════════════════════════════════════════════════════
 	     COURSES
 	═══════════════════════════════════════════════════════════ -->
-	<section id="courses" style="padding:var(--section-gap) 1.5rem; background:var(--bg-white); text-align:center; transition:background .3s;">
-		<div style="max-width:1000px; margin:0 auto;">
+	<section id="courses">
+		<i class="section-bg-icon bg-icon-right fa-solid fa-graduation-cap" aria-hidden="true"></i>
+		<div class="courses-wrap">
 			<span class="section-eyebrow"><i class="fa-solid fa-graduation-cap"></i> M.S. Business Analytics</span>
-			<h2 style="margin:0.4rem 0 0.5rem;">Graduate Coursework</h2>
-			<p style="text-align:center; color:var(--text-mid); margin-bottom:2.5rem;">
+			<h2 class="sec-title">Graduate Coursework</h2>
+			<p class="section-intro courses-intro">
 				Business Informatics: Business Analytics program at Northern Kentucky University
 			</p>
 
+			<div class="degree-progress fade-in" id="degree-progress" style="--p:75%">
+				<div class="dp-labels">
+					<span class="dp-caption">Degree Progress</span>
+					<span class="dp-value">9 of 12 courses complete (75%)</span>
+				</div>
+				<div class="dp-track"><div class="dp-fill"></div></div>
+			</div>
+
 			<div class="courses-grid">
 
-				<div class="course-col">
+				<div class="course-col fade-in">
 					<div class="course-col-header completed-header">
 						<i class="fa-solid fa-circle-check"></i> Completed
 					</div>
@@ -527,7 +478,7 @@
 					</ul>
 				</div>
 
-				<div class="course-col">
+				<div class="course-col fade-in" style="--d:0.12s">
 					<div class="course-col-header current-header">
 						<i class="fa-solid fa-circle-half-stroke"></i> In Progress
 					</div>
@@ -537,7 +488,7 @@
 					</ul>
 				</div>
 
-				<div class="course-col">
+				<div class="course-col fade-in" style="--d:0.24s">
 					<div class="course-col-header upcoming-header">
 						<i class="fa-solid fa-circle-arrow-right"></i> Upcoming
 					</div>
@@ -551,40 +502,68 @@
 	</section>
 
 
-	<!-- ═══════════════════════════════════════════════════════════
-	     PARALLAX STATS + FOOTER
-	═══════════════════════════════════════════════════════════ -->
-	<div id="footer" class="parallax-section" style="padding:0;">
+	<div class="wave-divider wd-bg-navy wd-fill-white">
+		<svg viewBox="0 0 1440 64" preserveAspectRatio="none" aria-hidden="true">
+			<path d="M0,32 C240,62 480,4 720,30 C960,56 1200,8 1440,34 L1440,0 L0,0 Z"></path>
+		</svg>
+	</div>
 
-		<div id="stats-section" class="overlay-content" style="padding:4.5rem 1.5rem 3rem;">
+
+	<!-- ═══════════════════════════════════════════════════════════
+	     STATS + FOOTER (navy constellation)
+	═══════════════════════════════════════════════════════════ -->
+	<div id="footer" class="parallax-section">
+
+		<div id="stats-section" class="overlay-content">
 			<blockquote>"Turning data into decisions, one analysis at a time."</blockquote>
 			<div class="stats-row">
-				<div class="stat-item">
+				<div class="stat-item fade-in">
 					<span class="stat-number" data-target="18" data-suffix="+">0</span>
 					<span class="stat-label">Projects Completed</span>
 				</div>
-				<div class="stat-item">
+				<div class="stat-item fade-in" style="--d:0.1s">
 					<span class="stat-number" data-target="7" data-suffix="+">0</span>
 					<span class="stat-label">Tools &amp; Languages</span>
 				</div>
-				<div class="stat-item">
+				<div class="stat-item fade-in" style="--d:0.2s">
 					<span class="stat-number" data-target="" data-static="M.S.">M.S.</span>
 					<span class="stat-label">Business Analytics</span>
 				</div>
-				<div class="stat-item">
+				<div class="stat-item fade-in" style="--d:0.3s">
 					<span class="stat-number" data-target="9" data-suffix="">0</span>
 					<span class="stat-label">Courses Completed</span>
 				</div>
 			</div>
 		</div>
 
-		<div style="position:relative; z-index:1; display:flex; justify-content:center; padding:0.25rem 0;">
-			<div style="width:80px; height:1px; background:rgba(255,255,255,0.35);"></div>
-		</div>
+		<div class="footer-rule"><span></span></div>
 
-		<div class="footer-inner" style="padding:2.5rem 1.5rem 4rem;">
+		<div class="footer-inner">
 			<h3>Want to get in touch?</h3>
-			<p style="text-align:center;">Reach out via LinkedIn or Gmail, or explore more work through the links below.</p>
+			<p>Send a message below and it goes straight to my inbox, or reach out on LinkedIn.</p>
+
+			<form class="contact-form" action="https://formsubmit.co/ewlemon7@gmail.com" method="POST">
+				<input type="hidden" name="_subject" value="Portfolio contact form">
+				<input type="hidden" name="_next" value="https://ewlemon.github.io/EricLemonAnalystPortfolio.github.io/?sent=1#footer">
+				<input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off">
+				<div class="cf-row">
+					<label class="cf-field">
+						<span>Name</span>
+						<input type="text" name="name" required autocomplete="name" placeholder="Your name">
+					</label>
+					<label class="cf-field">
+						<span>Email</span>
+						<input type="email" name="email" required autocomplete="email" placeholder="you@company.com">
+					</label>
+				</div>
+				<label class="cf-field">
+					<span>Message</span>
+					<textarea name="message" rows="4" required placeholder="What would you like to talk about?"></textarea>
+				</label>
+				<button type="submit" class="cf-submit">Send message <i class="fa-solid fa-paper-plane"></i></button>
+				<p class="cf-sent" id="cf-sent" hidden><i class="fa-solid fa-circle-check"></i> Thanks! Your message is on its way. I'll get back to you soon.</p>
+			</form>
+
 			<ul class="icons">
 				<li><a href="https://public.tableau.com/app/profile/eric.lemon/vizzes" title="Tableau"><i class="fa-solid fa-chart-pie"></i></a></li>
 				<li><a href="https://github.com/ewlemon" title="GitHub"><i class="fab fa-github"></i></a></li>
@@ -592,7 +571,7 @@
 				<li><a href="#" id="gmail-link" title="Gmail"><i class="fab fa-google"></i></a></li>
 			</ul>
 			<div class="parallax-cta">
-				<a href="EricLemonResume.docx">View My Resume &rarr;</a>
+				<a href="EricLemonResume.pdf" target="_blank" rel="noopener">View My Resume &rarr;</a>
 			</div>
 			<div class="footer-copy">Design: <a href="http://html5up.net">HTML5 UP</a></div>
 		</div>
@@ -601,407 +580,11 @@
 
 	</div><!-- end #page-wrapper -->
 
-
 	<!-- ═══════════════════════════════════════════════════════════
 	     SCRIPTS
 	═══════════════════════════════════════════════════════════ -->
-	<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
-	<script src="assets/js/jquery.min.js"></script>
-	<script src="assets/js/jquery.scrolly.min.js"></script>
-	<script src="assets/js/browser.min.js"></script>
-	<script src="assets/js/breakpoints.min.js"></script>
-	<script src="assets/js/util.js"></script>
-	<script src="assets/js/main.js"></script>
-
-	<script>
-	// ═══════════════════════════════════════════════════════════
-	//  PROJECT DATA
-	// ═══════════════════════════════════════════════════════════
-	const SKILL_DATA = {
-
-		sql: {
-			label: 'SQL',
-			icon: 'fa-solid fa-database',
-			accentColor: '#2b6cb0',
-			featured: {
-				eyebrow: 'Featured SQL Project',
-				title: 'Business SQL Project',
-				tags: ['SQL', 'Data Cleaning', 'Exploratory Analysis'],
-				summary: 'An end-to-end SQL analysis of a SaaS business dataset, covering everything from raw data ingestion to actionable insights across six interconnected tables. The groundwork is in the ETL pipeline: stripping ID prefixes, casting types safely, and routing records through staging tables before anything else runs. With clean data in place, patterns emerge around customer lifetime value, churn risk by plan tier, feature adoption, and a sales pipeline win rate that leaves plenty of room for improvement.',
-				url: 'https://github.com/ewlemon/Business-SQL-Project/blob/main/README.md',
-				urlLabel: 'View on GitHub'
-			},
-			others: [
-				{
-					title: 'Crime Data SQL Project',
-					desc: 'A full SQL pipeline on LAPD crime data, cleaning up inconsistent formatting, missing fields, and duplicates before surfacing patterns in crime frequency, time-of-day clustering, and district-level variation.',
-					url: 'https://github.com/ewlemon/SQL-Project-5/blob/main/SQLProject5.sql'
-				},
-				{
-					title: 'Chronic Diseases SQL',
-					desc: 'Cleans and standardizes U.S. chronic disease indicators to surface actionable public-health insights across states and demographics.',
-					url: 'https://github.com/ewlemon/SQL-Project-4/blob/main/SQLProject4.sql'
-				},
-				{
-					title: 'Northwind SQL Project',
-					desc: 'End-to-end workflow building cleaned, structured tables used to power an interactive Tableau business performance dashboard.',
-					url: 'https://github.com/ewlemon/SQL-Project-3/blob/main/Project%206%20Data.sqbpro'
-				}
-			]
-		},
-
-		python: {
-			label: 'Python',
-			icon: 'fa-brands fa-python',
-			accentColor: '#b56f00',
-			featured: {
-				eyebrow: 'Featured Python Project',
-				title: 'U.S. Stock Market Index Analysis',
-				tags: ['Python', 'Excel', 'GitHub Actions', 'Regression Modeling'],
-				embed: {
-					src: 'https://prezi.com/p/embed/PR9nilFAxgJ8tyPwI5dP/',
-					height: 750,
-					extra: 'webkitallowfullscreen mozallowfullscreen allowfullscreen allow="autoplay; fullscreen"'
-				},
-				summary: 'A multi-index analysis of long-term U.S. stock market trends, built around the question of which modeling approach actually captures how markets grow over time. The project pairs statistical analysis with a fully automated data pipeline so the findings stay current without any manual work after the initial build.',
-				url: 'https://github.com/ewlemon/Stock-Project',
-				urlLabel: 'View on GitHub'
-			},
-			others: [
-				{
-					title: 'Exploratory Analysis',
-					desc: 'Pandas and NumPy analysis of global population trends with Matplotlib and Seaborn visualizations.',
-					url: 'https://github.com/ewlemon/Python-Pandas/blob/main/PandasExploratoryAnalysis1.ipynb'
-				},
-				{
-					title: 'Library Exploration',
-					desc: 'Jupyter Notebook demonstrating data manipulation and visualization across Pandas, NumPy, Matplotlib, and Seaborn.',
-					url: 'https://github.com/ewlemon/Python-Files/blob/main/Basics9(MatPlotLib).ipynb'
-				},
-				{
-					title: 'Analysis Case Study',
-					desc: 'Internship assessment analyzing workforce absenteeism, engagement surveys, and consultant utilization across multiple datasets.',
-					url: 'https://github.com/ewlemon/Analysis-Case-Study'
-				}
-			]
-		},
-
-		r: {
-			label: 'R',
-			icon: 'fa-brands fa-r-project',
-			accentColor: '#1a65b9',
-			featured: {
-				eyebrow: 'Featured R Project',
-				title: 'Crime Data R Project',
-				tags: ['R', 'R Markdown', 'ggplot2', 'Data Cleaning'],
-				summary: 'An R and R Markdown project that cleans crime datasets and generates publication-style visualizations and summaries. The focus was on building something reproducible, where the code, outputs, and methodology all live together in a single document that anyone can re-run and verify.',
-				url: 'https://github.com/ewlemon/R-Project-1/blob/main/Crime_Data.R',
-				urlLabel: 'View on GitHub'
-			},
-			others: []
-		},
-
-		tableau: {
-			label: 'Tableau',
-			icon: 'fa-solid fa-chart-bar',
-			accentColor: '#276749',
-			featured: {
-				eyebrow: 'Featured Tableau Project',
-				title: 'Career Trends Tableau Dashboard',
-				tags: ['Tableau', 'Dashboard Design', 'Data Storytelling', 'Graduate'],
-				embed: {
-					src: 'https://public.tableau.com/views/LemonAssignmentFinal/Dashboard?:showVizHome=no&:embed=true&:toolbar=bottom',
-					height: 900,
-					extra: 'allowfullscreen'
-				},
-				summary: 'An interactive dashboard built for a graduate course around long-term career, salary, and job-market trends. A big part of the work was editorial: deciding what to include, what to leave out, and how to present salary data honestly without making it easy to misread. The filter design went through several iterations before it felt natural to use.',
-				url: 'https://public.tableau.com/app/profile/eric.lemon/viz/LemonAssignmentFinal/Dashboard',
-				urlLabel: 'View on Tableau Public'
-			},
-			others: [
-				{
-					title: 'HR Analytics Dashboard',
-					desc: 'Workforce trends, retention risks, and role distribution built from a synthetic HR dataset with a clean summary-to-detail navigation flow.',
-					url: 'https://public.tableau.com/app/profile/eric.lemon/viz/Project8_17527841417050/HRSummary'
-				},
-				{
-					title: 'Covid-19 Dashboard',
-					desc: 'National COVID-19 trends through April 2021: cases, mortality, and regional comparisons in a single interactive view.',
-					url: 'https://public.tableau.com/app/profile/eric.lemon/viz/Project9_17550177343090/Dashboard'
-				},
-				{
-					title: 'AirHelp Score Dashboard',
-					desc: 'Global airport performance ranked by service quality and on-time metrics using AirHelp scoring data.',
-					url: 'https://public.tableau.com/app/profile/eric.lemon/viz/Project7_17515896957860/Dashboard1'
-				}
-			]
-		},
-
-		excel: {
-			label: 'Excel',
-			icon: 'fa-solid fa-file-excel',
-			accentColor: '#276749',
-			featured: {
-				eyebrow: 'Featured Excel Project',
-				title: 'Decision Analytics Excel Problems',
-				tags: ['Excel', 'Solver', 'Linear Programming', 'Optimization', 'Graduate'],
-				summary: 'Over 25 optimization problems solved using Excel Solver, covering linear programming, integer programming, and resource allocation across realistic business scenarios. Building models in Solver forces a level of precision that abstract problem statements do not require: you have to define exactly what you are optimizing and what the real constraints are before anything runs.',
-				url: 'https://github.com/ewlemon/Excel-Project-2/blob/main/DecisionAnalysisProblems.xlsx',
-				urlLabel: 'View on GitHub'
-			},
-			others: [
-				{
-					title: 'Business Analytics Problems',
-					desc: 'Regression analysis and optimization modeling with structured problem-solving documentation throughout.',
-					url: 'https://github.com/ewlemon/Excel-Project-3/blob/main/BusinessAnalysisProblems.xlsx'
-				},
-				{
-					title: 'Stock Market Analysis',
-					desc: 'Auto-updating Excel workbook refreshed daily via a GitHub Actions Python pipeline with no manual updates needed.',
-					url: 'https://github.com/ewlemon/Stock-Project'
-				}
-			]
-		},
-
-		databricks: {
-			label: 'Databricks',
-			icon: 'fa-solid fa-fire-flame-curved',
-			accentColor: '#c0392b',
-			featured: {
-				eyebrow: 'Featured Databricks Project',
-				title: 'CO\u2082 Emissions Dashboard',
-				tags: ['Databricks', 'SQL', 'Cloud Analytics', 'Lakehouse'],
-				summary: 'An interactive Databricks dashboard analyzing U.S. CO\u2082 emissions data from 2023. The cloud-native environment handles all the infrastructure, which means the focus stays entirely on the analysis: querying the data, building the transformations, and composing a dashboard that someone without a technical background can actually use.',
-				url: 'https://dbc-775b9b39-494b.cloud.databricks.com/dashboardsv3/01f0d06b765a15b2bb4cf0e9fe562483/published?o=1864074656503127',
-				urlLabel: 'View Dashboard'
-			},
-			others: []
-		},
-
-		ai: {
-    label: 'AI (Claude / ChatGPT)',
-    icon: 'fa-solid fa-robot',
-    accentColor: '#6b46c1',
-    featured: {
-        eyebrow: 'Featured AI Project',
-        title: 'AI Analyst Copilot Agent',
-        tags: ['Claude API', 'AI Agents', 'Python', 'SQL', 'Streamlit'],
-        embed: {
-            src: 'https://analyst-copilot-agent-5gpanuic33nqb66wxlvcrd.streamlit.app/?embed=true',
-            height: 800,
-            extra: 'allowfullscreen'
-        },
-        summary: 'A live AI agent that answers business questions in plain English: ask it something like "which product categories are most profitable?" and it inspects the database, writes its own read-only SQL, runs it, charts the result, and explains the finding, while showing you every query it ran. I built it as an analyst copilot rather than a black box, because the interesting engineering is the control layer, not the model: two independent guardrails keep it strictly read-only, and every answer surfaces its SQL plus a short caveats note so a human analyst stays in the loop and owns the decision. It runs on the Claude API’s tool-use feature, and for each example I re-ran the agent’s query myself to confirm the numbers matched. The skill it demonstrates is directing and supervising AI to do real analytics work, not being replaced by it.',
-        url: 'https://github.com/ewlemon/analyst-copilot-agent',
-        urlLabel: 'View on GitHub'
-    },
-    others: [
-        {
-            title: 'Interactive SQL Practice Website',
-            desc: 'A deployed, interactive SQL practice site built with Claude AI: realistic schemas and business-style questions that reward analytical thinking over syntax recall.',
-            url: 'https://sql-practice-two.vercel.app/'
-        }
-    ]
-},
-
-	};
-
-
-	// ═══════════════════════════════════════════════════════════
-	//  RENDER & TOGGLE SKILL PANEL
-	// ═══════════════════════════════════════════════════════════
-	let activePill = null;
-
-	function renderSkillPanel(skillKey) {
-		const data  = SKILL_DATA[skillKey];
-		const inner = document.getElementById('scp-inner');
-		const f     = data.featured;
-
-		const tagsHTML = f.tags.map(t => `<span class="fi-tag">${t}</span>`).join('');
-
-		const embedHTML = f.embed ? `
-			<div class="scp-embed-wrap">
-				<iframe src="${f.embed.src}" height="${f.embed.height}"
-					${f.embed.extra || ''} frameborder="0"></iframe>
-			</div>` : '';
-
-		const othersHTML = data.others.length > 0 ? `
-			<div class="scp-others">
-				<p class="scp-others-heading">More ${data.label} Projects</p>
-				<div class="scp-others-grid">
-					${data.others.map(p => `
-						<a href="${p.url}" target="_blank" rel="noopener" class="scp-other-card">
-							<span class="scp-other-title">${p.title}</span>
-							<span class="scp-other-desc">${p.desc}</span>
-							<span class="scp-other-link">
-								<i class="fa-solid fa-arrow-right"></i> Open project
-							</span>
-						</a>`).join('')}
-				</div>
-			</div>` : '';
-
-		inner.innerHTML = `
-			<div class="scp-header">
-				<span class="scp-header-label">
-					<i class="${data.icon}"></i>&nbsp;${data.label} Projects
-				</span>
-				<button class="scp-close" id="scp-close-btn" aria-label="Close panel">
-					<i class="fa-solid fa-xmark"></i>
-				</button>
-			</div>
-			<div class="scp-body">
-				${embedHTML}
-				<span class="scp-feat-eyebrow">${f.eyebrow}</span>
-				<h3 class="scp-feat-title">${f.title}</h3>
-				<div class="scp-feat-tags">${tagsHTML}</div>
-				<p class="scp-feat-summary">${f.summary}</p>
-				<a href="${f.url}" target="_blank" rel="noopener" class="scp-cta"
-				   style="background:${data.accentColor};">
-					<span class="btn-label">${f.urlLabel}</span>
-					<span class="btn-arr">&#8594;</span>
-				</a>
-			</div>
-			${othersHTML}`;
-
-		document.getElementById('scp-close-btn').addEventListener('click', closePanel);
-	}
-
-	function openPanel(skillKey) {
-		renderSkillPanel(skillKey);
-		const panel = document.getElementById('skill-content-panel');
-		panel.classList.add('scp-open');
-		setTimeout(() => panel.scrollIntoView({ behavior: 'smooth', block: 'nearest' }), 80);
-	}
-
-	function closePanel() {
-		document.getElementById('skill-content-panel').classList.remove('scp-open');
-		if (activePill) {
-			activePill.classList.remove('sp-active');
-			activePill.setAttribute('aria-expanded', 'false');
-			activePill = null;
-		}
-	}
-
-	document.querySelectorAll('.skill-pill.has-projects').forEach(pill => {
-		function handleToggle() {
-			const skillKey = pill.dataset.skill;
-			const isActive = pill.classList.contains('sp-active');
-			document.querySelectorAll('.skill-pill.has-projects.sp-active').forEach(p => {
-				p.classList.remove('sp-active');
-				p.setAttribute('aria-expanded', 'false');
-			});
-			if (isActive) {
-				closePanel();
-			} else {
-				pill.classList.add('sp-active');
-				pill.setAttribute('aria-expanded', 'true');
-				activePill = pill;
-				openPanel(skillKey);
-			}
-		}
-		pill.addEventListener('click', handleToggle);
-		pill.addEventListener('keydown', e => {
-			if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); handleToggle(); }
-		});
-	});
-
-
-	// ═══════════════════════════════════════════════════════════
-	//  STANDARD PAGE JS
-	// ═══════════════════════════════════════════════════════════
-
-	const body   = document.body;
-	const toggle = document.getElementById('dark-toggle');
-	const icon   = document.getElementById('dark-icon');
-	function applyTheme(dark) {
-		body.classList.toggle('dark', dark);
-		icon.className = dark ? 'fa-solid fa-sun' : 'fa-solid fa-moon';
-		localStorage.setItem('theme', dark ? 'dark' : 'light');
-	}
-	applyTheme(localStorage.getItem('theme') === 'dark');
-	toggle.addEventListener('click', () => applyTheme(!body.classList.contains('dark')));
-
-	window.addEventListener('load', () => {
-		document.getElementById('page-loader').classList.add('loaded');
-		setTimeout(() => {
-			const h = document.getElementById('header');
-			if (h) h.classList.add('loaded');
-		}, 100);
-	});
-
-	const fadeObs = new IntersectionObserver((entries, obs) => {
-		entries.forEach(e => {
-			if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); }
-		});
-	}, { threshold: 0.08 });
-	document.querySelectorAll('.fade-in').forEach(el => fadeObs.observe(el));
-
-	function countUp(el, target, suffix, duration) {
-		let start = 0;
-		const step = target / (duration / 16);
-		const timer = setInterval(() => {
-			start += step;
-			if (start >= target) { start = target; clearInterval(timer); }
-			el.textContent = Math.floor(start) + suffix;
-		}, 16);
-	}
-	const statsObs = new IntersectionObserver((entries, obs) => {
-		entries.forEach(e => {
-			if (e.isIntersecting) {
-				document.querySelectorAll('.stat-number[data-target]').forEach(el => {
-					const target = el.dataset.target;
-					if (!target) return;
-					countUp(el, parseInt(target), el.dataset.suffix || '', 1200);
-				});
-				obs.unobserve(e.target);
-			}
-		});
-	}, { threshold: 0.4 });
-	const statsSection = document.getElementById('stats-section');
-	if (statsSection) statsObs.observe(statsSection);
-
-	document.querySelectorAll('.nav-links a').forEach(a => {
-		a.addEventListener('click', e => {
-			const href = a.getAttribute('href');
-			if (href.startsWith('#')) {
-				const target = document.querySelector(href);
-				if (target) {
-					e.preventDefault();
-					target.scrollIntoView({ behavior: 'smooth' });
-					document.querySelector('.nav-links').classList.remove('open');
-				}
-			}
-		});
-	});
-
-	const sections = document.querySelectorAll('section[id], div[id]');
-	const navLinks = document.querySelectorAll('.nav-links a[href^="#"]');
-	const scrollSpy = new IntersectionObserver(entries => {
-		entries.forEach(entry => {
-			if (entry.isIntersecting) {
-				navLinks.forEach(link => {
-					link.classList.toggle('active', link.getAttribute('href') === '#' + entry.target.id);
-				});
-			}
-		});
-	}, { threshold: 0.4 });
-	sections.forEach(s => scrollSpy.observe(s));
-
-	document.getElementById('nav-toggle').addEventListener('click', () => {
-		document.querySelector('.nav-links').classList.toggle('open');
-	});
-
-	const scrollBtn = document.getElementById('scroll-top');
-	window.addEventListener('scroll', () => {
-		scrollBtn.classList.toggle('visible', window.scrollY > 400);
-	});
-	scrollBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
-
-	(function() {
-		const el = document.getElementById('gmail-link');
-		if (el) el.href = 'mailto:' + 'ewlemon7' + '@' + 'gmail.com';
-	})();
-	</script>
+	<script src="assets/js/hero-canvas.js?v=6"></script>
+	<script src="assets/js/portfolio.js?v=10"></script>
 
 	</body>
 </html>
