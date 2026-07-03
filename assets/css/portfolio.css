@@ -1234,26 +1234,41 @@ body.dark .upcoming-header  { background: #16243a; color: #9db4c4; }
 	color: rgba(255,255,255,0.65);
 	margin-bottom: 0.35rem;
 }
+/* Light inputs with dark text: readable whether the visitor types
+   normally or the browser autofills (autofill forces a light
+   background, so dark text stays legible in every case). */
 .cf-field input,
 .cf-field textarea {
 	width: 100%;
 	padding: 0.7rem 0.9rem;
 	border-radius: 8px;
-	border: 1px solid rgba(103,232,249,0.25);
-	background: rgba(10,25,48,0.6);
-	color: #fff;
+	border: 1px solid rgba(103,232,249,0.3);
+	background: #ffffff;
+	color: #16232e;
+	caret-color: #0d9488;
 	font-family: inherit;
 	font-size: 0.92rem;
 	resize: vertical;
 	transition: border-color .2s, box-shadow .2s;
 }
 .cf-field input::placeholder,
-.cf-field textarea::placeholder { color: rgba(255,255,255,0.35); }
+.cf-field textarea::placeholder { color: #8a9aa5; }
 .cf-field input:focus,
 .cf-field textarea:focus {
 	outline: none;
 	border-color: #5eead4;
-	box-shadow: 0 0 0 3px rgba(94,234,212,0.18);
+	box-shadow: 0 0 0 3px rgba(94,234,212,0.25);
+}
+/* Keep autofilled fields dark-on-light too */
+.cf-field input:-webkit-autofill,
+.cf-field input:-webkit-autofill:hover,
+.cf-field input:-webkit-autofill:focus,
+.cf-field textarea:-webkit-autofill {
+	-webkit-text-fill-color: #16232e;
+	caret-color: #0d9488;
+	-webkit-box-shadow: 0 0 0 1000px #ffffff inset;
+	box-shadow: 0 0 0 1000px #ffffff inset;
+	transition: background-color 9999s ease-in-out 0s;
 }
 
 .cf-submit {
