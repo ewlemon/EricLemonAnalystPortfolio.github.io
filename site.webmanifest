@@ -1,0 +1,12 @@
+{
+  "name": "Eric Lemon | Data & Business Analyst",
+  "short_name": "Eric Lemon",
+  "description": "Portfolio of data and business analytics projects covering SQL, Python, R, Tableau, and Databricks.",
+  "icons": [
+    { "src": "images/favicon-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "apple-touch-icon.png", "sizes": "180x180", "type": "image/png" }
+  ],
+  "theme_color": "#0a1930",
+  "background_color": "#0a1930",
+  "display": "standalone"
+}

@@ -20,13 +20,18 @@
 		<meta property="og:url"         content="https://ewlemon.github.io/EricLemonAnalystPortfolio.github.io/" />
 		<meta name="twitter:card"       content="summary_large_image" />
 
+		<link rel="icon" href="favicon.ico" sizes="any" />
 		<link rel="icon" type="image/svg+xml" href="images/favicon.svg" />
+		<link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32.png" />
+		<link rel="icon" type="image/png" sizes="16x16" href="images/favicon-16.png" />
+		<link rel="apple-touch-icon" href="apple-touch-icon.png" />
+		<link rel="manifest" href="site.webmanifest" />
 
 		<link rel="stylesheet" href="assets/css/main.css?v=6" />
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
 		<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
 		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
-		<link rel="stylesheet" href="assets/css/portfolio.css?v=13" />
+		<link rel="stylesheet" href="assets/css/portfolio.css?v=15" />
 
 
 
@@ -53,7 +58,21 @@
 	     STICKY NAVIGATION
 	═══════════════════════════════════════════════════════════ -->
 	<nav id="site-nav">
-		<span class="nav-brand">Eric Lemon | Analyst Portfolio</span>
+		<a href="#header" class="nav-brand" aria-label="Eric Lemon, Analyst Portfolio — back to top">
+			<svg class="brand-mark" viewBox="0 0 64 64" width="34" height="34" aria-hidden="true">
+				<defs>
+					<linearGradient id="navGrad" x1="0" y1="0" x2="1" y2="1">
+						<stop offset="0" stop-color="#22d3ee"/>
+						<stop offset="1" stop-color="#5eead4"/>
+					</linearGradient>
+				</defs>
+				<rect x="1" y="1" width="62" height="62" rx="14" fill="#0a1930" stroke="rgba(103,232,249,0.28)" stroke-width="1.5"/>
+				<text x="32" y="33" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-weight="800" font-size="22" letter-spacing="-1" fill="#e6f1f7">EL</text>
+				<path d="M11 50 L23 45 L33 48 L43 40 L53 36" fill="none" stroke="url(#navGrad)" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/>
+				<circle cx="53" cy="36" r="3.6" fill="#5eead4"/>
+			</svg>
+			<span class="brand-word">Eric Lemon<span class="brand-sub">Analyst Portfolio</span></span>
+		</a>
 		<div class="nav-right">
 			<ul class="nav-links">
 				<li><a href="#banner">About</a></li>
