@@ -368,49 +368,6 @@ scrollBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 's
 
 
 // ═══════════════════════════════════════════════════════════
-//  ROTATING TYPED PHRASES (hero) — centered on its own line
-// ═══════════════════════════════════════════════════════════
-(function() {
-	const el = document.getElementById('typed-word');
-	if (!el) return;
-	if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return; // keep static first phrase
-
-	const phrases = [
-		'Every dataset has a story to tell',
-		'I find the "why" behind the numbers',
-		'Curious by nature, analytical by training',
-		'Good decisions start with good questions',
-		'Making data feel a little less messy'
-	];
-	let idx = 0, chars = phrases[0].length, deleting = true;
-
-	function tick() {
-		if (deleting) {
-			chars--;
-			el.textContent = phrases[idx].slice(0, chars);
-			if (chars === 0) {
-				deleting = false;
-				idx = (idx + 1) % phrases.length;
-				setTimeout(tick, 400);
-				return;
-			}
-			setTimeout(tick, 34);
-		} else {
-			chars++;
-			el.textContent = phrases[idx].slice(0, chars);
-			if (chars === phrases[idx].length) {
-				deleting = true;
-				setTimeout(tick, 2600);
-				return;
-			}
-			setTimeout(tick, 62);
-		}
-	}
-	setTimeout(tick, 2600);
-})();
-
-
-// ═══════════════════════════════════════════════════════════
 //  MINI-CHART: animate bars on scroll + click-through to skills
 // ═══════════════════════════════════════════════════════════
 (function() {
