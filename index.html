@@ -177,7 +177,6 @@
 		<div class="featured-list">
 
 			<article class="featured-card fade-in tilt-card"
-				data-embed-src="https://analyst-copilot-agent-5gpanuic33nqb66wxlvcrd.streamlit.app/?embed=true"
 				data-embed-height="850"
 				data-embed-extra="allowfullscreen">
 				<div class="fc-main">
@@ -187,19 +186,15 @@
 				</div>
 				<div class="fc-body">
 					<div class="fc-tags">
-						<span class="fi-tag">Claude API</span><span class="fi-tag">Python</span><span class="fi-tag">SQL</span><span class="fi-tag">Streamlit</span>
+						<span class="fi-tag">SQL</span><span class="fi-tag">T-SQL</span><span class="fi-tag">Claude AI</span>
 					</div>
-					<h3 class="fc-title">AI Analyst Copilot Agent</h3>
+					<h3 class="fc-title">Business Performance Analysis</h3>
 					<dl class="fc-case">
-						<div><dt>The problem</dt><dd>Business teams always have one more question for the database, and nobody wants to wait a day for an analyst to run it. But handing an AI direct access to your data raises some obvious trust issues.</dd></div>
-						<div><dt>The approach</dt><dd>I built an agent on the Claude API with three tools: it can inspect the schema, run SQL, and draw charts. Two separate guardrails (a validator that only allows SELECT statements, plus a connection opened in read-only mode) make writes impossible. Every answer shows the exact SQL it ran and a short note on caveats.</dd></div>
-						<div><dt>The outcome</dt><dd>A live agent that answers questions like &ldquo;which product categories are most profitable?&rdquo; in seconds, chart included. I re-ran every example query myself to confirm the numbers matched. The point isn't replacing the analyst; it's giving them a faster first draft.</dd></div>
-					</dl>
+						<div><dt>A full-stack SQL analysis of a SaaS business dataset covering revenue, customers, product usage, sales pipeline, subscriptions, and support tickets. Files were generated with AI and questions were asked by AI to simulate a business analyst's workflow. The project includes a full README below.</div></dt>
+						</dl>
 					<div class="fc-links">
-						<button class="fc-link fc-link-primary fc-expand" data-show-label="Try the live app" data-hide-label="Hide the app" aria-expanded="false">
-							<i class="fa-solid fa-bolt"></i> <span class="fc-expand-label">Try the live app</span> <i class="fa-solid fa-chevron-down fc-chev"></i>
 						</button>
-						<a href="https://github.com/ewlemon/analyst-copilot-agent" target="_blank" rel="noopener" class="fc-link"><i class="fab fa-github"></i> Code &amp; README</a>
+						<a href="https://github.com/ewlemon/Business-SQL-Project/blob/main/README.md" target="_blank" rel="noopener" class="fc-link"><i class="fab fa-github"></i> Code &amp; README</a>
 					</div>
 				</div>
 				</div><!-- /fc-main -->
@@ -216,19 +211,17 @@
 				</div>
 				<div class="fc-body">
 					<div class="fc-tags">
-						<span class="fi-tag">T-SQL</span><span class="fi-tag">ETL</span><span class="fi-tag">SQL Server</span>
+						<span class="fi-tag">Python</span><span class="fi-tag">Tableau</span><span class="fi-tag">Prezi</span>
 					</div>
-					<h3 class="fc-title">Business SQL Project</h3>
+					<h3 class="fc-title">Internship Assessment</h3>
 					<dl class="fc-case">
-						<div><dt>The problem</dt><dd>A SaaS company's data lands as six messy CSV exports, about 98K rows covering customers, revenue, product usage, sales pipeline, subscriptions, and support tickets. The IDs have prefixes, every column is text, and somewhere in there is the answer to where revenue is leaking.</dd></div>
-						<div><dt>The approach</dt><dd>I staged everything as raw text first, stripped the ID prefixes, typed each column safely with TRY_CAST, and built reusable views on the clean tables so every analysis could start from the same solid base.</dd></div>
-						<div><dt>The outcome</dt><dd>Average customer lifetime value came out to <strong>$21.6K</strong>, with active customers worth nearly double churned ones. Starter-plan churn runs <strong>2.69%</strong> against 1.18% for Enterprise, and the sales pipeline converts at just <strong>5.6%</strong> with 67% of deals never reaching a demo. Three findings, three levers the business can pull.</dd></div>
-					</dl>
+						<div><dt>Internship assessment analyzing workforce absenteeism, engagement surveys, and consultant utilization across multiple datasets. The analysis was performed in Jupyter Notebook using Pandas and SciPy, the charts were made in Tableau, and the results were presented in a Prezi walkthrough.</div></dt>
+						</dl>
 					<div class="fc-links">
 						<button class="fc-link fc-link-primary fc-expand" data-show-label="Watch the walkthrough" data-hide-label="Hide the walkthrough" aria-expanded="false">
 							<i class="fa-solid fa-circle-play"></i> <span class="fc-expand-label">Watch the walkthrough</span> <i class="fa-solid fa-chevron-down fc-chev"></i>
 						</button>
-						<a href="https://github.com/ewlemon/Business-SQL-Project/blob/main/README.md" target="_blank" rel="noopener" class="fc-link"><i class="fab fa-github"></i> Full write-up</a>
+						<a href="https://github.com/ewlemon/Analysis-Case-Study" target="_blank" rel="noopener" class="fc-link"><i class="fab fa-github"></i> Full write-up</a>
 					</div>
 				</div>
 				</div><!-- /fc-main -->
@@ -245,13 +238,11 @@
 				</div>
 				<div class="fc-body">
 					<div class="fc-tags">
-						<span class="fi-tag">Python</span><span class="fi-tag">Regression</span><span class="fi-tag">GitHub Actions</span><span class="fi-tag">Excel</span>
+						<span class="fi-tag">Python</span><span class="fi-tag">Excel</span><span class="fi-tag">Prezi</span>
 					</div>
 					<h3 class="fc-title">U.S. Stock Market Index Analysis</h3>
 					<dl class="fc-case">
-						<div><dt>The problem</dt><dd>Everyone says the market grows over time, but which model actually fits that growth best? And could I build the analysis once and have it keep itself up to date?</dd></div>
-						<div><dt>The approach</dt><dd>I modeled five major U.S. indexes with Linear, Ridge, Lasso, and Degree-3 Polynomial regression, compared them on R&sup2; and RMSE, and added rolling-volatility views across the dot-com bust, 2008, and COVID. A GitHub Actions pipeline pulls fresh data every day and writes the results into an Excel workbook.</dd></div>
-						<div><dt>The outcome</dt><dd>The pipeline has run hands-off since launch, over <strong>230 commits</strong> of iteration later. Model comparisons, closing values, and daily returns stay current without me touching a thing.</dd></div>
+						<div><dt>A data analytics project focused on exploring and modeling long-term trends in major U.S. stock market indexes using Jupyter Notebook. The work highlights practical Python skills (data cleaning, visualization, and regression modeling), as well as techniques learned in graduate-level analytics coursework. A YAML pipeline in GitHub Actions refreshes the data every day, keeping the analysis current and comparing it to the regression analysis.</div></dt>
 					</dl>
 					<div class="fc-links">
 						<button class="fc-link fc-link-primary fc-expand" data-show-label="Watch the walkthrough" data-hide-label="Hide the walkthrough" aria-expanded="false">
@@ -278,9 +269,7 @@
 					</div>
 					<h3 class="fc-title">Career Trends Dashboard</h3>
 					<dl class="fc-case">
-						<div><dt>The problem</dt><dd>Career and salary stats are some of the easiest data to misread, and the decision they inform is a big one. I wanted a dashboard that was honest before it was pretty.</dd></div>
-						<div><dt>The approach</dt><dd>The dashboard projects 10-year outlooks: annual openings, growth, turnover, wages, and required education. The filters went through several rounds before they felt natural, and just as much work went into deciding what to leave out as what to include.</dd></div>
-						<div><dt>The outcome</dt><dd>One view where you can compare career paths on the numbers that matter, without the presentation nudging you toward a bad read. It's embedded right on this site and published on Tableau Public.</dd></div>
+						<div><dt>Interactive 10-year career outlooks: annual openings, growth, turnover, wages, and required education, with filters designed to help users explore the data and find the most relevant career paths for their goals. The dashboard was built in Tableau using U.S. Bureau of Labor Statistics data.</div></dt>
 					</dl>
 					<div class="fc-links">
 						<button class="fc-link fc-link-primary fc-expand" data-show-label="Explore the live dashboard" data-hide-label="Hide the dashboard" aria-expanded="false">
